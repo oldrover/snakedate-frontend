@@ -8,12 +8,16 @@ import Dashboard from './components/Dashboard/Dashboard';
 const snakes = [{
   species:'Kornnatter',
   name: 'Kratos',
+  sex: 'male',
+  birthyear: 2010,
   weight: 500,
   size: 145,
   image: ''
 },
 { species: 'Kornnatter',
   name: 'Raziel',
+  sex: 'male',
+  birthyear: 2019,
   weight: 400,
   size: 120,
   image: ''
