@@ -9,6 +9,7 @@
   --text-color: #B3B3B3; 
   --vgradient: linear-gradient(180deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --hgradient: linear-gradient(90deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
+  --divider-gradient: linear-gradient(to left, var(--secondary-color) 15%, var(--divider-color));
 
 }
 
@@ -174,7 +175,30 @@ body {
   grid-template-columns: auto;
   grid-template-rows: repeat(6, 1fr) 6fr;
   justify-content:center;
-  align-items: center;
-  font-weight: bold;
+  align-content: center;
+  font-weight: bold;  
+  padding-top: 15px;  
+}
 
+.Fact {  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid;
+  border-image-slice: 1;
+  border-image-source: var(--divider-gradient); 
+}
+
+.Last {
+  border-bottom: none;
+}
+
+
+.FactImage img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 5%,rgba(0,0,0,0.65) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 5%,rgba(0,0,0,0.65) 100%);
+  border-radius: 5px;
 }

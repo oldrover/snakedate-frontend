@@ -17,12 +17,12 @@ const Details = (props) => {
                 <div  className="Fact">
                     aktuelles Gewicht: {props.snake.weight}g
                 </div>
-                <div  className="Fact">
+                <div  className="Fact Last">
                     aktuelle Größe: {props.snake.size}cm
                 </div>
-                <div></div>
-                
-                
+                <div className="FactImage">
+                <img src="images/cham.jpg" alt="snake" />
+                </div>   
                 
             </div>
         );    
