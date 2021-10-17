@@ -1,22 +1,14 @@
-import React from 'react';
+import { NavSnake } from './NavSnake';
 
-
-const Navigation = (props) => {    
+export const Navigation = (props) => {    
         return (
             <div className="Navigation">
-                <div className="Snake">
-                    <img src="images/cham.jpg" alt="chameleon" />
-                    {props.user.snakes[0].name}                    
-                </div>                
-                <div className="User">
+                <NavSnake user={props.user}/>                               
+                <div className="NavUser">
                 {props.user.name}
-                    <div className="UserIcon"></div> 
-                    
-                    
+                    <div className="UserIcon"></div>  
                 </div>
             </div>
         ); 
 
 }
-
-export default Navigation;

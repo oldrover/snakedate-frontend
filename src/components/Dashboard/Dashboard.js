@@ -1,4 +1,4 @@
-import Details from './Details';
+import { Details } from './Details';
 
 export const Dashboard = (props) => {
     return (
@@ -7,5 +7,3 @@ export const Dashboard = (props) => {
         </div>
         );    
 }
-
-export default Dashboard;

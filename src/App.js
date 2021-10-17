@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
 
-import Navigation from './components/Navigation/Navigation';
+import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
-import Dashboard from './components/Dashboard/Dashboard';
+import { Dashboard } from './components/Dashboard/Dashboard';
 
 const snakes = [{
   species:'Kornnatter',
@@ -33,12 +33,12 @@ const User = {
 function App() {
 
   const [user] = useState(User);
-  const [snake] = useState(User.snakes[0]);
-  
+  const [snake, setSnake] = useState(User.snakes[0]);
+ 
 
   return (
     <div className='App'>
-      <Navigation user={user}/> 
+      <Navigation user={user} setSnake={setSnake}/> 
       <div className='Wrapper'>  
         <Dashboard snake={snake}/>   
         <Calendar />        

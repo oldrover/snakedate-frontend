@@ -47,7 +47,7 @@ body {
   border-radius: 50%;
 }
 
-.User {
+.NavUser {
   background-color: var(--primary-color);
   background-image: var(--hgradient);
   border-radius: 5px;
@@ -67,7 +67,7 @@ body {
   border-radius: 50%;  
 }
 
-.Snake {
+.NavSnake {
   background-color: var(--primary-color);
   background-image: var(--hgradient);
   border-radius: 5px;

@@ -1,5 +1,5 @@
 
-const Details = (props) => {
+export const Details = (props) => {
     return (
             <div className="Details">
                 <div className="Fact">
@@ -28,5 +28,4 @@ const Details = (props) => {
         );    
 }
 
-export default Details;
 
