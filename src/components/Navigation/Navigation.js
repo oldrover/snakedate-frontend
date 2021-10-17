@@ -1,13 +1,11 @@
 import { NavSnake } from './NavSnake';
+import { NavUser } from './NavUser';
 
 export const Navigation = (props) => {    
         return (
             <div className="Navigation">
-                <NavSnake user={props.user}/>                               
-                <div className="NavUser">
-                {props.user.name}
-                    <div className="UserIcon"></div>  
-                </div>
+                <NavSnake user={props.user} /> 
+                <NavUser user={props.user} />  
             </div>
         ); 
 
