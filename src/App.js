@@ -12,7 +12,7 @@ const snakes = [{
   birthyear: 2010,
   weight: 500,
   size: 145,
-  image: ''
+  image: 'images/snake.jpg'
 },
 { species: 'Kornnatter',
   name: 'Raziel',
@@ -20,7 +20,7 @@ const snakes = [{
   birthyear: 2019,
   weight: 400,
   size: 120,
-  image: ''
+  image: 'images/snake.jpg'
 }
 ]
 
