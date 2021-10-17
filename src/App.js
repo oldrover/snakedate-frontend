@@ -6,6 +6,7 @@ import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
 
 const snakes = [{
+  id: 0,
   species:'Kornnatter',
   name: 'Kratos',
   sex: 'male',
@@ -14,7 +15,9 @@ const snakes = [{
   size: 145,
   image: 'images/snake.jpg'
 },
-{ species: 'Kornnatter',
+{ 
+  id: 1,
+  species: 'Kornnatter',
   name: 'Raziel',
   sex: 'male',
   birthyear: 2019,
