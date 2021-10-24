@@ -23,7 +23,7 @@ const snakes = [{
   birthyear: 2019,
   weight: 400,
   size: 120,
-  image: 'images/snake.jpg'
+  image: 'images/snake2.jpg'
 }
 ]
 
@@ -39,13 +39,13 @@ function App() {
   const [snake, setSnake] = useState(User.snakes[0]);
  
 
-  return (
+  return (    
     <div className='App'>
-      <Navigation user={user} setSnake={setSnake}/> 
+      <Navigation user={user} snake={snake} setSnake={setSnake}/> 
       <div className='Wrapper'>  
         <Dashboard snake={snake}/>   
         <Calendar />        
-      </div>      
+      </div>              
     </div>
   );
 }
