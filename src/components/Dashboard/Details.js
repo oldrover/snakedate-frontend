@@ -1,5 +1,8 @@
 
-const Details = (props) => {
+export const Details = (props) => {
+
+    const imgSrc = props.snake.image;
+
     return (
             <div className="Details">
                 <div className="Fact">
@@ -21,12 +24,11 @@ const Details = (props) => {
                     aktuelle Größe: {props.snake.size}cm
                 </div>
                 <div className="FactImage">
-                <img src="images/cham.jpg" alt="snake" />
+                <img src={imgSrc} alt="snake" />
                 </div>   
                 
             </div>
         );    
 }
 
-export default Details;
 
