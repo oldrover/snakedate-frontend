@@ -5,6 +5,7 @@ import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
 
+// Mock Data---------------------------------------------------------
 const snakes = [{
   id: 0,
   species:'Kornnatter',
@@ -13,7 +14,7 @@ const snakes = [{
   birthyear: 2010,
   weight: 500,
   size: 145,
-  image: 'images/snake.jpg'
+  image: null
 },
 { 
   id: 1,
@@ -33,6 +34,8 @@ const User = {
   image: ''
 }
 
+//End of Mock Data --------------------------------------------------
+
 function App() {
 
   const [user] = useState(User);
@@ -44,7 +47,7 @@ function App() {
       <Navigation user={user} snake={snake} setSnake={setSnake}/> 
       <div className='Wrapper'>  
         <Dashboard snake={snake}/>   
-        <Calendar />        
+        <Calendar snakeId={snake.id}/>        
       </div>              
     </div>
   );

@@ -1,7 +1,9 @@
 
 export const NavSnake = (props) => {
 
-    const imgSrc = 'images/snake.jpg';
+    let imgSrc = 'images/snake.jpg';
+
+    props.snake.image !== null && (imgSrc = props.snake.image);
 
     const handleClick = (e) => {        
         props.setSnake(JSON.parse(e.target.value));        
@@ -10,7 +12,7 @@ export const NavSnake = (props) => {
     return (
         <div className="NavSnake">
             <div className="NavSnakeImg">
-                <img src={props.snake.image} alt="chameleon" /> 
+                <img src={imgSrc} alt="chameleon" /> 
                 <div id="Overlay"></div> 
                 <div id="SnakeList" className="SnakeList">                
                     <div>

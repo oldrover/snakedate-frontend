@@ -1,7 +1,9 @@
 
 export const Details = (props) => {
 
-    const imgSrc = props.snake.image;
+    let imgSrc = 'images/snake.jpg';
+
+    props.snake.image !== null && (imgSrc = props.snake.image);
 
     return (
             <div className="Details">
