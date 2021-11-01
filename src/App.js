@@ -18,7 +18,6 @@ const User = {
 const url = "http://localhost:3001";
 
 function App() {
-
   
   const [user] = useState(User);
   const [snake, setSnake] = useState([]);

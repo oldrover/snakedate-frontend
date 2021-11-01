@@ -5,11 +5,11 @@ export const CalendarDay = (props) => {
             <div>
             {props.day}
             </div>
-            <div className="Event">
+            <div className="Events">
             {
                 props.dailyEvents.map(e => {
                     return(
-                        <div >
+                        <div className="Event">
                             {e.type}
                         </div>
                         );
