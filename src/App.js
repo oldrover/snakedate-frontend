@@ -1,56 +1,73 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
 
 // Mock Data---------------------------------------------------------
-const snakes = [{
-  id: 0,
-  species:'Kornnatter',
-  name: 'Kratos',
-  sex: 'male',
-  birthyear: 2010,
-  weight: 500,
-  size: 145,
-  image: null
-},
-{ 
-  id: 1,
-  species: 'Kornnatter',
-  name: 'Raziel',
-  sex: 'male',
-  birthyear: 2019,
-  weight: 400,
-  size: 120,
-  image: 'images/snake2.jpg'
-}
-]
 
 const User = {
+  id: 1,
   name: 'Sabine',
-  snakes: snakes,
+  snakes: [],
   image: ''
 }
-
 //End of Mock Data --------------------------------------------------
+
+const url = "http://localhost:3001";
 
 function App() {
 
+  
   const [user] = useState(User);
-  const [snake, setSnake] = useState(User.snakes[0]);
- 
+  const [snake, setSnake] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);  
+
+  useEffect(() => { 
+    return fetch(`${url}/user/${User.id}/snakes`)
+    .then(response => response.json())
+    .then(data => {  
+      setIsLoading(false);    
+      user.snakes = data;
+      setSnake(data[0]);
+    }) 
+    .catch(error =>{
+      console.log(error);
+    }); 
+  }, [user]); 
+
+  const handleClick = () => {
+    setIsLoggedIn(true);
+  }
+
+  if(!isLoggedIn) {
+    return (
+        <div className="LoginPage">
+          <div className="LoginForm">
+            please log in
+            <button onClick={handleClick}>Login</button>
+          </div>
+        </div>
+      )
+  }
+
+  if (isLoading){
+    return(
+      <div>...loading</div>
+      );
+  }  
 
   return (    
     <div className='App'>
       <Navigation user={user} snake={snake} setSnake={setSnake}/> 
-      <div className='Wrapper'>  
-        <Dashboard snake={snake}/>   
-        <Calendar snakeId={snake.id}/>        
-      </div>              
+        <div className='Wrapper'>  
+          <Dashboard snake={snake}/>   
+          <Calendar snakeId={snake.id}/>        
+        </div>              
     </div>
-  );
+    );  
 }
 
 export default App;
