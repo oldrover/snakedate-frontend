@@ -1,9 +1,33 @@
 import React from 'react';
 
 import { CalendarHeader } from './CalendarHeader';
+import { CalendarDay } from './CalendarDay';
 
 import { Calendar as Cal } from '../../models/Calendar';
 
+// Mock Data -----------------------------------------------------------
+
+const snakeEvents = [{
+    id: 0,
+    type: 'weight',
+    date: new Date('2021.11.10'),
+    info: '500g'
+},
+{
+    id: 1,
+    type: 'feed',
+    date: new Date('2021.11.23'),
+    info: 'jumper' 
+},
+{
+    id: 2,
+    type: 'weight',
+    date: new Date('2021.11.23'),
+    info: '502g'
+
+}]
+
+// End of Mock Data ----------------------------------------------------
 
 
 export class Calendar extends React.Component {
@@ -16,8 +40,7 @@ export class Calendar extends React.Component {
         this.state = {
             calendar: cal,
             today: today
-        } 
-        
+        }         
         this.handleMonthChange = this.handleMonthChange.bind(this);        
     }
 
@@ -29,8 +52,7 @@ export class Calendar extends React.Component {
             {
             calendar: newCal
             }
-        );
-         
+        );         
     }    
 
     render() { 
@@ -43,18 +65,28 @@ export class Calendar extends React.Component {
                 <div className="WeekDays">
                     {this.state.calendar.getWeekDays().map(weekDay => <div className="WeekDay">{weekDay}</div>)}
                 </div>
-                <div className="Calendar">  
+                <div className="CalendarBody">  
                    {
                         this.state.calendar.getCalendar().map(day =>  { 
                             let clsName = ''
                             day === this.state.today.getDate() 
                             && this.state.calendar.getMonth() === this.state.today.getMonth()
+                            && this.state.calendar.getYear() === this.state.today.getFullYear()
                                 ? clsName = "Day Today"
                                 : clsName = "Day"
-                            return <div className={clsName}>{day}</div>
+                            
+                            let dailyEvents = [];
+                            
+                            dailyEvents = snakeEvents.filter(e => e.date.getDate() === day
+                                && e.date.getMonth() === this.state.calendar.getMonth()
+                                && e.date.getFullYear() === this.state.calendar.getYear()
+                            );
+
+                            return <CalendarDay className={clsName} day={day} dailyEvents={dailyEvents}/>
                         })
                    }
-                </div>                                               
+                </div>  
+                                                            
             </div>
         )
     }
