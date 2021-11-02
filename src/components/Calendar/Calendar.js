@@ -5,45 +5,41 @@ import { CalendarDay } from './CalendarDay';
 
 import { Calendar as Cal } from '../../models/Calendar';
 
-// Mock Data -----------------------------------------------------------
 
-const snakeEvents = [{
-    id: 0,
-    snakeId: 0,
-    type: 'weight',
-    date: new Date('2021.11.10'),
-    info: '500g'
-},
-{
-    id: 1,
-    snakeId: 1,
-    type: 'feed',
-    date: new Date('2021.11.23'),
-    info: 'jumper' 
-},
-{
-    id: 2,
-    snakeId: 1,
-    type: 'weight',
-    date: new Date('2021.11.23'),
-    info: '402g'
-
-}]
-
-// End of Mock Data ----------------------------------------------------
-
+const url = process.env.REACT_APP_BACKEND_URL;
 
 export const Calendar = (props) => {   
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
-    const [today] = useState(new Date());   
+    const [today] = useState(new Date());  
+
+    const [snakeEvents, setSnakeEvents] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    
+    useEffect(() => { 
+        return fetch(`${url}/events?snakeId=${props.snakeId}`)
+        .then(response => response.json())
+        .then(data => {  
+          setIsLoading(false);    
+          setSnakeEvents(data);          
+        }) 
+        .catch(error =>{
+          console.log(error);
+        }); 
+      }, [props.snakeId]);      
 
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
         setCalendar(newCal);               
-    }    
+    } 
+       
 
+    if (isLoading){
+        return(
+        <div>...loading</div>
+        );
+    }
      
     return (
         <div>
@@ -66,9 +62,9 @@ export const Calendar = (props) => {
                             
                         let dailyEvents = [];
                             
-                        dailyEvents = snakeEvents.filter(e => e.date.getDate() === day
-                            && e.date.getMonth() === calendar.getMonth()
-                            && e.date.getFullYear() === calendar.getYear()
+                        dailyEvents = snakeEvents.filter(e => new Date(e.date).getDate() === day
+                            && new Date(e.date).getMonth() === calendar.getMonth()
+                            && new Date(e.date).getFullYear() === calendar.getYear()                            
                         );
 
                         return <CalendarDay className={clsName} day={day} dailyEvents={dailyEvents}/>
