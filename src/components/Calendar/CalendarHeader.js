@@ -1,5 +1,8 @@
 import React from "react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faForward, faBackward, faCalendar } from '@fortawesome/free-solid-svg-icons';
+
 export class CalendarHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -17,15 +20,22 @@ export class CalendarHeader extends React.Component {
     render() {
         return(
             <div className="CalendarHeader">  
-                <div className="Tab">Calendar</div>
+                <div className="Tab">                    
+                    <FontAwesomeIcon icon={faCalendar} />
+                    <div>Calendar</div>
+                </div>
                 <div>
-                    <button value="back" onClick={this.handleClick}>zurück</button>
+                    <button value="back" onClick={this.handleClick}>
+                        <FontAwesomeIcon icon={faBackward} />
+                    </button>
                 </div>                  
                 <div>
                     {this.props.calendar.getMonthName()}
                 </div>
                 <div>
-                    <button value="forward" onClick={this.handleClick}>vor</button>
+                    <button value="forward" onClick={this.handleClick}>
+                        <FontAwesomeIcon icon={faForward} />
+                    </button>
                 </div> 
                 <div className="CalendarYear">
                     {this.props.calendar.getYear()}
