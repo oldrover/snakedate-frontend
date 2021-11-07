@@ -5,6 +5,7 @@ import { CalendarDay } from './CalendarDay';
 
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
+import { ShowForm } from '../Forms/ShowForm';
 
 
 const url = process.env.REACT_APP_BACKEND_URL;
@@ -16,6 +17,8 @@ export const Calendar = (props) => {
 
     const [snakeEvents, setSnakeEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+    const [form] = useState("event");
     
     useEffect(() => { 
         return fetch(`${url}/events?snakeId=${props.snakeId}`)
@@ -34,13 +37,12 @@ export const Calendar = (props) => {
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
         setCalendar(newCal);               
     } 
-       
+    
+    const handleShowForm = (show) => {
+        setShowForm(show);
+    }       
 
-    if (isLoading){
-        return(
-        <div>...loading</div>
-        );
-    }
+    isLoading && <div>...loading</div>; 
      
     return (
         <div>    
@@ -68,10 +70,23 @@ export const Calendar = (props) => {
                             && new Date(e.date).getFullYear() === calendar.getYear()                            
                         );
 
-                        return <CalendarDay className={clsName} day={day} dailyEvents={dailyEvents}/>
+                        return (
+                            <CalendarDay 
+                                className={clsName} 
+                                day={day} 
+                                dailyEvents={dailyEvents}
+                                handleShowForm={handleShowForm}
+                            />                        
+                        )
                     })
                 }
-            </div>                                                              
+            </div>  
+            { showForm && 
+                <ShowForm 
+                    form={form}
+                    handleShowForm={handleShowForm}
+                /> 
+            }
         </div>
     )    
 

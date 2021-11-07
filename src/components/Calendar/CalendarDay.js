@@ -2,10 +2,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBalanceScale, faUtensils, faPoop } from '@fortawesome/free-solid-svg-icons';
 
 
-
 export const CalendarDay = (props) => {
+     
+    const handleClick = () => {          
+        props.handleShowForm(true);
+        
+    }
+
+    
     return (
-        <div className={props.className} key={props.day}>
+        <div 
+            className={props.className} 
+            key={props.day}
+            onClick={handleClick}
+        >
             <div>
             {props.day}
             </div>
@@ -28,7 +38,6 @@ export const CalendarDay = (props) => {
 
                         default:
                             break;
-
                     }
 
                     return(
@@ -38,7 +47,7 @@ export const CalendarDay = (props) => {
                         );
                 })
             }
-            </div>
+            </div>            
         </div>
     )
 }
