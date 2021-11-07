@@ -4,6 +4,7 @@ import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
 
 import { Calendar as Cal } from '../../models/Calendar';
+import { WeekDays } from './WeekDays';
 
 
 const url = process.env.REACT_APP_BACKEND_URL;
@@ -42,14 +43,14 @@ export const Calendar = (props) => {
     }
      
     return (
-        <div>
+        <div>    
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
                 calendar={calendar}
-            />   
-            <div className="WeekDays">
-                {calendar.getWeekDays().map(weekDay => <div className="WeekDay">{weekDay}</div>)}
-            </div>
+            /> 
+            <WeekDays
+                calendar={calendar}
+            />              
             <div className="CalendarBody">  
                 {
                     calendar.getCalendar().map(day =>  { 
