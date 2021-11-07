@@ -1,3 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBalanceScale, faUtensils, faPoop } from '@fortawesome/free-solid-svg-icons';
+
+
 
 export const CalendarDay = (props) => {
     return (
@@ -8,9 +12,28 @@ export const CalendarDay = (props) => {
             <div className="Events">
             {
                 props.dailyEvents.map(e => {
+                    let eventIcon = "";
+                    switch (e.type) {
+                        case "weight":
+                            eventIcon = faBalanceScale;
+                            break;
+                        
+                        case "feed":
+                            eventIcon = faUtensils;
+                            break; 
+                            
+                        case "poop":
+                            eventIcon = faPoop;
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
                     return(
-                        <div className="Event">
-                            {e.type}
+                        <div className="Event">                                                    
+                        <FontAwesomeIcon icon={eventIcon} />
                         </div>
                         );
                 })
