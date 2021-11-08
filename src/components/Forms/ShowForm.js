@@ -9,7 +9,12 @@ export const ShowForm = (props) => {
 
     return (        
         <div id="show-form">            
-            {props.form === "event" && <EventForm handleClose={handleClose}/>}
+            {props.form === "event" && 
+                <EventForm 
+                    handleClose={handleClose}
+                    snakeId={props.snakeId}
+                />
+            }
         </div>
     )
 }

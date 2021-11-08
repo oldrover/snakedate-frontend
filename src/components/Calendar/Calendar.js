@@ -83,8 +83,9 @@ export const Calendar = (props) => {
             </div>  
             { showForm && 
                 <ShowForm 
-                    form={form}
-                    handleShowForm={handleShowForm}
+                    form={form}                    
+                    handleShowForm={handleShowForm}  
+                    snakeId={props.snakeId}                  
                 /> 
             }
         </div>
