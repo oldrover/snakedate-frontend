@@ -14,6 +14,7 @@ export const ShowForm = (props) => {
                     handleClose={handleClose}
                     snake={props.snake}
                     date={props.formData.date}
+                    dailyEvents={props.formData.dailyEvents}
                     
                 />
             }

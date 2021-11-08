@@ -64,7 +64,9 @@ export const EventForm = (props) => {
                 handleClose={props.handleClose} 
                 text="Add a new Event"
             />
-           
+            <div>
+                {JSON.stringify(props.dailyEvents)}
+            </div>           
             <div className="FormBody">
                 <form className="Form" onSubmit={handleSubmit}>
                     <label for="snake_name">Snake:</label>

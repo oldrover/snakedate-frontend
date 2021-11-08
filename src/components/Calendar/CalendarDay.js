@@ -7,11 +7,10 @@ export const CalendarDay = (props) => {
     const handleClick = () => { 
         const formData = { 
             date: props.date, 
-            formType: "event"
+            formType: "event", 
+            dailyEvents: props.dailyEvents
         };
-
-        props.handleShowForm(true, formData);
-        
+        props.handleShowForm(true, formData);        
     }
 
     
@@ -22,7 +21,7 @@ export const CalendarDay = (props) => {
             onClick={handleClick}
         >
             <div>
-            {props.day}
+                {props.day}
             </div>
             <div className="Events">
             {
