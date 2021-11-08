@@ -29,6 +29,16 @@ body {
   height: 100%;
 }
 
+button {
+  height: 35px;  
+  background-color: var(--secondary-color);
+  color:var(--accent-color);
+  border-radius:5px; 
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
 .App {
   text-align: center;     
 }
@@ -175,12 +185,7 @@ body {
 
 .CalendarHeader button {  
   height: 35px;
-  width: 120px;
-  background-color: var(--secondary-color);
-  color:var(--accent-color);
-  border-radius:5px; 
-  font-weight: bold;
-  cursor: pointer; 
+  width: 120px;  
 }
 
 .CalendarYear {   
@@ -244,6 +249,7 @@ body {
 
 .Event {  
   padding: 2px 3px;
+  color: var(--accent-color);
 }
 
 #show-form {  
@@ -265,6 +271,29 @@ body {
   width: 60%;
   height: 80vh;
   border-radius: 5px;
+  display: grid;
+  grid-template-rows: 50px auto 50px;  
+}
+
+.FormHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+  border-bottom: 2px solid var(--divider-color);  
+
+}
+
+.BtnClose {
+  width: 35px;
+  border: none;
+  font-size: x-large;
+}
+
+.Form {  
+  padding: 20px; 
+  
+
 }
 
 

@@ -3,16 +3,18 @@ import { EventForm } from "./EventForm";
 export const ShowForm = (props) => {
 
     const handleClose = () => {
-        props.handleShowForm(false);
+        props.handleShowForm(false, {});
     }
 
 
     return (        
         <div id="show-form">            
-            {props.form === "event" && 
+            {props.formData.formType === "event" && 
                 <EventForm 
                     handleClose={handleClose}
-                    snakeId={props.snakeId}
+                    snake={props.snake}
+                    date={props.formData.date}
+                    
                 />
             }
         </div>

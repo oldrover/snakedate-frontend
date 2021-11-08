@@ -4,8 +4,13 @@ import { faBalanceScale, faUtensils, faPoop } from '@fortawesome/free-solid-svg-
 
 export const CalendarDay = (props) => {
      
-    const handleClick = () => {          
-        props.handleShowForm(true);
+    const handleClick = () => { 
+        const formData = { 
+            date: props.date, 
+            formType: "event"
+        };
+
+        props.handleShowForm(true, formData);
         
     }
 

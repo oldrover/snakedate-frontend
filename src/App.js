@@ -64,7 +64,7 @@ function App() {
       <Navigation user={user} snake={snake} setSnake={setSnake}/> 
         <div className='Wrapper'>  
           <Dashboard snake={snake}/>   
-          <Calendar snakeId={snake.id}/>        
+          <Calendar snake={snake}/>        
         </div>              
     </div>
     );  

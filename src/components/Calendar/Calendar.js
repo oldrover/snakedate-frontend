@@ -18,10 +18,10 @@ export const Calendar = (props) => {
     const [snakeEvents, setSnakeEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
-    const [form] = useState("event");
+    const [formData, setFormData] = useState();
     
     useEffect(() => { 
-        return fetch(`${url}/events?snakeId=${props.snakeId}`)
+        return fetch(`${url}/events?snakeId=${props.snake.id}`)
         .then(response => response.json())
         .then(data => {  
           setIsLoading(false);    
@@ -30,7 +30,7 @@ export const Calendar = (props) => {
         .catch(error =>{
           console.log(error);
         }); 
-      }, [props.snakeId]);      
+      }, [props.snake.id]);      
 
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
@@ -38,7 +38,8 @@ export const Calendar = (props) => {
         setCalendar(newCal);               
     } 
     
-    const handleShowForm = (show) => {
+    const handleShowForm = (show, form) => {
+        setFormData(form);
         setShowForm(show);
     }       
 
@@ -70,10 +71,14 @@ export const Calendar = (props) => {
                             && new Date(e.date).getFullYear() === calendar.getYear()                            
                         );
 
-                        return (
+                        const date = `${calendar.getYear()}. ${calendar.getMonth()+1}.${day}`;
+                        
+                        return (                             
+
                             <CalendarDay 
                                 className={clsName} 
                                 day={day} 
+                                date={date}                                
                                 dailyEvents={dailyEvents}
                                 handleShowForm={handleShowForm}
                             />                        
@@ -83,9 +88,10 @@ export const Calendar = (props) => {
             </div>  
             { showForm && 
                 <ShowForm 
-                    form={form}                    
+                    formData={formData}                    
                     handleShowForm={handleShowForm}  
-                    snakeId={props.snakeId}                  
+                    snake={props.snake} 
+
                 /> 
             }
         </div>
