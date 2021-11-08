@@ -30,7 +30,7 @@ export const Calendar = (props) => {
         .catch(error =>{
           console.log(error);
         }); 
-      }, [props.snake.id]);      
+      }, [props.snake.id, showForm]);      
 
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
@@ -71,7 +71,7 @@ export const Calendar = (props) => {
                             && new Date(e.date).getFullYear() === calendar.getYear()                            
                         );
 
-                        const date = `${calendar.getYear()}. ${calendar.getMonth()+1}.${day}`;
+                        const date = `${calendar.getYear()}.${calendar.getMonth()+1}.${day}`;
                         
                         return (                             
 
