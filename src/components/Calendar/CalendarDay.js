@@ -43,6 +43,7 @@ export const CalendarDay = (props) => {
                     return(
                         <div className="Event">                                                    
                         <FontAwesomeIcon icon={eventIcon} />
+                        { e.type === "weight" && ` ${e.info}` }
                         </div>
                         );
                 })
