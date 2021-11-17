@@ -281,8 +281,33 @@ textarea {
   height: 80vh;
   border-radius: 5px;
   display: grid;
-  grid-template-rows: 1fr 8fr 1fr;    
+  grid-template-rows: 1fr 1fr 8fr 1fr;    
   align-items: center;  
+}
+
+.FormEventsList {
+  background-color: var(--divider-color);
+  margin: 0px 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.FormEventsListItem {  
+  background-color: var(--accent-color);
+  color: var(--secondary-variant);  
+  font-weight: bold;
+  display: inline-flex;
+  gap: 5px;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 10px 10px 10px 20px; 
+  border: none;  
+}
+
+.DeleteIcon {
+  cursor: pointer;
 }
 
 .FormHeader {
@@ -324,6 +349,8 @@ textarea {
   border: 1px solid var(--divider-color);
   border-radius: 5px;
 }
+
+
 
 
 
