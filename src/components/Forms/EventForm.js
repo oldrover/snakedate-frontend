@@ -1,49 +1,49 @@
 import { useState } from "react";
 
 import { FormHeader } from "./FormHeader";
+import { FormEventsList } from "./FormEventsList";
 
-
-const url = process.env.REACT_APP_BACKEND_URL;
 
 const dateOptions = { 
     weekday: "short", 
     year: "numeric", 
-    month: "numeric", 
-    day: "numeric"
+    month: "2-digit", 
+    day: "2-digit"
 };
 
 export const EventForm = (props) => {
 
     const defaultData = {
-        "snakeId": props.snake.id,
+        "snakeId": props.snake.snakeId,
         "date": props.date,
         "type": "feed",
         "info": ""
     }
 
     const [eventData, setEventData] = useState(defaultData);
+    
+    
+    const deleteEventData = (eventId) => {
+        const requestOptions = {
+            method: "DELETE"            
+        };        
 
+        fetch(`/events/${eventData.snakeId}/${eventId}`, requestOptions)                       
+            .catch(error => alert(error));
+    }      
     
     const postEventData = () => {
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(eventData)
-        };
-
-        fetch(`${url}/events`, requestOptions)
-            .then(response => response.json())            
+        };  
+                
+        fetch(`/events`, requestOptions)                        
             .catch(error => alert(error));
     }
 
-    /*
-    const updateSnakeWeight = () => {
-        if(new Date(eventData.date) >= new Date()) {
-            alert(eventData.info);
-        }        
-    }*/
-
-    const handleTypeChange = (e) => {      
+    const handleTypeChange = (e) => {
         setEventData({...eventData, type: e.target.value});
     }
 
@@ -53,8 +53,12 @@ export const EventForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        postEventData();         
-        //eventData.type === "weight" && updateSnakeWeight()
+        postEventData(); 
+        props.handleClose();
+    }
+
+    const handleDeleteEvent = (eventId) => {
+        deleteEventData(eventId);
         props.handleClose();
     }
     
@@ -64,9 +68,10 @@ export const EventForm = (props) => {
                 handleClose={props.handleClose} 
                 text="Add a new Event"
             />
-            <div>
-                {JSON.stringify(props.dailyEvents)}
-            </div>           
+            <FormEventsList 
+                dailyEvents={props.dailyEvents} 
+                handleDeleteEvent={handleDeleteEvent}
+            />          
             <div className="FormBody">
                 <form className="Form" onSubmit={handleSubmit}>
                     <label for="snake_name">Snake:</label>

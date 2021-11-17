@@ -8,8 +8,6 @@ import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
 
 
-const url = process.env.REACT_APP_BACKEND_URL;
-
 export const Calendar = (props) => {   
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
@@ -21,16 +19,16 @@ export const Calendar = (props) => {
     const [formData, setFormData] = useState();
     
     useEffect(() => { 
-        return fetch(`${url}/events?snakeId=${props.snake.id}`)
+        return fetch(`/events/${props.snake.snakeId}`)
         .then(response => response.json())
         .then(data => {  
           setIsLoading(false);    
-          setSnakeEvents(data);          
+          setSnakeEvents(data);                  
         }) 
         .catch(error =>{
           console.log(error);
         }); 
-      }, [props.snake.id, showForm]);      
+      }, [props.snake.snakeId, showForm, snakeEvents, calendar]);      
 
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
@@ -41,7 +39,23 @@ export const Calendar = (props) => {
     const handleShowForm = (show, form) => {
         setFormData(form);
         setShowForm(show);
-    }       
+    } 
+    
+    const filterEvents = (events, day) => {
+        return events.filter(e => new Date(e.date).getDate() === day
+                            && new Date(e.date).getMonth() === calendar.getMonth()
+                            && new Date(e.date).getFullYear() === calendar.getYear()                            
+                        );
+    }
+
+    const formatDate = (day) => {
+        let month = calendar.getMonth()+1;
+
+        day < 10 && (day = `0${day}`);  
+        month < 10 && (month = `0${month}`);  
+
+        return `${calendar.getYear()}.${month}.${day}`;
+    }
 
     isLoading && <div>...loading</div>; 
      
@@ -62,19 +76,12 @@ export const Calendar = (props) => {
                         && calendar.getMonth() === today.getMonth()
                         && calendar.getYear() === today.getFullYear()
                             ? clsName = "Day Today"
-                            : clsName = "Day"
-                            
-                        let dailyEvents = [];
-                            
-                        dailyEvents = snakeEvents.filter(e => new Date(e.date).getDate() === day
-                            && new Date(e.date).getMonth() === calendar.getMonth()
-                            && new Date(e.date).getFullYear() === calendar.getYear()                            
-                        );
-
-                        const date = `${calendar.getYear()}.${calendar.getMonth()+1}.${day}`;
+                            : clsName = "Day"                            
+                     
+                        const dailyEvents = filterEvents(snakeEvents, day);                     
+                        const date = formatDate(day);
                         
-                        return (                             
-
+                        return (                         
                             <CalendarDay 
                                 className={clsName} 
                                 day={day} 

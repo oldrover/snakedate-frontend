@@ -8,15 +8,13 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 // Mock Data---------------------------------------------------------
 
 const User = {
-  id: 1,
+  id: 'bc0e3850-6fbc-4225-a120-daaa76f99ca7',
   name: 'Sabine',
   snakes: [],
   image: ''
 }
 //End of Mock Data --------------------------------------------------
 
-
-const url = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   
@@ -25,13 +23,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);  
 
-  useEffect(() => { 
-    return fetch(`${url}/user/${User.id}/snakes`)
+  useEffect(() => {     
+    return fetch(`/snakes/${User.id}`)    
     .then(response => response.json())
-    .then(data => {  
+    .then(data => {             
       setIsLoading(false);    
       user.snakes = data;
-      setSnake(data[0]);
+      setSnake(data[0]);      
     }) 
     .catch(error =>{
       console.log(error);
@@ -44,8 +42,8 @@ function App() {
 
   if(!isLoggedIn) {
     return (
-        <div className="LoginPage">
-          <div className="LoginForm">
+        <div className='LoginPage'>
+          <div className='LoginForm'>
             please log in
             <button onClick={handleClick}>Login</button>
           </div>
