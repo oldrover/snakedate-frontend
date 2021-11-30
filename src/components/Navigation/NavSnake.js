@@ -3,7 +3,7 @@ export const NavSnake = (props) => {
 
     let imgSrc = 'images/snake.jpg';
 
-    props.snake.image !== null && (imgSrc = props.snake.image);
+    props.snake.image !== '' && (imgSrc = props.snake.image);
 
     const handleClick = (e) => {        
         props.setSnake(JSON.parse(e.target.value));        

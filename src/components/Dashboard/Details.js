@@ -3,7 +3,7 @@ export const Details = (props) => {
 
     let imgSrc = 'images/snake.jpg';
 
-    props.snake.image !== null && (imgSrc = props.snake.image);
+    props.snake.image !== '' && (imgSrc = props.snake.image);
 
     return (
             <div className="Details">
@@ -17,7 +17,7 @@ export const Details = (props) => {
                     Geschlecht: {props.snake.sex}
                 </div>
                 <div  className="Fact">
-                    Geburtsjahr: {props.snake.birthyear}
+                    Geburtsjahr: {props.snake.birthYear}
                 </div>
                 <div  className="Fact">
                     aktuelles Gewicht: {props.snake.weight}g
