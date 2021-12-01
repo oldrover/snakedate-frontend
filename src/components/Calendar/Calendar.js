@@ -17,9 +17,21 @@ export const Calendar = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState();
+
+    
     
     useEffect(() => { 
-        return fetch(`/events/${props.snake.snakeId}`)
+        const requestOptions = {
+            method: 'GET',
+            mode: 'cors',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': props.user.jwt               
+             }      
+        }; 
+
+        return fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
         .then(response => response.json())
         .then(data => {  
           setIsLoading(false);    
@@ -28,7 +40,7 @@ export const Calendar = (props) => {
         .catch(error =>{
           console.log(error);
         }); 
-      }, [props.snake.snakeId, showForm, snakeEvents, calendar]);      
+      }, [props.snake.snakeId, props.user, showForm, snakeEvents, calendar]);      
 
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
@@ -98,6 +110,7 @@ export const Calendar = (props) => {
                     formData={formData}                    
                     handleShowForm={handleShowForm}  
                     snake={props.snake} 
+                    user={props.user}
 
                 /> 
             }

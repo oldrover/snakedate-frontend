@@ -4,27 +4,37 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
-
-// Mock Data---------------------------------------------------------
+import { LoginForm } from './components/Forms/LoginForm';
 
 const User = {
-  id: 'bc0e3850-6fbc-4225-a120-daaa76f99ca7',
-  name: 'Sabine',
+  id: '',
+  name: '',
   snakes: [],
-  image: ''
-}
-//End of Mock Data --------------------------------------------------
+  image: '',
+  jwt:''
 
+}
 
 function App() {
   
-  const [user] = useState(User);
+  const [user, setUser] = useState(User);
   const [snake, setSnake] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);  
 
-  useEffect(() => {     
-    return fetch(`/snakes/${User.id}`)    
+  useEffect(() => {   
+    const requestOptions = {
+      method: 'GET',
+      mode: 'cors',
+      headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': user.jwt               
+       }      
+    };  
+    
+    
+    return fetch(`/api/snakes/${user.id}`, requestOptions)    
     .then(response => response.json())
     .then(data => {             
       setIsLoading(false);    
@@ -36,17 +46,14 @@ function App() {
     }); 
   }, [user]); 
 
-  const handleClick = () => {
+  const handleLogin = () => {
     setIsLoggedIn(true);
   }
 
   if(!isLoggedIn) {
     return (
         <div className='LoginPage'>
-          <div className='LoginForm'>
-            please log in
-            <button onClick={handleClick}>Login</button>
-          </div>
+          <LoginForm handleLogin={handleLogin} setUser={setUser}/>  
         </div>
       )
   }
@@ -54,6 +61,7 @@ function App() {
   if (isLoading){
     return(
       <div>...loading</div>
+      
       );
   }  
 
@@ -62,7 +70,7 @@ function App() {
       <Navigation user={user} snake={snake} setSnake={setSnake}/> 
         <div className='Wrapper'>  
           <Dashboard snake={snake}/>   
-          <Calendar snake={snake}/>        
+          <Calendar user={user} snake={snake}/>        
         </div>              
     </div>
     );  

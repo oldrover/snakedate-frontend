@@ -25,21 +25,32 @@ export const EventForm = (props) => {
     
     const deleteEventData = (eventId) => {
         const requestOptions = {
-            method: "DELETE"            
+            method: 'DELETE', 
+            mode: 'cors',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': props.user.jwt               
+            }            
         };        
 
-        fetch(`/events/${eventData.snakeId}/${eventId}`, requestOptions)                       
+        fetch(`/api/events/${eventData.snakeId}/${eventId}`, requestOptions)                       
             .catch(error => alert(error));
     }      
     
     const postEventData = () => {
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            mode: 'cors',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': props.user.jwt               
+            },            
             body: JSON.stringify(eventData)
         };  
                 
-        fetch(`/events`, requestOptions)                        
+        fetch(`/api/events`, requestOptions)                        
             .catch(error => alert(error));
     }
 
