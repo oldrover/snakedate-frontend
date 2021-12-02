@@ -6,6 +6,7 @@ import { CalendarDay } from './CalendarDay';
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
+import { Loading} from '../Loading';
 
 
 export const Calendar = (props) => {   
@@ -14,22 +15,43 @@ export const Calendar = (props) => {
     const [today] = useState(new Date());  
 
     const [snakeEvents, setSnakeEvents] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);    
     const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState();   
+     
     
-    useEffect(() => { 
-        return fetch(`/events/${props.snake.snakeId}`)
-        .then(response => response.json())
-        .then(data => {  
-          setIsLoading(false);    
-          setSnakeEvents(data);                  
-        }) 
-        .catch(error =>{
-          console.log(error);
-        }); 
-      }, [props.snake.snakeId, showForm, snakeEvents, calendar]);      
+    useEffect(() => {
+        const fetchEvents = async() => {
+            const requestOptions = {
+                method: 'GET',
+                mode: 'cors',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': props.user.jwt              
+                    }      
+            }; 
+            
+            fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
+            .then(response => response.json())
+            .then(data => {                  
+                handleSnakeEvents(data);                                 
+            }) 
+            .catch(error =>{
+                console.log(error);
+            });
+        }
+        fetchEvents();        
+        
+    },[props.snake, props.user, isLoading])
 
+    
+    const handleSnakeEvents = (data) => {
+        setSnakeEvents(data);
+        setIsLoading(false);
+    }
+
+    
     const handleMonthChange = (add) => {
         const newMonth = calendar.getMonth() + add;         
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
@@ -39,7 +61,7 @@ export const Calendar = (props) => {
     const handleShowForm = (show, form) => {
         setFormData(form);
         setShowForm(show);
-    } 
+    }    
     
     const filterEvents = (events, day) => {
         return events.filter(e => new Date(e.date).getDate() === day
@@ -57,8 +79,12 @@ export const Calendar = (props) => {
         return `${calendar.getYear()}.${month}.${day}`;
     }
 
-    isLoading && <div>...loading</div>; 
-     
+    if (isLoading){
+        return(
+          <Loading />          
+          );
+      }   
+
     return (
         <div>    
             <CalendarHeader 
@@ -70,7 +96,7 @@ export const Calendar = (props) => {
             />              
             <div className="CalendarBody">  
                 {
-                    calendar.getCalendar().map(day =>  { 
+                    calendar.getCalendar().map((day, index) =>  { 
                         let clsName = ''
                         day === today.getDate() 
                         && calendar.getMonth() === today.getMonth()
@@ -87,7 +113,8 @@ export const Calendar = (props) => {
                                 day={day} 
                                 date={date}                                
                                 dailyEvents={dailyEvents}
-                                handleShowForm={handleShowForm}
+                                handleShowForm={handleShowForm}  
+                                key={date + index}                              
                             />                        
                         )
                     })
@@ -96,8 +123,10 @@ export const Calendar = (props) => {
             { showForm && 
                 <ShowForm 
                     formData={formData}                    
-                    handleShowForm={handleShowForm}  
+                    handleShowForm={handleShowForm} 
+                    setIsLoading={setIsLoading}                    
                     snake={props.snake} 
+                    user={props.user}
 
                 /> 
             }

@@ -4,6 +4,7 @@
 3. Forms
 4. Dashboard
 5. Login
+6. Loading
 */
 
 :root {
@@ -49,11 +50,11 @@ textarea {
 }
 
 .App {
-  text-align: center;     
+  text-align: center;       
 }
 
 .Wrapper {
-  display: grid;
+  display: grid;  
   grid-template-columns: 1fr 3fr;
   grid-gap: 10px;
   grid-auto-rows: 1fr 8fr;
@@ -419,4 +420,43 @@ textarea {
   align-items: center;
   justify-content: space-evenly;
 
+}
+
+/* 6. Loading -------------------------------------------------------------*/
+
+.LoadingPage {
+  position: fixed;
+  background-color: var(--primary-color);  
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;  
+  display: flex;
+  align-items: center;
+  justify-content: center;    
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.Spin::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 10px var(--text-color);
+  border-bottom-color: var(--accent-color);
+  border-radius: 50%;
+  content: "";
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
 }

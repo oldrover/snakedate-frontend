@@ -25,9 +25,9 @@ export const CalendarDay = (props) => {
             </div>
             <div className="Events">
             {
-                props.dailyEvents.map(e => {
+                props.dailyEvents.map((event, index) => {
                     let eventIcon = "";
-                    switch (e.type) {
+                    switch (event.type) {
                         case "weight":
                             eventIcon = faBalanceScale;
                             break;
@@ -45,9 +45,9 @@ export const CalendarDay = (props) => {
                     }
 
                     return(
-                        <div className="Event">                                                    
+                        <div className="Event" key={event + index}>                                                    
                         <FontAwesomeIcon icon={eventIcon} />
-                        { e.type === "weight" && ` ${e.info}` }
+                        { event.type === "weight" && ` ${event.info}` }
                         </div>
                         );
                 })
