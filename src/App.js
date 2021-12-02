@@ -5,6 +5,7 @@ import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { LoginForm } from './components/Forms/LoginForm';
+import { Loading } from './components/Loading';
 
 const User = {
   id: '',
@@ -40,7 +41,7 @@ function App() {
         .then(response => response.json())
         .then(data => { 
           user.snakes = data;
-          setSnake(data[0]); 
+          setSnake(data[0]);           
           setIsLoading(false);                    
         }) 
         .catch(error =>{
@@ -69,8 +70,7 @@ function App() {
 
   if (isLoading){
     return(
-      <div>...loading</div>
-      
+      <Loading />      
       );
   }  
 

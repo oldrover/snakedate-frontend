@@ -6,6 +6,7 @@ import { CalendarDay } from './CalendarDay';
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
+import { Loading} from '../Loading';
 
 
 export const Calendar = (props) => {   
@@ -34,7 +35,7 @@ export const Calendar = (props) => {
             fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
             .then(response => response.json())
             .then(data => {                  
-                handleSnakeEvents(data);                 
+                handleSnakeEvents(data);                                 
             }) 
             .catch(error =>{
                 console.log(error);
@@ -80,7 +81,7 @@ export const Calendar = (props) => {
 
     if (isLoading){
         return(
-          <div>...loading</div>          
+          <Loading />          
           );
       }   
 
