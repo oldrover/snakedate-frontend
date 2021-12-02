@@ -22,29 +22,38 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);  
 
-  useEffect(() => {   
-    const requestOptions = {
-      method: 'GET',
-      mode: 'cors',
-      headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': user.jwt               
-       }      
-    };  
+  useEffect(() => { 
     
+    if(isLoggedIn){    
+      const fetchSnakes = async() => {
+        const requestOptions = {
+          method: 'GET',
+          mode: 'cors',
+          headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': user.jwt               
+          }      
+        };      
+        
+        await fetch(`/api/snakes/${user.id}`, requestOptions)    
+        .then(response => response.json())
+        .then(data => { 
+          user.snakes = data;
+          setSnake(data[0]); 
+          setIsLoading(false);                    
+        }) 
+        .catch(error =>{
+          console.log(error);
+        }); 
+      }      
+      fetchSnakes();
+    }
     
-    return fetch(`/api/snakes/${user.id}`, requestOptions)    
-    .then(response => response.json())
-    .then(data => {             
-      setIsLoading(false);    
-      user.snakes = data;
-      setSnake(data[0]);      
-    }) 
-    .catch(error =>{
-      console.log(error);
-    }); 
-  }, [user]); 
+  }, [user, isLoggedIn]); 
+
+
+  
 
   const handleLogin = () => {
     setIsLoggedIn(true);

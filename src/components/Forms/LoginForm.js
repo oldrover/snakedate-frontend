@@ -35,13 +35,11 @@ export const LoginForm = (props) => {
         };  
                 
         fetch(`/api/users/login`, requestOptions)  
-            .then(response => {
-                console.log(response.headers.get('Authentication'));  
+            .then(response => {                  
                 jwt = response.headers.get('Authentication');              
                 return response.json();  
             })    
-            .then(data => {
-                console.log(data)
+            .then(data => {                
                 props.setUser({
                     id: data.id,
                     name: data.email,

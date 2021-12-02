@@ -66,11 +66,13 @@ export const EventForm = (props) => {
         e.preventDefault(); 
         postEventData(); 
         props.handleClose();
+        
     }
 
     const handleDeleteEvent = (eventId) => {
         deleteEventData(eventId);
         props.handleClose();
+        
     }
     
     return (
@@ -85,13 +87,13 @@ export const EventForm = (props) => {
             />          
             <div className="FormBody">
                 <form className="Form" onSubmit={handleSubmit}>
-                    <label for="snake_name">Snake:</label>
+                    <label htmlFor="snake_name">Snake:</label>
                     <input id="snake_name" value={props.snake.name} disabled/>  
                     
-                    <label for="event_date">Date:</label>
+                    <label htlmlFor="event_date">Date:</label>
                     <input id="event_date" value={new Date(eventData.date).toLocaleString(undefined ,dateOptions)} disabled />  
                     
-                    <label for="select_type">Event Type:</label>
+                    <label htmlFor="select_type">Event Type:</label>
                     <select id="select_type" value={eventData.type} onChange={handleTypeChange}>
                         <option value="feed">Feed</option>
                         <option value="poop">Poop</option>
