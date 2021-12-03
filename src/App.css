@@ -20,14 +20,17 @@
   --vgradient: linear-gradient(180deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --hgradient: linear-gradient(90deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --divider-gradient: linear-gradient(to left, var(--secondary-color) 15%, var(--divider-color));
-
+  
 }
+
+
 
 body {
   color:  var(--text-color);
   background-color: var(--bg-color);
-  padding: 10px;  
   height: 100%;
+  
+
 }
 
 button {
@@ -50,23 +53,30 @@ textarea {
 }
 
 .App {
-  text-align: center;       
+  text-align: center;    
+  padding: 10px; 
+  height: calc(100vh - 150px);
+  
+       
 }
 
 .Wrapper {
   display: grid;  
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 10px;
-  grid-auto-rows: 1fr 8fr;
+  grid-template-columns: 1fr 4fr;  
+  grid-template-rows: 100%;
+  grid-gap: 10px; 
+  height: 100%; 
+  max-height: 900px;
 }
 
 /* 1. Navigation -----------------------------------------------------------*/
 
 .Navigation { 
   min-height: 100px;    
-  margin-bottom: 10px;   
+  padding-bottom: 10px;   
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 100%;
   grid-gap: 10px;
 
 }
@@ -129,7 +139,7 @@ textarea {
   position: absolute;
   opacity: 0;
   background-color: var(--secondary-color);
-  width: 430%;
+  width: 250px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   border-radius: 5px;
@@ -149,8 +159,9 @@ textarea {
   color: var(--text-color);
   cursor: pointer;  
   font-weight: bold;
-  font-size:20px;    
-  border: 1px solid var(--bg-color);
+  font-size:20px; 
+  border-radius: 0px;   
+  border: 1px solid var(--primary-color);
 }
 
 .SnakeListItem:hover {
@@ -167,18 +178,28 @@ textarea {
   border-radius: 0px 0px 5px 5px;
 }
 
+.AddSnake {
+  background-color:var(--secondary-variant);
+}
+
 /* 2 Calendar --------------------------------------------------------------*/
 
-.CalendarBody {
+.Calendar {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto 6fr;  
+}
+
+.CalendarBody {  
   background-color: var(--primary-color);  
   background-image: var(--vgradient); 
-  border-radius: 0px 0px 5px 5px;
-  height: 700px;  
+  border-radius: 0px 0px 5px 5px;  
   padding: 20px;
   display: grid;  
   grid-gap: 2px;
   grid-template-columns: repeat(7, 1fr); 
-  grid-auto-rows: 1fr;
+  grid-template-rows: auto;  
+  overflow: hidden;  
 }
 
 .CalendarHeader {
@@ -189,6 +210,7 @@ textarea {
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 100%;
   align-items: center;  
   font-weight: bold;  
 }
@@ -224,6 +246,7 @@ textarea {
   background-color: var(--primary-color);
   display: grid;  
   grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 100%;
   padding: 5px 10px;
 }
 
@@ -231,7 +254,7 @@ textarea {
   background-color: var(--secondary-color);       
   display: grid;   
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 5fr;  
+  grid-template-rows: 1fr 4fr;  
   padding: 5px;
   justify-content: center; 
   transition: all .2s linear; 
@@ -268,22 +291,27 @@ textarea {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
+  height: 100vh;  
+  display: flex;  
   justify-content: center;
 
 }
 /* 3. Forms ------------------------------------------------------------------*/
 
-.EventForm {
+.AllForms {
   background-color: var(--secondary-color);
   width: 60%;
   height: 80vh;
+  max-height: 800px;
   border-radius: 5px;
   display: grid;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.EventForm {  
   grid-template-rows: 1fr 1fr 8fr 1fr;    
-  align-items: center;  
+    
 }
 
 .FormEventsList {
@@ -305,6 +333,10 @@ textarea {
   margin-left: 10px;
   padding: 10px 10px 10px 20px; 
   border: none;  
+}
+
+.SnakeForm {  
+  grid-template-rows: 1fr 8fr 1fr; 
 }
 
 .DeleteIcon {
@@ -351,16 +383,11 @@ textarea {
   border-radius: 5px;
 }
 
-
-
-
-
-
 /* 4. Dashboard -------------------------------------------------------------*/
 
 .Dashboard {
   background-color: var(--primary-color);  
-  background-image: var(--vgradient);    
+  background-image: var(--vgradient);     
   border-radius: 5px; 
   display: flex;
   justify-content:center; 
@@ -372,7 +399,7 @@ textarea {
   background-color: var(--secondary-color);
   border-radius: 5px;  
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 100%;
   grid-template-rows: repeat(6, 1fr) 6fr;
   justify-content:center;
   align-content: center;
@@ -394,12 +421,12 @@ textarea {
 }
 
 .FactImage img {
-  object-fit: cover;
+  object-fit: cover;  
   width: 100%;
-  height: 100%;
+  height: 100%;  
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 5%,rgba(0,0,0,0.65) 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 5%,rgba(0,0,0,0.65) 100%);
-  border-radius: 5px;
+  border-radius: 5px;  
 }
 
 /* 5. Login -------------------------------------------------------------*/
@@ -414,23 +441,22 @@ textarea {
 .LoginForm { 
   background-color: var(--secondary-color);
   border-radius: 5px;  
-  width: 30vh; 
-  height: 20vh;  
+  width: 500px; 
+  height: 300px;      
   display: grid;
   align-items: center;
-  justify-content: space-evenly;
-
+  justify-content: space-evenly;  
 }
 
 /* 6. Loading -------------------------------------------------------------*/
 
 .LoadingPage {
   position: fixed;
-  background-color: var(--primary-color);  
+  background-color: rgba(0,0,0,0.5);  
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100vh;  
+  height: 100%;  
   display: flex;
   align-items: center;
   justify-content: center;    

@@ -51,9 +51,7 @@ function App() {
       fetchSnakes();
     }
     
-  }, [user, isLoggedIn]); 
-
-
+  }, [user, isLoggedIn, isLoading]);
   
 
   const handleLogin = () => {
@@ -62,9 +60,9 @@ function App() {
 
   if(!isLoggedIn) {
     return (
-        <div className='LoginPage'>
-          <LoginForm handleLogin={handleLogin} setUser={setUser}/>  
-        </div>
+      <div className='LoginPage'>
+        <LoginForm handleLogin={handleLogin} setUser={setUser}/>  
+      </div>
       )
   }
 
@@ -76,11 +74,19 @@ function App() {
 
   return (    
     <div className='App'>
-      <Navigation user={user} snake={snake} setSnake={setSnake}/> 
-        <div className='Wrapper'>  
-          <Dashboard snake={snake}/>   
-          <Calendar user={user} snake={snake}/>        
-        </div>              
+      <Navigation 
+        user={user} 
+        snake={snake} 
+        setSnake={setSnake}
+        setIsLoading={setIsLoading}
+      /> 
+      <div className='Wrapper'>  
+        <Dashboard snake={snake}/>   
+        <Calendar 
+          user={user} 
+          snake={snake}
+        />        
+      </div>              
     </div>
     );  
 }
