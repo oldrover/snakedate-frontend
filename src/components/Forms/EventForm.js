@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { FormHeader } from "./FormHeader";
-import { FormEventsList } from "./FormEventsList";
+import { FormHeader } from './FormHeader';
+import { FormEventsList } from './FormEventsList';
 
 
 const dateOptions = { 
@@ -54,29 +54,24 @@ export const EventForm = (props) => {
             .catch(error => alert(error));
     }
 
-    const handleTypeChange = (e) => {
-        setEventData({...eventData, type: e.target.value});
-    }
-
-    const handleInfoChange = (e) => {
-        setEventData({...eventData, info: e.target.value});
+    
+    const handleChange = (e) => {
+        setEventData({...eventData, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
         postEventData(); 
-        props.handleClose();
-        
+        props.handleClose();        
     }
 
     const handleDeleteEvent = (eventId) => {
         deleteEventData(eventId);
-        props.handleClose();
-        
+        props.handleClose();        
     }
     
     return (
-        <div className="EventForm">            
+        <div className="AllForms EventForm">            
             <FormHeader 
                 handleClose={props.handleClose} 
                 text="Add a new Event"
@@ -94,14 +89,14 @@ export const EventForm = (props) => {
                     <input id="event_date" value={new Date(eventData.date).toLocaleString(undefined ,dateOptions)} disabled />  
                     
                     <label htmlFor="select_type">Event Type:</label>
-                    <select id="select_type" value={eventData.type} onChange={handleTypeChange}>
+                    <select id="select_type" name='type' value={eventData.type} onChange={handleChange}>
                         <option value="feed">Feed</option>
                         <option value="poop">Poop</option>
                         <option value="weight">Weight</option>
                     </select>
 
                     <label for="info_field">Info:</label>
-                    <textarea onChange={handleInfoChange} />                
+                    <textarea name='info' onChange={handleChange} />                
 
                     <button type="submit" >
                         save

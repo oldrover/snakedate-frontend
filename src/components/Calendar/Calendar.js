@@ -86,7 +86,7 @@ export const Calendar = (props) => {
       }   
 
     return (
-        <div>    
+        <div className='Calendar'>    
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
                 calendar={calendar}

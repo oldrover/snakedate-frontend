@@ -53,12 +53,13 @@ export const LoginForm = (props) => {
     }
 
     return (
-        <div className='LoginForm'>
+        <div className='AllForms LoginForm'>
             <div className='FormBody'>
                 <form className='Form' onSubmit={handleSubmit}>
                     <label htmlFor='email'>Email:</label>
                     <input 
                         id='email' 
+                        size='25'
                         value={loginData.email}
                         onChange={handleEmailChange}
                     />
@@ -66,6 +67,7 @@ export const LoginForm = (props) => {
                     <input 
                         type='password' 
                         id='password' 
+                        size='25'
                         value={loginData.password}
                         onChange={handlePasswordChange}
                     />
