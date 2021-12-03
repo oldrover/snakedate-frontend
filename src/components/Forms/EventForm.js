@@ -97,10 +97,11 @@ export const EventForm = (props) => {
 
                     <label for="info_field">Info:</label>
                     <textarea name='info' onChange={handleChange} />                
-
-                    <button type="submit" >
-                        save
-                    </button>  
+                    <div className="ButtonContainer">
+                        <button  type='submit' >
+                            save
+                        </button>  
+                    </div>
                 </form>
             </div>
             <div className="FormFooter"></div>

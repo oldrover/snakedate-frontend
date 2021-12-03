@@ -94,10 +94,11 @@ export const SnakeForm = (props) => {
                         type='number'  
                         onChange={handleChange}
                     /> 
-
-                    <button type='submit'>
-                        save
-                    </button>
+                    <div className="ButtonContainer">
+                        <button type='submit'>
+                            save
+                        </button>
+                    </div>
                  </form>
             </div>
             <div className='FormFooter'></div>

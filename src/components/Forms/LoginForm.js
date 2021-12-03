@@ -11,29 +11,28 @@ export const LoginForm = (props) => {
     let jwt = '';
 
     const [loginData, setLoginData] = useState(login);
+    const [showSignUp, setShowSignUp] = useState(false);
     
 
-    const handleEmailChange = (e) => {
-        setLoginData({...loginData, email: e.target.value});
+    const handleChange = (e) => {
+        setLoginData({...loginData, [e.target.name]: e.target.value});
     }
 
-    const handlePasswordChange = (e) => {
-        setLoginData({...loginData, password: e.target.value});
+    const handleShowClick = (e) => {
+        e.target.value === 'login' ? setShowSignUp(false) : setShowSignUp(true);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const requestOptions = {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'               
+         },
+        body: JSON.stringify(loginData)
+    }; 
 
-        const requestOptions = {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'               
-             },
-            body: JSON.stringify(loginData)
-        };  
-                
+    const loginRequest = () => {
         fetch(`/api/users/login`, requestOptions)  
             .then(response => {                  
                 jwt = response.headers.get('Authentication');              
@@ -50,30 +49,81 @@ export const LoginForm = (props) => {
                 props.handleLogin();
             })                                      
             .catch(error => alert('Credential Error please try again'));
+
+    }
+
+    const signUpRequest = () => {
+        fetch(`/api/users`, requestOptions)  
+            .then(response => { 
+                return response.json();  
+            })    
+            .then(data => {
+                alert(data);
+                setShowSignUp(false);
+            })                                     
+            .catch(error => alert('SignUp Error please try again'));
+    }
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        showSignUp ? signUpRequest() : loginRequest();
     }
 
     return (
         <div className='AllForms LoginForm'>
+            <div className='FormHeader'>
+                <button
+                    value='login'
+                    onClick={handleShowClick}
+                >
+                    Login
+                </button>
+                    
+                <button
+                     value='signup'
+                     onClick={handleShowClick}
+                >
+                Sign up
+                </button>
+            </div>
             <div className='FormBody'>
                 <form className='Form' onSubmit={handleSubmit}>
-                    <label htmlFor='email'>Email:</label>
+                    
                     <input 
-                        id='email' 
-                        size='25'
+                        id='email'
+                        name='email' 
+                        size='50'
+                        autoFocus
+                        placeholder='Email'
                         value={loginData.email}
-                        onChange={handleEmailChange}
-                    />
-                    <label htmlFor='password'>Password:</label>
+                        onChange={handleChange}
+                        
+                    />                    
                     <input 
                         type='password' 
                         id='password' 
-                        size='25'
+                        name='password'
+                        size='50'
+                        placeholder='Password'
                         value={loginData.password}
-                        onChange={handlePasswordChange}
+                        onChange={handleChange}
+
                     />
-                    <button type="submit" >
-                        Login
-                    </button>  
+                    { showSignUp && (
+                    
+                    <input 
+                        type='password' 
+                        id='confirm' 
+                        name='confirm'
+                        size='50'
+                        placeholder='Confirm password' 
+                    />)}
+                    <div className='ButtonContainer'>
+                        <button type="submit" >
+                            {(showSignUp && 'Sign up') || 'Login'}                        
+                        </button> 
+                    </div> 
                 </form>
             </div>            
         </div>
