@@ -7,6 +7,7 @@ import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
 import { Loading} from '../Loading';
+import { Inactive } from '../Inactive';
 
 
 export const Calendar = (props) => {   
@@ -83,7 +84,7 @@ export const Calendar = (props) => {
         return(
           <Loading />          
           );
-      }   
+      } 
 
     return (
         <div className='Calendar'>    
@@ -129,6 +130,11 @@ export const Calendar = (props) => {
                     user={props.user}
 
                 /> 
+            }
+            {
+                props.snake.id === '' && (
+                 <Inactive />
+                )
             }
         </div>
     )    

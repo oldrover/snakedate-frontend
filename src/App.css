@@ -6,6 +6,7 @@
 5. Login
 6. Loading
 */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 :root {
   --bg-color: #121512;
@@ -20,32 +21,49 @@
   --vgradient: linear-gradient(180deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --hgradient: linear-gradient(90deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --divider-gradient: linear-gradient(to left, var(--secondary-color) 15%, var(--divider-color));
+  --button-gradient: linear-gradient(90deg, var(--accent-color) 25%, var(--primary-variant) 74%);
   
 }
 
-
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 body {
   color:  var(--text-color);
   background-color: var(--bg-color);
   height: 100%;
-  
-
+  width: 100%;
 }
 
 button {
   height: 35px;  
   background-color: var(--secondary-color);
-  color:var(--accent-color);
-  border-radius:5px; 
+  color:var(--accent-color);  
   font-weight: bold;
   cursor: pointer;
+  width: 140px; 
+  border: none;
+  border-bottom: 2px solid var(--accent-variant);
 }
 
 input, textarea, select{
   background-color: var(--divider-color);
-  color: var(--text-color);
-  font-size: large;
+  color: var(--text-color); 
+  border: 0;   
+  padding: 10px;
+  margin: 10px 0;  
+  width: 140px;
+  border-bottom: 2px solid var(--accent-variant);
+}
+
+label {
+  font-weight: bold;
+  text-align: left; 
+}
+
+input {    
+  height: 1.5rem;  
 }
 
 textarea {
@@ -55,9 +73,7 @@ textarea {
 .App {
   text-align: center;    
   padding: 10px; 
-  height: calc(100vh - 150px);
-  
-       
+  height: calc(100vh - 150px);      
 }
 
 .Wrapper {
@@ -66,7 +82,16 @@ textarea {
   grid-template-rows: 100%;
   grid-gap: 10px; 
   height: 100%; 
-  max-height: 900px;
+  max-height: 900px;  
+}
+
+.ButtonContainer { 
+  grid-column-start: 1;
+  grid-column-end: 3; 
+}
+
+.ActiveButton {
+  background-color: var(--secondary-variant);
 }
 
 /* 1. Navigation -----------------------------------------------------------*/
@@ -78,7 +103,6 @@ textarea {
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 100%;
   grid-gap: 10px;
-
 }
 
 .NavUser {
@@ -184,10 +208,11 @@ textarea {
 
 /* 2 Calendar --------------------------------------------------------------*/
 
-.Calendar {
+.Calendar {  
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: auto auto 6fr;  
+  grid-template-rows: auto auto 6fr;
+  position: relative; 
 }
 
 .CalendarBody {  
@@ -285,7 +310,9 @@ textarea {
   color: var(--accent-color);
 }
 
-#show-form {  
+/* 3. Forms ------------------------------------------------------------------*/
+
+.ShowForm {  
   position: fixed;
   background-color: rgba(0,0,0,0.5);
   top: 0px;
@@ -294,14 +321,14 @@ textarea {
   height: 100vh;  
   display: flex;  
   justify-content: center;
-
+  z-index: 100;
 }
-/* 3. Forms ------------------------------------------------------------------*/
 
 .AllForms {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   width: 60%;
   height: 80vh;
+  max-width: 600px;
   max-height: 800px;
   border-radius: 5px;
   display: grid;
@@ -317,6 +344,7 @@ textarea {
 .FormEventsList {
   background-color: var(--divider-color);
   margin: 0px 15px;
+  padding: 0px 5px;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -330,7 +358,7 @@ textarea {
   display: inline-flex;
   gap: 5px;
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 20px;
   padding: 10px 10px 10px 20px; 
   border: none;  
 }
@@ -356,12 +384,15 @@ textarea {
   width: 35px;
   border: none;
   font-size: x-large;
+  background-color: var(--primary-color);
 }
 
 .FormBody {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 700px;
+  max-height: 500px;
 
 }
 
@@ -369,13 +400,12 @@ textarea {
   border-top: 2px solid var(--divider-color);
 }
 
-.Form { 
-  font-size: large;
+.Form {   
   padding: 50px;
   height: 70%; 
   width: 70%; 
   display: grid;
-  justify-content: space-evenly;
+  justify-content:space-evenly;
   align-items: center;
   grid-auto-rows: 1fr;
   grid-template-columns: 20% 30%;
@@ -392,6 +422,7 @@ textarea {
   display: flex;
   justify-content:center; 
   padding: 20px;  
+  position: relative;
 }
 
 .Details {  
@@ -431,22 +462,87 @@ textarea {
 
 /* 5. Login -------------------------------------------------------------*/
 
-.LoginPage{     
-  padding: 20px;  
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-}
-
-.LoginForm { 
-  background-color: var(--secondary-color);
-  border-radius: 5px;  
-  width: 500px; 
-  height: 300px;      
+.LoginPage{ 
   display: grid;
   align-items: center;
-  justify-content: space-evenly;  
+  justify-content: space-around;
+  padding-top: 10%;   
 }
+
+.LoginHeadline {
+  font-size: 2.5rem;
+  color: var(--accent-variant);
+  font-family: 'Lobster', cursive;
+  text-shadow: 2px 2px var(--primary-color);
+}
+
+.LoginWrapper {
+  width: 800px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 100%; 
+  background-color: var(--primary-color); 
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px  rgba(0,0,0,0.5);
+  
+}
+
+.LoginImg { 
+  border-radius: 5px 0px 0px 5px;      
+}
+
+.LoginImg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 20% 20%;
+  border-radius: 20px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.LoginForm {  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr;
+  align-content: center;
+  justify-content: center; 
+     
+}
+.LoginFormHeader {   
+  border-bottom: 2px solid var(--divider-color);
+  position: relative; 
+}
+
+.LoginFormHeaderButtons {
+  position: absolute;
+  bottom: 0; 
+  left: calc(50% - 140px); 
+}
+
+.LoginFormBody {  
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+  height: 100%;  
+}
+
+.LoginFormForm { 
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 50%; 
+  height: 70%; 
+  padding: 20px; 
+  margin: 30px;   
+  
+}
+
+.Login {
+  width: 100%;  
+}
+
 
 /* 6. Loading -------------------------------------------------------------*/
 
@@ -456,7 +552,7 @@ textarea {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 100%;  
+  height: 100%;     
   display: flex;
   align-items: center;
   justify-content: center;    
@@ -486,3 +582,20 @@ textarea {
   transform: translate3d(-50%, -50%, 0);
   will-change: transform;
 }
+
+.Inactive {
+  position: absolute;
+  background-color:rgba(0,0,0,0.5);
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  font-size: small;
+  color: var(--accent-color);
+}
+

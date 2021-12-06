@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
-import { LoginForm } from './components/Forms/LoginForm';
+import { LoginPage } from './components/LoginPage';
 import { Loading } from './components/Loading';
 
 const User = {
@@ -13,13 +13,24 @@ const User = {
   snakes: [],
   image: '',
   jwt:''
+}
 
+const Snake = {
+  id: '',
+  ownerId: '',
+  name: '',
+  species: '',
+  sex: '',
+  birthYear: null,
+  weight: null,
+  size: null,
+  image: ''
 }
 
 function App() {
   
   const [user, setUser] = useState(User);
-  const [snake, setSnake] = useState([]);
+  const [snake, setSnake] = useState(Snake);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);  
 
@@ -41,7 +52,7 @@ function App() {
         .then(response => response.json())
         .then(data => { 
           user.snakes = data;
-          setSnake(data[0]);           
+          (data.length > 0) && setSnake(data[0]);           
           setIsLoading(false);                    
         }) 
         .catch(error =>{
@@ -59,10 +70,11 @@ function App() {
   }
 
   if(!isLoggedIn) {
-    return (
-      <div className='LoginPage'>
-        <LoginForm handleLogin={handleLogin} setUser={setUser}/>  
-      </div>
+    return (      
+      <LoginPage 
+        handleLogin={handleLogin}         
+        setUser={setUser}
+      />      
       )
   }
 

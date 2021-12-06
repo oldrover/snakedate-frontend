@@ -11,7 +11,7 @@ export const ShowForm = (props) => {
 
 
     return (        
-        <div id="show-form">            
+        <div className='ShowForm'>            
             {
             props.formData.formType === "event" && 
                 <EventForm 

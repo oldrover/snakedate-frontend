@@ -1,10 +1,12 @@
+import { Inactive } from "../Inactive";
 
 export const Details = (props) => {
 
     let imgSrc = 'images/snake.jpg';
 
     props.snake.image !== '' && (imgSrc = props.snake.image);
-
+    
+    
     return (
             <div className="Details">
                 <div className="Fact">
@@ -27,10 +29,18 @@ export const Details = (props) => {
                 </div>
                 <div className="FactImage">
                 <img src={imgSrc} alt="snake" />
-                </div>   
+                </div> 
+                {
+                props.snake.id === '' && (
+                    <Inactive />
+                )
+            }  
                 
             </div>
-        );    
+        ); 
+   
+        
+    
 }
 
 
