@@ -11,8 +11,8 @@ export class CalendarHeader extends React.Component {
     }
 
     handleClick(event) {
-        let add = 0;
-        event.target.value === 'back' ? add = -1 : add = 1;  
+        let add ;
+        event.target.value === 'back' ? add = 'false' : add = 'true';  
         
         this.props.handleMonthChange(add);    
     }
@@ -22,7 +22,7 @@ export class CalendarHeader extends React.Component {
             <div className="CalendarHeader">  
                 <div className="Tab">                    
                     <FontAwesomeIcon icon={faCalendar} />
-                    <div>Calendar</div>
+                    <div>Kalender</div>
                 </div>
                 <div>
                     <button value="back" onClick={this.handleClick}>

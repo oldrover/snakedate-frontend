@@ -54,7 +54,10 @@ export const Calendar = (props) => {
 
     
     const handleMonthChange = (add) => {
-        const newMonth = calendar.getMonth() + add;         
+        let newMonth = calendar.getMonth();
+        add === 'true' ? newMonth ++ 
+            : newMonth --
+                 
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
         setCalendar(newCal);               
     } 
