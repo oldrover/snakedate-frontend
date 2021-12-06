@@ -6,6 +6,7 @@
 5. Login
 6. Loading
 */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 :root {
   --bg-color: #121512;
@@ -20,34 +21,49 @@
   --vgradient: linear-gradient(180deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --hgradient: linear-gradient(90deg, var(--primary-color) 25%, var(--primary-variant) 74%); 
   --divider-gradient: linear-gradient(to left, var(--secondary-color) 15%, var(--divider-color));
+  --button-gradient: linear-gradient(90deg, var(--accent-color) 25%, var(--primary-variant) 74%);
   
 }
 
-
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 body {
   color:  var(--text-color);
   background-color: var(--bg-color);
   height: 100%;
   width: 100%;
-  
-
 }
 
 button {
   height: 35px;  
   background-color: var(--secondary-color);
-  color:var(--accent-color);
-  border-radius:5px; 
+  color:var(--accent-color);  
   font-weight: bold;
   cursor: pointer;
-  width: 100%;
+  width: 140px; 
+  border: none;
+  border-bottom: 2px solid var(--accent-variant);
 }
 
 input, textarea, select{
   background-color: var(--divider-color);
-  color: var(--text-color);
-  font-size: large;
+  color: var(--text-color); 
+  border: 0;   
+  padding: 10px;
+  margin: 10px 0;  
+  width: 140px;
+  border-bottom: 2px solid var(--accent-variant);
+}
+
+label {
+  font-weight: bold;
+  text-align: left; 
+}
+
+input {    
+  height: 1.5rem;  
 }
 
 textarea {
@@ -72,7 +88,10 @@ textarea {
 .ButtonContainer { 
   grid-column-start: 1;
   grid-column-end: 3; 
-  
+}
+
+.ActiveButton {
+  background-color: var(--secondary-variant);
 }
 
 /* 1. Navigation -----------------------------------------------------------*/
@@ -291,7 +310,9 @@ textarea {
   color: var(--accent-color);
 }
 
-#show-form {  
+/* 3. Forms ------------------------------------------------------------------*/
+
+.ShowForm {  
   position: fixed;
   background-color: rgba(0,0,0,0.5);
   top: 0px;
@@ -301,14 +322,13 @@ textarea {
   display: flex;  
   justify-content: center;
   z-index: 100;
-
 }
-/* 3. Forms ------------------------------------------------------------------*/
 
 .AllForms {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   width: 60%;
   height: 80vh;
+  max-width: 600px;
   max-height: 800px;
   border-radius: 5px;
   display: grid;
@@ -364,6 +384,7 @@ textarea {
   width: 35px;
   border: none;
   font-size: x-large;
+  background-color: var(--primary-color);
 }
 
 .FormBody {
@@ -441,19 +462,87 @@ textarea {
 
 /* 5. Login -------------------------------------------------------------*/
 
-.LoginPage{     
-  padding: 20px; 
-  display: flex;
+.LoginPage{ 
+  display: grid;
   align-items: center;
-  justify-content: center;  
+  justify-content: space-around;
+  padding-top: 10%;   
 }
 
-.LoginForm {
-  padding: 20px;
-  max-height: 400px;
-  
+.LoginHeadline {
+  font-size: 2.5rem;
+  color: var(--accent-variant);
+  font-family: 'Lobster', cursive;
+  text-shadow: 2px 2px var(--primary-color);
+}
+
+.LoginWrapper {
+  width: 800px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 100%; 
+  background-color: var(--primary-color); 
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px  rgba(0,0,0,0.5);
   
 }
+
+.LoginImg { 
+  border-radius: 5px 0px 0px 5px;      
+}
+
+.LoginImg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 20% 20%;
+  border-radius: 20px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.LoginForm {  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr;
+  align-content: center;
+  justify-content: center; 
+     
+}
+.LoginFormHeader {   
+  border-bottom: 2px solid var(--divider-color);
+  position: relative; 
+}
+
+.LoginFormHeaderButtons {
+  position: absolute;
+  bottom: 0; 
+  left: calc(50% - 140px); 
+}
+
+.LoginFormBody {  
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+  height: 100%;  
+}
+
+.LoginFormForm { 
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 50%; 
+  height: 70%; 
+  padding: 20px; 
+  margin: 30px;   
+  
+}
+
+.Login {
+  width: 100%;  
+}
+
 
 /* 6. Loading -------------------------------------------------------------*/
 

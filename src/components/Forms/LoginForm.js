@@ -64,64 +64,72 @@ export const LoginForm = (props) => {
             .catch(error => alert('SignUp Error please try again'));
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         showSignUp ? signUpRequest() : loginRequest();
     }
 
     return (
-        <div className='AllForms LoginForm'>
-            <div className='FormHeader'>
-                <button
-                    value='login'
-                    onClick={handleShowClick}
-                >
-                    Login
-                </button>
-                    
-                <button
-                     value='signup'
-                     onClick={handleShowClick}
-                >
-                Sign up
-                </button>
+        <div className='LoginForm'>            
+            <div className='LoginFormHeader'>
+                <div className='LoginFormHeaderButtons'>
+                    <button
+                        value='login'
+                        onClick={handleShowClick}
+                        className={(!showSignUp && 'ActiveButton') || ''}
+                    >
+                    Einloggen
+                    </button>
+                        
+                    <button
+                        value='signup'
+                        onClick={handleShowClick}
+                        className={(showSignUp && 'ActiveButton') || ''}
+                    >
+                    Anmelden
+                    </button>
+                </div>
             </div>
-            <div className='FormBody'>
-                <form className='Form' onSubmit={handleSubmit}>
+            <div className='LoginFormBody'>
+                <form className='LoginFormForm' onSubmit={handleSubmit}>
                     
                     <input 
+                        className='Login'
                         id='email'
                         name='email' 
                         size='50'
                         autoFocus
-                        placeholder='Email'
+                        placeholder='Email-Adresse'
                         value={loginData.email}
                         onChange={handleChange}
                         
-                    />                    
-                    <input 
+                    />  
+                    <br />                  
+                    <input
+                        className=' Login'
                         type='password' 
                         id='password' 
                         name='password'
                         size='50'
-                        placeholder='Password'
+                        placeholder='Passwort'
                         value={loginData.password}
                         onChange={handleChange}
 
                     />
-                    { showSignUp && (
+                    <br />
+                    { showSignUp && (                    
                     
                     <input 
+                        className='Login'
                         type='password' 
                         id='confirm' 
                         name='confirm'
                         size='50'
-                        placeholder='Confirm password' 
+                        placeholder='Passwort wiederholen' 
                     />)}
                     <div className='ButtonContainer'>
-                        <button type="submit" >
-                            {(showSignUp && 'Sign up') || 'Login'}                        
+                        <button type="submit" className='Login'>
+                            {(showSignUp && 'Anmelden') || 'Einloggen'}                        
                         </button> 
                     </div> 
                 </form>
