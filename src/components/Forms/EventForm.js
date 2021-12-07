@@ -93,6 +93,7 @@ export const EventForm = (props) => {
                         <option value="feed">Feed</option>
                         <option value="poop">Poop</option>
                         <option value="weight">Weight</option>
+                        <option value='shedding'>Shedding</option>
                     </select>
 
                     <label htmlFor="info_field">Info:</label>

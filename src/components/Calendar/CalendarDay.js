@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBalanceScale, faUtensils, faPoop } from '@fortawesome/free-solid-svg-icons';
+import { faBalanceScale, faUtensils, faPoop, faTshirt } from '@fortawesome/free-solid-svg-icons';
 
 
 export const CalendarDay = (props) => {
@@ -39,6 +39,10 @@ export const CalendarDay = (props) => {
                             
                         case "poop":
                             eventIcon = faPoop;
+                            break;
+                        
+                        case "shedding":
+                            eventIcon = faTshirt;
                             break;
 
                         default:                            

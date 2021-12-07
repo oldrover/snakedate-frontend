@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
-import { LoginPage } from './components/LoginPage';
-import { Loading } from './components/Loading';
+import { LoginPage } from './components/Login/LoginPage';
+import { Loading } from './components/Loading/Loading';
 
 const User = {
   id: '',

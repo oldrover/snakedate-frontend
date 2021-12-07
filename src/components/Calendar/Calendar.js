@@ -6,7 +6,7 @@ import { CalendarDay } from './CalendarDay';
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
-import { Loading} from '../Loading';
+import { Loading} from '../Loading/Loading';
 import { Inactive } from '../Inactive';
 
 

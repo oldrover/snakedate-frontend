@@ -1,0 +1,116 @@
+
+.Navigation { 
+    min-height: 100px;    
+    padding-bottom: 0px;   
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 100%;
+    grid-gap: 10px;
+  }
+  
+  .Headline {
+    padding-left: 10px;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    font-family: 'Lobster', cursive;
+  }
+  
+  .NavUser {
+    background-color: var(--primary-color);
+    background-image: var(--hgradient);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .UserMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .UserIcon {  
+    font-size: 3.5rem;
+    color: var(--accent-color);  
+    margin-left: 10px;  
+  }
+  
+  .NavSnake {
+    background-color: var(--primary-color);
+    background-image: var(--hgradient);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    padding: 10px;  
+    cursor: pointer; 
+     
+  }
+  
+  .NavSnakeCaret {
+    padding-left: 5px;
+    color: var(--accent-color);
+    font-size: large;
+  
+  }
+  
+  .NavSnakeName {
+    color: var(--accent-color); 
+    font-size: xx-large;  
+    font-family: 'Lobster', cursive;
+  }
+  
+  .SnakeList {
+    visibility: hidden;
+    position: absolute;
+    overflow: hidden;      
+    top: 100px;
+    opacity: 0;  
+    background-color: var(--secondary-color);
+    width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    transition: opacity .5s;
+    padding: 5px;    
+  }
+  
+  .NavSnake:hover .SnakeList {
+    visibility: visible;
+    opacity: 1;  
+  }
+  
+  .SnakeListItem {   
+    min-height: 50px;
+    width: 100%;  
+    background-color: var(--divider-color);
+    color: var(--text-color);
+    cursor: pointer;  
+    font-weight: bold;
+    font-size:20px; 
+    border-radius: 0px;   
+    border: 1px solid var(--primary-color);
+  }
+  
+  .SnakeListItem:hover {
+    background-color: var(--accent-variant);
+    font-size: 22px;  
+    transition: all .1s ease-in;
+  }
+  
+  .SnakeListItem:first-child {
+    border-radius: 5px 5px 0px 0px;
+  }
+  
+  .SnakeListItem:last-child {
+    border-radius: 0px 0px 5px 5px;
+  }
+  
+  .AddSnake {
+    background-color:var(--secondary-variant);
+  }
