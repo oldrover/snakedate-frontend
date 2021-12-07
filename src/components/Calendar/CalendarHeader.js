@@ -1,46 +1,47 @@
-import React from "react";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faForward, faBackward, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
-export class CalendarHeader extends React.Component {
-    constructor(props) {
-        super(props);
+export const CalendarHeader =(props) => {    
 
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(event) {
-        let add = 0;
-        event.target.value === 'back' ? add = -1 : add = 1;  
+    const handleClick = (event) => {
+        let add;
+        event.target.value === 'back' ? add = 'false' : add = 'true';  
         
-        this.props.handleMonthChange(add);    
+        props.handleMonthChange(add);    
     }
 
-    render() {
-        return(
+    
+    return(
             <div className="CalendarHeader">  
                 <div className="Tab">                    
                     <FontAwesomeIcon icon={faCalendar} />
-                    <div>Calendar</div>
+                    <div>Kalender</div>
                 </div>
                 <div>
-                    <button value="back" onClick={this.handleClick}>
+                    <button value="back" onClick={handleClick}>
                         <FontAwesomeIcon icon={faBackward} />
                     </button>
                 </div>                  
                 <div>
-                    {this.props.calendar.getMonthName()}
+                    {props.calendar.getMonthName()}
                 </div>
                 <div>
-                    <button value="forward" onClick={this.handleClick}>
+                    <button value="forward" onClick={handleClick}>
                         <FontAwesomeIcon icon={faForward} />
                     </button>
-                </div> 
-                <div className="CalendarYear">
-                    {this.props.calendar.getYear()}
+                </div>                
+                <button 
+                    className='HeuteButton'
+                    onClick={props.handleSwitchToday}
+                >
+                    Heute                    
+                </button>               
+                <div className="CalendarYear">                    
+                    {props.calendar.getYear()}
                 </div>
+                
+               
             </div>
         )
-    }
+    
 }

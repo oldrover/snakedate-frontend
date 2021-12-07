@@ -1,6 +1,6 @@
 import { LoginForm } from "./Forms/LoginForm"
 
-let imgSrc = 'images/snake.jpg';
+let imgSrc = 'images/snake_M.jpg';
 
 export const LoginPage = (props) => {    
     
