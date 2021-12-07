@@ -6,21 +6,12 @@ export const LoginForm = (props) => {
     const login = {
         'email': '',
         'password': ''
-    }  
+    }      
     
     let jwt = '';
 
     const [loginData, setLoginData] = useState(login);
     const [showSignUp, setShowSignUp] = useState(false);
-    
-
-    const handleChange = (e) => {
-        setLoginData({...loginData, [e.target.name]: e.target.value});
-    }
-
-    const handleShowClick = (e) => {
-        e.target.value === 'login' ? setShowSignUp(false) : setShowSignUp(true);
-    }
 
     const requestOptions = {
         method: 'POST',
@@ -30,7 +21,15 @@ export const LoginForm = (props) => {
             'Accept': 'application/json'               
          },
         body: JSON.stringify(loginData)
-    }; 
+    };    
+
+    const handleChange = (e) => {
+        setLoginData({...loginData, [e.target.name]: e.target.value});
+    }
+
+    const handleShowClick = (e) => {
+        e.target.value === 'login' ? setShowSignUp(false) : setShowSignUp(true);
+    }
 
     const loginRequest = () => {
         fetch(`/api/users/login`, requestOptions)  
@@ -49,7 +48,6 @@ export const LoginForm = (props) => {
                 props.handleLogin();
             })                                      
             .catch(error => alert('Credential Error please try again'));
-
     }
 
     const signUpRequest = () => {

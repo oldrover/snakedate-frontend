@@ -1,14 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {faPlusCircle, faCaretSquareDown  } from '@fortawesome/free-solid-svg-icons';
 
 export const NavSnake = (props) => {
-
-    let imgSrc = 'images/snake.jpg';
-
-    props.snake.image !== '' && (imgSrc = props.snake.image);
-    
-
-    
 
     const handleClick = (e) => {        
         props.setSnake(JSON.parse(e.target.value));        
@@ -19,13 +12,10 @@ export const NavSnake = (props) => {
             formType: 'snake'
         };
         props.handleShowForm(true, formData);
-
     }
 
     return (
-        <div className='NavSnake'>
-            <div className='NavSnakeImg'>
-                <img src={imgSrc} alt='Snake' /> 
+        <div className='NavSnake'>                           
                 <div id='Overlay'></div> 
                 <div id='SnakeList' className='SnakeList'>                
                     <div>
@@ -49,13 +39,13 @@ export const NavSnake = (props) => {
 
                     </div>
                 </div>  
-                               
-            </div>  
             <div className='NavSnakeName'>
-                <h1>{props.snake.name}</h1>
-                
-           
-        </div> 
+                {props.snake.name}
+            </div> 
+
+            <div className='NavSnakeCaret'>
+                <FontAwesomeIcon icon={faCaretSquareDown} />
+            </div>
         </div> 
         
 

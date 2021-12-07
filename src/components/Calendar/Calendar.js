@@ -52,6 +52,10 @@ export const Calendar = (props) => {
         setIsLoading(false);
     }
 
+    const handleSwitchToday = () => {
+        setCalendar(new Cal(new Date()));
+    }
+
     
     const handleMonthChange = (add) => {
         let newMonth = calendar.getMonth();
@@ -93,7 +97,9 @@ export const Calendar = (props) => {
         <div className='Calendar'>    
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
+                handleSwitchToday={handleSwitchToday}
                 calendar={calendar}
+                
             /> 
             <WeekDays
                 calendar={calendar}
