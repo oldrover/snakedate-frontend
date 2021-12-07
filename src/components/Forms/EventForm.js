@@ -85,7 +85,7 @@ export const EventForm = (props) => {
                     <label htmlFor="snake_name">Snake:</label>
                     <input id="snake_name" value={props.snake.name} disabled/>  
                     
-                    <label htlmlFor="event_date">Date:</label>
+                    <label htmlFor="event_date">Date:</label>
                     <input id="event_date" value={new Date(eventData.date).toLocaleString(undefined ,dateOptions)} disabled />  
                     
                     <label htmlFor="select_type">Event Type:</label>
@@ -95,7 +95,7 @@ export const EventForm = (props) => {
                         <option value="weight">Weight</option>
                     </select>
 
-                    <label for="info_field">Info:</label>
+                    <label htmlFor="info_field">Info:</label>
                     <textarea name='info' onChange={handleChange} />                
                     <div className="ButtonContainer">
                         <button  type='submit' >

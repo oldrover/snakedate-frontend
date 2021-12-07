@@ -33,7 +33,7 @@ export const Calendar = (props) => {
                     }      
             }; 
             
-            fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
+            await fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
             .then(response => response.json())
             .then(data => {                  
                 handleSnakeEvents(data);                                 
@@ -42,14 +42,14 @@ export const Calendar = (props) => {
                 console.log(error);
             });
         }
-        fetchEvents();        
+        fetchEvents();                       
         
     },[props.snake, props.user, isLoading])
 
     
     const handleSnakeEvents = (data) => {
         setSnakeEvents(data);
-        setIsLoading(false);
+        setIsLoading(false);         
     }
 
     const handleSwitchToday = () => {
@@ -71,11 +71,11 @@ export const Calendar = (props) => {
         setShowForm(show);
     }    
     
-    const filterEvents = (events, day) => {
+    const filterEvents = (events, day) => {        
         return events.filter(e => new Date(e.date).getDate() === day
-                            && new Date(e.date).getMonth() === calendar.getMonth()
-                            && new Date(e.date).getFullYear() === calendar.getYear()                            
-                        );
+                    && new Date(e.date).getMonth() === calendar.getMonth()
+                    && new Date(e.date).getFullYear() === calendar.getYear()                                              
+            );  
     }
 
     const formatDate = (day) => {
@@ -84,7 +84,7 @@ export const Calendar = (props) => {
         day < 10 && (day = `0${day}`);  
         month < 10 && (month = `0${month}`);  
 
-        return `${calendar.getYear()}.${month}.${day}`;
+        return `${calendar.getYear()}/${month}/${day}`;
     }
 
     if (isLoading){
@@ -112,9 +112,10 @@ export const Calendar = (props) => {
                         && calendar.getMonth() === today.getMonth()
                         && calendar.getYear() === today.getFullYear()
                             ? clsName = "Day Today"
-                            : clsName = "Day"                            
-                     
-                        const dailyEvents = filterEvents(snakeEvents, day);                     
+                            : clsName = "Day"  
+
+                       
+                        const dailyEvents = filterEvents(snakeEvents, day);                                            
                         const date = formatDate(day);
                         
                         return (                         
