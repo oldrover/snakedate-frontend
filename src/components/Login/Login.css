@@ -1,19 +1,19 @@
 
-.LoginPage{ 
+.login_page{ 
     display: grid;
     align-items: center;
     justify-content: space-around;
     padding-top: 10%;   
   }
   
-  .LoginHeadline {
+  .login_headline {
     font-size: 2.5rem;
     color: var(--accent-variant);
     font-family: 'Lobster', cursive;
     text-shadow: 2px 2px var(--primary-color);
   }
   
-  .LoginWrapper {
+  .login_wrapper {
     width: 800px;
     height: 400px;
     display: grid;
@@ -25,11 +25,11 @@
     
   }
   
-  .LoginImg { 
+  .login_img { 
     border-radius: 5px 0px 0px 5px;      
   }
   
-  .LoginImg img{
+  .login_img img{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -38,7 +38,7 @@
     border-radius: 5px 0px 0px 5px;
   }
   
-  .LoginForm {  
+  .login_form {  
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 4fr;
@@ -46,18 +46,18 @@
     justify-content: center; 
        
   }
-  .LoginFormHeader {   
+  .login_form_header {   
     border-bottom: 2px solid var(--divider-color);
     position: relative; 
   }
   
-  .LoginFormHeaderButtons {
+  .login_form_header_buttons {
     position: absolute;
     bottom: 0; 
     left: calc(50% - 140px); 
   }
   
-  .LoginFormBody {  
+  .login_form_body {  
     display: flex;
     align-items: center; 
     justify-content: center; 
@@ -65,7 +65,7 @@
     height: 100%;  
   }
   
-  .LoginFormForm { 
+  .login_form_form { 
     display: grid;
     align-items: center;
     justify-content: center;
@@ -76,6 +76,6 @@
     
   }
   
-  .Login {
+  .login {
     width: 100%;  
   }

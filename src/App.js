@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => { 
     
-    if(isLoggedIn){    
+    if(isLoggedIn){          
       const fetchSnakes = async() => {
         const requestOptions = {
           method: 'GET',
@@ -58,7 +58,8 @@ function App() {
         .catch(error =>{
           console.log(error);
         }); 
-      }      
+      } 
+          
       fetchSnakes();
     }
     
@@ -74,6 +75,7 @@ function App() {
       <LoginPage 
         handleLogin={handleLogin}         
         setUser={setUser}
+        setIsLoading={setIsLoading}
       />      
       )
   }

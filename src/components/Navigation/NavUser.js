@@ -3,13 +3,13 @@ import {faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const NavUser = (props) => {
     return (
-        <div className="NavUser">
-            <div className="Headline">
+        <div className="nav_user">
+            <div className="headline">
                 SnakePlanner
             </div>
-            <div className="UserMenu">            
+            <div className="user_menu">            
                 {props.user.name}
-                <FontAwesomeIcon className='UserIcon' icon={faUserCircle}/>  
+                <FontAwesomeIcon className='user_icon' icon={faUserCircle}/>  
             </div> 
         </div>
     )

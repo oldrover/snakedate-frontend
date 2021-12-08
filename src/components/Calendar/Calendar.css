@@ -81,8 +81,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 4fr;  
     padding: 5px;
-    justify-content: center; 
-    transition: all .2s linear; 
+    justify-content: center;      
     cursor: pointer;
   }
   
@@ -90,6 +89,7 @@
     background-color: var(--accent-variant);
     transform: scale(1.05);
     overflow: hidden;
+    transition: all .2s linear;
   }
   
   .Today {

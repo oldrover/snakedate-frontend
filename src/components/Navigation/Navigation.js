@@ -5,7 +5,12 @@ import { NavUser } from './NavUser';
 import { ShowForm } from '../Forms/ShowForm';
 
 
-export const Navigation = (props) => {      
+export const Navigation = (props) => { 
+    
+    const user = props.user;
+    const snake = props.snake;
+    const setSnake = props.setSnake;
+    const setIsLoading = props.setIsLoading;
     
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState();  
@@ -16,23 +21,23 @@ export const Navigation = (props) => {
     }
 
         return (
-            <div className="Navigation">
+            <div className="navigation">
                 <NavSnake 
-                    user={props.user} 
-                    snake={props.snake}
-                    setSnake={props.setSnake} 
+                    user={user} 
+                    snake={snake}
+                    setSnake={setSnake} 
                     handleShowForm={handleShowForm}                    
                 /> 
                 <NavUser 
-                    user={props.user} 
+                    user={user} 
                 /> 
 
                 { showForm && 
                 <ShowForm 
                     formData={formData}                    
                     handleShowForm={handleShowForm}
-                    setIsLoading={props.setIsLoading}                     
-                    user={props.user}
+                    setIsLoading={setIsLoading}                     
+                    user={user}
                 /> 
                 } 
             </div>

@@ -10,6 +10,10 @@ export const LoginForm = (props) => {
     
     let jwt = '';
 
+    const setUser = props.setUser;
+    const handleLogin = props.handleLogin;
+    const setIsLoading = props.setIsLoading;
+
     const [loginData, setLoginData] = useState(login);
     const [showSignUp, setShowSignUp] = useState(false);
 
@@ -32,20 +36,21 @@ export const LoginForm = (props) => {
     }
 
     const loginRequest = () => {
+        setIsLoading(true);
         fetch(`/api/users/login`, requestOptions)  
             .then(response => {                  
                 jwt = response.headers.get('Authentication');              
                 return response.json();  
             })    
             .then(data => {                
-                props.setUser({
+                setUser({
                     id: data.id,
                     name: data.email,
                     snakes: [],
                     image: '',
                     jwt:jwt  
-                })
-                props.handleLogin();
+                })                
+                handleLogin();
             })                                      
             .catch(error => alert('Credential Error please try again'));
     }
@@ -68,9 +73,9 @@ export const LoginForm = (props) => {
     }
 
     return (
-        <div className='LoginForm'>            
-            <div className='LoginFormHeader'>
-                <div className='LoginFormHeaderButtons'>
+        <div className='login_form'>            
+            <div className='login_form_header'>
+                <div className='login_form_header_buttons'>
                     <button
                         value='login'
                         onClick={handleShowClick}
@@ -88,14 +93,13 @@ export const LoginForm = (props) => {
                     </button>
                 </div>
             </div>
-            <div className='LoginFormBody'>
-                <form className='LoginFormForm' onSubmit={handleSubmit}>
+            <div className='login_form_body'>
+                <form className='login_form_form' onSubmit={handleSubmit}>
                     
                     <input 
-                        className='Login'
+                        className='login'
                         id='email'
-                        name='email' 
-                        size='50'
+                        name='email'                         
                         autoFocus
                         placeholder='Email-Adresse'
                         value={loginData.email}
@@ -104,11 +108,10 @@ export const LoginForm = (props) => {
                     />  
                     <br />                  
                     <input
-                        className=' Login'
+                        className='login'
                         type='password' 
                         id='password' 
-                        name='password'
-                        size='50'
+                        name='password'                        
                         placeholder='Passwort'
                         value={loginData.password}
                         onChange={handleChange}
@@ -118,15 +121,14 @@ export const LoginForm = (props) => {
                     { showSignUp && (                    
                     
                     <input 
-                        className='Login'
+                        className='login'
                         type='password' 
                         id='confirm' 
-                        name='confirm'
-                        size='50'
+                        name='confirm'                        
                         placeholder='Passwort wiederholen' 
                     />)}
                     <div className='ButtonContainer'>
-                        <button type="submit" className='Login'>
+                        <button type="submit" className='login'>
                             {(showSignUp && 'Anmelden') || 'Einloggen'}                        
                         </button> 
                     </div> 
