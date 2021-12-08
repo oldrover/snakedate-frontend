@@ -21,7 +21,7 @@ export const Navigation = (props) => {
     }
 
         return (
-            <div className="navigation">
+            <div className='navigation'>
                 <NavSnake 
                     user={user} 
                     snake={snake}

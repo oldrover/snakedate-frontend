@@ -1,5 +1,5 @@
 
-.ShowForm {  
+.show_form {  
     position: fixed;
     background-color: rgba(0,0,0,0.5);
     top: 0px;
@@ -11,7 +11,7 @@
     z-index: 100;
   }
   
-  .AllForms {
+  .all_forms {
     background-color: var(--primary-color);
     width: 60%;
     height: 80vh;
@@ -23,12 +23,12 @@
     margin-top: 5%;
   }
   
-  .EventForm {  
+  .event_form {  
     grid-template-rows: 1fr 1fr 8fr 1fr;    
       
   }
   
-  .FormEventsList {
+  .form_events_list {
     background-color: var(--divider-color);
     margin: 0px 15px;
     padding: 0px 5px;
@@ -38,7 +38,7 @@
     justify-content: left;
   }
   
-  .FormEventsListItem {  
+  .form_events_list_item {  
     background-color: var(--accent-color);
     color: var(--secondary-variant);  
     font-weight: bold;
@@ -50,15 +50,15 @@
     border: none;  
   }
   
-  .SnakeForm {  
+  .snake_form {  
     grid-template-rows: 1fr 8fr 1fr; 
   }
   
-  .DeleteIcon {
+  .delete_icon {
     cursor: pointer;
   }
   
-  .FormHeader {
+  .form_header {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
@@ -67,14 +67,14 @@
   
   }
   
-  .BtnClose {
+  .button_close {
     width: 35px;
     border: none;
     font-size: x-large;
     background-color: var(--primary-color);
   }
   
-  .FormBody {
+  .form_body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,11 +83,11 @@
   
   }
   
-  .FormFooter {
+  .form_footer {
     border-top: 2px solid var(--divider-color);
   }
   
-  .Form {   
+  .form {   
     padding: 50px;
     height: 70%; 
     width: 70%; 

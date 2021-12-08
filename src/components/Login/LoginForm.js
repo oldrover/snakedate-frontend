@@ -79,7 +79,7 @@ export const LoginForm = (props) => {
                     <button
                         value='login'
                         onClick={handleShowClick}
-                        className={(!showSignUp && 'ActiveButton') || ''}
+                        className={(!showSignUp && 'active_button') || ''}
                     >
                     Einloggen
                     </button>
@@ -87,7 +87,7 @@ export const LoginForm = (props) => {
                     <button
                         value='signup'
                         onClick={handleShowClick}
-                        className={(showSignUp && 'ActiveButton') || ''}
+                        className={(showSignUp && 'active_button') || ''}
                     >
                     Anmelden
                     </button>
@@ -127,7 +127,7 @@ export const LoginForm = (props) => {
                         name='confirm'                        
                         placeholder='Passwort wiederholen' 
                     />)}
-                    <div className='ButtonContainer'>
+                    <div className='button_container'>
                         <button type="submit" className='login'>
                             {(showSignUp && 'Anmelden') || 'Einloggen'}                        
                         </button> 

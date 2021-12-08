@@ -85,7 +85,7 @@ textarea {
   height: calc(100vh - 150px);      
 }
 
-.Wrapper {
+.wrapper {
   display: grid;  
   grid-template-columns: 1fr 4fr;  
   grid-template-rows: 100%;
@@ -94,12 +94,12 @@ textarea {
   max-height: 900px;  
 }
 
-.ButtonContainer { 
+.button_container { 
   grid-column-start: 1;
   grid-column-end: 3; 
 }
 
-.ActiveButton {
+.active_button {
   background-color: var(--secondary-variant);
 }
 

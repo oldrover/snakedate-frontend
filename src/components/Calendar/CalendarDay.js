@@ -3,45 +3,51 @@ import { faBalanceScale, faUtensils, faPoop, faTshirt } from '@fortawesome/free-
 
 
 export const CalendarDay = (props) => {
-     
+
+    const date = props.date;
+    const day = props.day;
+    const className = props.className;    
+    const dailyEvents = props.dailyEvents;
+    const handleShowForm = props.handleShowForm;
+         
     const handleClick = () => { 
         const formData = { 
-            date: props.date, 
-            formType: "event", 
-            dailyEvents: props.dailyEvents
+            date: date, 
+            formType: 'event', 
+            dailyEvents: dailyEvents
         };
-        props.handleShowForm(true, formData);        
+        handleShowForm(true, formData);        
     }
 
     
     return (
         <div 
-            className={props.className} 
+            className={className} 
             key={props.day}
             onClick={handleClick}
         >
             <div>
-                {props.day}                
+                {day}                
             </div>
-            <div className="Events">                
+            <div className='events'>                
             {
 
                 props.dailyEvents.map((event, index) => {                    
-                    let eventIcon = "";
+                    let eventIcon = '';
                     switch (event.type) {
-                        case "weight":
+                        case 'weight':
                             eventIcon = faBalanceScale;
                             break;
                         
-                        case "feed":
+                        case 'feed':
                             eventIcon = faUtensils;
                             break; 
                             
-                        case "poop":
+                        case 'poop':
                             eventIcon = faPoop;
                             break;
                         
-                        case "shedding":
+                        case 'shedding':
                             eventIcon = faTshirt;
                             break;
 
@@ -50,9 +56,9 @@ export const CalendarDay = (props) => {
                     }
 
                     return(
-                        <div className="Event" key={event + index}>                                                    
+                        <div className='event' key={event + index}>                                                    
                         <FontAwesomeIcon icon={eventIcon} />
-                        { event.type === "weight" && ` ${event.info}` }
+                        { event.type === 'weight' && ` ${event.info}` }
                         </div>
                         );
                 })

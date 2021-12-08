@@ -1,9 +1,11 @@
 import { Details } from './Details';
 
 export const Dashboard = (props) => {
+
+    const snake = props.snake;
     return (
-        <div className="Dashboard">                
-            <Details snake={props.snake}/>
+        <div className='dashboard'>                
+            <Details snake={snake}/>
         </div>
         );    
 }

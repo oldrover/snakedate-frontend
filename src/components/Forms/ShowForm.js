@@ -1,33 +1,38 @@
-import { EventForm } from "./EventForm";
-import { SnakeForm} from "./SnakeForm";
+import { EventForm } from './EventForm';
+import { SnakeForm} from './SnakeForm';
 
 export const ShowForm = (props) => {
 
+    const snake = props.snake;
+    const user = props.user;   
+    const formData = props.formData;
+    const setIsLoading = props.setIsLoading;
+    const handleShowForm = props.handleShowForm;
+    
+
     const handleClose = () => {
-        props.setIsLoading(true);
-        props.handleShowForm(false, {});  
-              
+        setIsLoading(true);
+        handleShowForm(false, {});  
     }
 
-
     return (        
-        <div className='ShowForm'>            
+        <div className='show_form'>            
             {
-            props.formData.formType === "event" && 
+            formData.formType === 'event' && 
                 <EventForm 
                     handleClose={handleClose}                    
-                    snake={props.snake}
-                    user={props.user}
-                    date={props.formData.date}
-                    dailyEvents={props.formData.dailyEvents}                    
+                    snake={snake}
+                    user={user}
+                    date={formData.date}
+                    dailyEvents={formData.dailyEvents}                    
                 />
             }
 
             {
-            props.formData.formType === "snake" &&
+            formData.formType === 'snake' &&
                 <SnakeForm 
                     handleClose={handleClose}
-                    user={props.user}
+                    user={user}
                 />
             }
 

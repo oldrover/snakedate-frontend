@@ -1,12 +1,12 @@
 
-.Calendar {  
+.calendar {  
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto auto 6fr;
     position: relative; 
   }
   
-  .CalendarBody {  
+  .calendar_body {  
     background-color: var(--primary-color);  
     background-image: var(--vgradient); 
     border-radius: 0px 0px 5px 5px;  
@@ -18,7 +18,7 @@
     overflow: hidden;  
   }
   
-  .CalendarHeader {
+  .calendar_header {
     height: 50px;  
     background-color: var(--primary-color);  
     border-bottom: 2px solid var(--divider-color);
@@ -31,12 +31,12 @@
     font-weight: bold;  
   }
   
-  .CalendarHeader button {  
+  .calendar_header button {  
     height: 35px;
     width: 120px;  
   }
   
-  .CalendarYear {   
+  .calendar_year {   
     color: var(--accent-color); 
     font-size: x-large;  
     font-family: 'Lobster', cursive;
@@ -46,14 +46,14 @@
        
   }
   
-  .YearAndToday {
+  .year_and_today {
     width: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   
-  .Tab {
+  .tab {
     height: 100%;
     width: 100%;
     background-color: var(--divider-color);
@@ -63,11 +63,11 @@
     border-radius: 0px 20px 0px 0px;    
   }
   
-  .Tab div {
+  .tab div {
     padding-left: 5px;
   }
   
-  .WeekDays {
+  .week_days {
     background-color: var(--primary-color);
     display: grid;  
     grid-template-columns: repeat(7, 1fr);
@@ -75,7 +75,7 @@
     padding: 5px 10px;
   }
   
-  .Day, .Today{
+  .day, .today{
     background-color: var(--secondary-color);       
     display: grid;   
     grid-template-columns: 1fr;
@@ -85,19 +85,19 @@
     cursor: pointer;
   }
   
-  .Day:hover, .Today:hover {
+  .day:hover, .today:hover {
     background-color: var(--accent-variant);
     transform: scale(1.05);
     overflow: hidden;
     transition: all .2s linear;
   }
   
-  .Today {
+  .today {
     color: var(--accent-color);
     background-color: var(--secondary-variant);
   }
   
-  .Events {       
+  .events {       
     display: grid; 
     flex-direction: column; 
     align-items: center;  
@@ -105,7 +105,7 @@
       
   }
   
-  .Event {  
+  .event {  
     padding: 2px 3px;
     color: var(--accent-color);
   }

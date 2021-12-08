@@ -49,8 +49,7 @@
     align-items: center;
     padding: 10px;  
     cursor: pointer; 
-    word-break: break-all;
-    
+    word-break: break-all;    
     position: relative;    
   }
 
@@ -61,8 +60,7 @@
   .nav_snake_bars {    
     color: var(--accent-color);
     font-size: large;
-    padding-left: 5px;
-  
+    padding-left: 5px;  
   }
   
   .nav_snake_name {

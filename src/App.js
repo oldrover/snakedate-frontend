@@ -94,7 +94,7 @@ function App() {
         setSnake={setSnake}
         setIsLoading={setIsLoading}
       /> 
-      <div className='Wrapper'>  
+      <div className='wrapper'>  
         <Dashboard snake={snake}/>   
         <Calendar 
           user={user} 

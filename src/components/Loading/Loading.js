@@ -1,8 +1,8 @@
 export const Loading = () => {
 
     return (
-        <div className='LoadingPage'>
-            <div className='Spin'></div>
+        <div className='loading_page'>
+            <div className='spin'></div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { LoginForm } from "./LoginForm"
+import { LoginForm } from './LoginForm';
 
 let imgSrc = 'images/snake_M.jpg';
 
