@@ -93,6 +93,7 @@ function App() {
         snake={snake} 
         setSnake={setSnake}
         setIsLoading={setIsLoading}
+        setIsLoggedIn={setIsLoggedIn}
       /> 
       <div className='wrapper'>  
         <Dashboard snake={snake}/>   

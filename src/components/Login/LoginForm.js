@@ -56,6 +56,8 @@ export const LoginForm = (props) => {
     }
 
     const signUpRequest = () => {
+        
+
         fetch(`/api/users`, requestOptions)  
             .then(response => { 
                 return response.json();  
@@ -77,7 +79,7 @@ export const LoginForm = (props) => {
             <div className='login_form_header'>
                 <div className='login_form_header_buttons'>
                     <button
-                        value='login'
+                        value='login'                        
                         onClick={handleShowClick}
                         className={(!showSignUp && 'active_button') || ''}
                     >
@@ -101,6 +103,7 @@ export const LoginForm = (props) => {
                         id='email'
                         name='email'                         
                         autoFocus
+                        required
                         placeholder='Email-Adresse'
                         value={loginData.email}
                         onChange={handleChange}
@@ -113,6 +116,7 @@ export const LoginForm = (props) => {
                         id='password' 
                         name='password'                        
                         placeholder='Passwort'
+                        required
                         value={loginData.password}
                         onChange={handleChange}
 
@@ -124,7 +128,8 @@ export const LoginForm = (props) => {
                         className='login'
                         type='password' 
                         id='confirm' 
-                        name='confirm'                        
+                        name='confirm' 
+                        required                       
                         placeholder='Passwort wiederholen' 
                     />)}
                     <div className='button_container'>

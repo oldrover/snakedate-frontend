@@ -33,11 +33,12 @@
     font-weight: bold;
   }
   
-  .user_icon {  
-    font-size: 3.5rem;
+  .logout {  
+    font-size: 2rem;
     color: var(--accent-color);  
-    margin-left: 10px;  
-  }
+    margin: 10px;  
+    cursor: pointer;
+  }  
   
   .nav_snake {
     background-color: var(--primary-color);

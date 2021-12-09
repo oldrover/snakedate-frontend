@@ -11,6 +11,7 @@ export const Navigation = (props) => {
     const snake = props.snake;
     const setSnake = props.setSnake;
     const setIsLoading = props.setIsLoading;
+    const setIsLoggedIn = props.setIsLoggedIn;
     
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState();  
@@ -30,6 +31,7 @@ export const Navigation = (props) => {
                 /> 
                 <NavUser 
                     user={user} 
+                    setIsLoggedIn={setIsLoggedIn}
                 /> 
 
                 { showForm && 
