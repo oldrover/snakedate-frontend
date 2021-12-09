@@ -1,46 +1,44 @@
-import { Inactive } from "../Inactive";
+import { Inactive } from '../Inactive';
 
 export const Details = (props) => {
 
+    const snake = props.snake;
+
     let imgSrc = 'images/snake.jpg';
 
-    props.snake.image !== '' && (imgSrc = props.snake.image);
+    props.snake.image !== '' && (imgSrc = snake.image);
     
     
     return (
-            <div className="Details">
-                <div className="Fact">
-                    Name: {props.snake.name}
+            <div className='details'>
+                <div className='fact'>
+                    Name: {snake.name}
                 </div>
-                <div  className="Fact">
-                    Spezies: {props.snake.species}
+                <div  className='fact'>
+                    Spezies: {snake.species}
                 </div>
-                <div  className="Fact">
-                    Geschlecht: {props.snake.sex}
+                <div  className='fact'>
+                    Geschlecht: {snake.sex}
                 </div>
-                <div  className="Fact">
-                    Geburtsjahr: {props.snake.birthYear}
+                <div  className='fact'>
+                    Geburtsjahr: {snake.birthYear}
                 </div>
-                <div  className="Fact">
-                    aktuelles Gewicht: {props.snake.weight}g
+                <div  className='fact'>
+                    aktuelles Gewicht: {snake.weight}g
                 </div>
-                <div  className="Fact Last">
-                    aktuelle Größe: {props.snake.size}cm
+                <div  className='fact last'>
+                    aktuelle Größe: {snake.size}cm
                 </div>
-                <div className="FactImage">
-                <img src={imgSrc} alt="snake" />
+                <div className='fact_image'>
+                <img src={imgSrc} alt='snake' />
                 </div> 
                 {
-                props.snake.id === '' && (
+                snake.id === '' && (
                     <Inactive />
                 )
-            }  
-                
+            }                  
             </div>
-        ); 
-   
-        
-    
+        );    
 }
 
 

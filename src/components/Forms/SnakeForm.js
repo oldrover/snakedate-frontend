@@ -5,8 +5,11 @@ import { FormHeader } from './FormHeader';
 
 export const SnakeForm = (props) => {
 
+    const user = props.user;
+    const handleClose = props.handleClose;
+
     const defaultData = {
-        'ownerId': props.user.id, 
+        'ownerId': user.id, 
         'name': '',
         'species': '',
         'sex': 'male',
@@ -25,7 +28,7 @@ export const SnakeForm = (props) => {
             headers: { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': props.user.jwt               
+                'Authorization': user.jwt               
             },            
             body: JSON.stringify(snakeData)
         };  
@@ -37,7 +40,7 @@ export const SnakeForm = (props) => {
     const handleSubmit = (e) => {       
         e.preventDefault(); 
         postSnakeData(); 
-        props.handleClose();
+        handleClose();
     }
 
     const handleChange = (e) => {        
@@ -45,13 +48,13 @@ export const SnakeForm = (props) => {
     }
 
     return (
-        <div className='AllForms SnakeForm'> 
+        <div className='all_forms snake_form'> 
             <FormHeader 
-                handleClose={props.handleClose} 
+                handleClose={handleClose} 
                 text='Add a new Snake'
             />
-             <div className='FormBody'>
-                <form className='Form' onSubmit={handleSubmit}>
+             <div className='form_body'>
+                <form className='form' onSubmit={handleSubmit}>
                     <label htmlFor='name'>Name:</label>
                     <input 
                         id='name' 
@@ -94,16 +97,14 @@ export const SnakeForm = (props) => {
                         type='number'  
                         onChange={handleChange}
                     /> 
-                    <div className="ButtonContainer">
+                    <div className="button_container">
                         <button type='submit'>
                             save
                         </button>
                     </div>
                  </form>
             </div>
-            <div className='FormFooter'></div>
-
-            
+            <div className='form_footer'></div>
         </div>
     )
 

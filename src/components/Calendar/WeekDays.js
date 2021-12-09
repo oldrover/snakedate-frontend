@@ -1,9 +1,11 @@
 export const WeekDays = (props) => {
 
+    const calendar = props.calendar;
+
     return ( 
-        <div className="WeekDays">
+        <div className='week_days'>
             {
-            props.calendar.getWeekDays().map(weekDay => <div className="WeekDay" key={weekDay}>{weekDay}</div>)}
+            calendar.getWeekDays().map(weekDay => <div className='week_day' key={weekDay}>{weekDay}</div>)}
         </div>
     )
 }

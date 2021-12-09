@@ -6,11 +6,14 @@ import { CalendarDay } from './CalendarDay';
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { ShowForm } from '../Forms/ShowForm';
-import { Loading} from '../Loading';
+import { Loading} from '../Loading/Loading';
 import { Inactive } from '../Inactive';
 
 
 export const Calendar = (props) => {   
+
+    const user = props.user;
+    const snake = props.snake;
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
     const [today] = useState(new Date());  
@@ -29,11 +32,11 @@ export const Calendar = (props) => {
                 headers: { 
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Authorization': props.user.jwt              
+                    'Authorization': user.jwt              
                     }      
             }; 
             
-            await fetch(`/api/events/${props.snake.snakeId}`, requestOptions)
+            await fetch(`/api/events/${snake.snakeId}`, requestOptions)
             .then(response => response.json())
             .then(data => {                  
                 handleSnakeEvents(data);                                 
@@ -44,7 +47,7 @@ export const Calendar = (props) => {
         }
         fetchEvents();                       
         
-    },[props.snake, props.user, isLoading])
+    },[snake, user, isLoading])
 
     
     const handleSnakeEvents = (data) => {
@@ -94,7 +97,7 @@ export const Calendar = (props) => {
       } 
 
     return (
-        <div className='Calendar'>    
+        <div className='calendar'>    
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
                 handleSwitchToday={handleSwitchToday}
@@ -104,15 +107,15 @@ export const Calendar = (props) => {
             <WeekDays
                 calendar={calendar}
             />              
-            <div className="CalendarBody">  
+            <div className='calendar_body'>  
                 {
                     calendar.getCalendar().map((day, index) =>  { 
                         let clsName = ''
                         day === today.getDate() 
                         && calendar.getMonth() === today.getMonth()
                         && calendar.getYear() === today.getFullYear()
-                            ? clsName = "Day Today"
-                            : clsName = "Day"  
+                            ? clsName = 'day today'
+                            : clsName = 'day'  
 
                        
                         const dailyEvents = filterEvents(snakeEvents, day);                                            
@@ -136,13 +139,13 @@ export const Calendar = (props) => {
                     formData={formData}                    
                     handleShowForm={handleShowForm} 
                     setIsLoading={setIsLoading}                    
-                    snake={props.snake} 
-                    user={props.user}
+                    snake={snake} 
+                    user={user}
 
                 /> 
             }
             {
-                props.snake.id === '' && (
+                snake.id === '' && (
                  <Inactive />
                 )
             }

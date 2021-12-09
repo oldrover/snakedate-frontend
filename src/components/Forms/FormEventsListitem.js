@@ -1,29 +1,30 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 export const FormEventsListItem = (props) => {
+    
+    const dailyEvent = props.dailyEvent;
+    const handleDeleteEvent = props.handleDeleteEvent;
 
-    const [ eventId ] = useState(props.dailyEvent.eventId);
+    const [ eventId ] = useState(dailyEvent.eventId);
 
     const handleDeleteClick = () => {
-       props.handleDeleteEvent(eventId);
+       handleDeleteEvent(eventId);
     }
 
     return (
         <div 
-            className="FormEventsListItem" 
+            className='form_events_list_item' 
         >
-            {props.dailyEvent.type}
+            {dailyEvent.type}
             <FontAwesomeIcon 
-                className="DeleteIcon"                
+                className='delete_icon'                
                 icon={faTimesCircle} 
                 onClick={handleDeleteClick}
             />
-            
-            
         </div>
     )
 }

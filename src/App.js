@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
-import { LoginPage } from './components/LoginPage';
-import { Loading } from './components/Loading';
+import { LoginPage } from './components/Login/LoginPage';
+import { Loading } from './components/Loading/Loading';
 
 const User = {
   id: '',
@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => { 
     
-    if(isLoggedIn){    
+    if(isLoggedIn){          
       const fetchSnakes = async() => {
         const requestOptions = {
           method: 'GET',
@@ -58,7 +58,8 @@ function App() {
         .catch(error =>{
           console.log(error);
         }); 
-      }      
+      } 
+          
       fetchSnakes();
     }
     
@@ -74,6 +75,7 @@ function App() {
       <LoginPage 
         handleLogin={handleLogin}         
         setUser={setUser}
+        setIsLoading={setIsLoading}
       />      
       )
   }
@@ -91,8 +93,9 @@ function App() {
         snake={snake} 
         setSnake={setSnake}
         setIsLoading={setIsLoading}
+        setIsLoggedIn={setIsLoggedIn}
       /> 
-      <div className='Wrapper'>  
+      <div className='wrapper'>  
         <Dashboard snake={snake}/>   
         <Calendar 
           user={user} 

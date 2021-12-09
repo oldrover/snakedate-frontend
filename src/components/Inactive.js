@@ -1,7 +1,7 @@
 export const Inactive = (props) => {
     return ( 
-        <div className='Inactive'>
-            <div className='InactiveText'>
+        <div className='inactive'>
+            <div className='inactive_text'>
             lege zuerst eine Schlange an
             </div>
                                  

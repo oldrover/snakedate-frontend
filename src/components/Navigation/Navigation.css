@@ -1,0 +1,117 @@
+
+.navigation { 
+    min-height: 100px;    
+    padding-bottom: 0px;   
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 100%;
+    grid-gap: 10px;
+  }
+  
+  .headline {
+    padding-left: 10px;
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    font-family: 'Lobster', cursive;
+  }
+  
+  .nav_user {
+    background-color: var(--primary-color);
+    background-image: var(--hgradient);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .user_menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .logout {  
+    font-size: 2rem;
+    color: var(--accent-color);  
+    margin: 10px;  
+    cursor: pointer;
+  }  
+  
+  .nav_snake {
+    background-color: var(--primary-color);
+    background-image: var(--hgradient);
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    padding: 10px;  
+    cursor: pointer; 
+    word-break: break-all;    
+    position: relative;    
+  }
+
+  .nav_snake:hover .nav_snake_name, .nav_snake:hover .nav_snake_bars {   
+    color: var(--accent-variant);   
+  }
+  
+  .nav_snake_bars {    
+    color: var(--accent-color);
+    font-size: large;
+    padding-left: 5px;  
+  }
+  
+  .nav_snake_name {
+    color: var(--accent-color); 
+    font-size: xx-large;  
+    font-family: 'Lobster', cursive;
+  }    
+  
+  .snake_list {
+    display: none;
+    position: absolute;          
+    top: 100px;
+    opacity: 0;  
+    background-color: var(--secondary-color);    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 5px;
+  }
+  
+  .show_list {
+    display:block;
+    opacity: 1; 
+  }
+  
+  .snake_list_item {   
+    min-height: 50px;
+    width: 100%;  
+    background-color: var(--divider-color);
+    color: var(--text-color);
+    cursor: pointer;  
+    font-weight: bold;
+    font-size:20px; 
+    border-radius: 0px;   
+    border: 1px solid var(--primary-color);
+  }
+  
+  .snake_list_item:hover {
+    background-color: var(--accent-variant);
+    font-size: 22px;  
+    transition: all .1s ease-in;
+  }
+  
+  .snake_list_item:first-child {
+    border-radius: 5px 5px 0px 0px;
+  }
+  
+  .snake_list_item:last-child {
+    border-radius: 0px 0px 5px 5px;
+  }
+  
+  .add_snake {
+    background-color:var(--secondary-variant);
+  }

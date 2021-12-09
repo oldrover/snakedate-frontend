@@ -5,19 +5,25 @@ import { FormEventsList } from './FormEventsList';
 
 
 const dateOptions = { 
-    weekday: "short", 
-    year: "numeric", 
-    month: "2-digit", 
-    day: "2-digit"
+    weekday: 'short', 
+    year: 'numeric', 
+    month: '2-digit', 
+    day: '2-digit'
 };
 
 export const EventForm = (props) => {
 
+    const snake = props.snake;
+    const user = props.user;
+    const date = props.date;
+    const handleClose = props.handleClose;
+    const dailyEvents = props.dailyEvents;
+
     const defaultData = {
-        "snakeId": props.snake.snakeId,
-        "date": props.date,
-        "type": "feed",
-        "info": ""
+        'snakeId': snake.snakeId,
+        'date': date,
+        'type': 'feed',
+        'info': ''
     }
 
     const [eventData, setEventData] = useState(defaultData);
@@ -30,7 +36,7 @@ export const EventForm = (props) => {
             headers: { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': props.user.jwt               
+                'Authorization': user.jwt               
             }            
         };        
 
@@ -40,12 +46,12 @@ export const EventForm = (props) => {
     
     const postEventData = () => {
         const requestOptions = {
-            method: "POST",
+            method: 'POST',
             mode: 'cors',
             headers: { 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': props.user.jwt               
+                'Authorization': user.jwt               
             },            
             body: JSON.stringify(eventData)
         };  
@@ -62,49 +68,50 @@ export const EventForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault(); 
         postEventData(); 
-        props.handleClose();        
+        handleClose();        
     }
 
     const handleDeleteEvent = (eventId) => {
         deleteEventData(eventId);
-        props.handleClose();        
+        handleClose();        
     }
     
     return (
-        <div className="AllForms EventForm">            
+        <div className='all_forms event_form'>            
             <FormHeader 
-                handleClose={props.handleClose} 
-                text="Add a new Event"
+                handleClose={handleClose} 
+                text='Add a new Event'
             />
             <FormEventsList 
-                dailyEvents={props.dailyEvents} 
+                dailyEvents={dailyEvents} 
                 handleDeleteEvent={handleDeleteEvent}
             />          
-            <div className="FormBody">
-                <form className="Form" onSubmit={handleSubmit}>
-                    <label htmlFor="snake_name">Snake:</label>
-                    <input id="snake_name" value={props.snake.name} disabled/>  
+            <div className='form_body'>
+                <form className='form' onSubmit={handleSubmit}>
+                    <label htmlFor='snake_name'>Snake:</label>
+                    <input id='snake_name' value={snake.name} disabled/>  
                     
-                    <label htmlFor="event_date">Date:</label>
-                    <input id="event_date" value={new Date(eventData.date).toLocaleString(undefined ,dateOptions)} disabled />  
+                    <label htmlFor='event_date'>Date:</label>
+                    <input id='event_date' value={new Date(eventData.date).toLocaleString(undefined ,dateOptions)} disabled />  
                     
-                    <label htmlFor="select_type">Event Type:</label>
-                    <select id="select_type" name='type' value={eventData.type} onChange={handleChange}>
-                        <option value="feed">Feed</option>
-                        <option value="poop">Poop</option>
-                        <option value="weight">Weight</option>
+                    <label htmlFor='select_type'>Event Type:</label>
+                    <select id='select_type' name='type' value={eventData.type} onChange={handleChange}>
+                        <option value='feed'>Feed</option>
+                        <option value='poop'>Poop</option>
+                        <option value='weight'>Weight</option>
+                        <option value='shedding'>Shedding</option>
                     </select>
 
-                    <label htmlFor="info_field">Info:</label>
+                    <label htmlFor='info_field'>Info:</label>
                     <textarea name='info' onChange={handleChange} />                
-                    <div className="ButtonContainer">
+                    <div className='button_container'>
                         <button  type='submit' >
                             save
                         </button>  
                     </div>
                 </form>
             </div>
-            <div className="FormFooter"></div>
+            <div className='form_footer'></div>
             
         </div>
     )

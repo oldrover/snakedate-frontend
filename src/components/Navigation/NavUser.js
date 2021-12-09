@@ -1,15 +1,27 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import {faPowerOff } from '@fortawesome/free-solid-svg-icons';
 
 export const NavUser = (props) => {
+
+    const user = props.user;
+    const setIsLoggedIn = props.setIsLoggedIn;
+
+    const handleClick = () => {
+        setIsLoggedIn(false);
+    }
+
     return (
-        <div className="NavUser">
-            <div className="Headline">
+        <div className='nav_user'>
+            <div className='headline'>
                 SnakePlanner
             </div>
-            <div className="UserMenu">            
-                {props.user.name}
-                <FontAwesomeIcon className='UserIcon' icon={faUserCircle}/>  
+            <div className='user_menu'>            
+                {user.name}
+                <FontAwesomeIcon 
+                    className='logout' 
+                    icon={faPowerOff}
+                    onClick={handleClick}
+                />  
             </div> 
         </div>
     )

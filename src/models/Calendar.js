@@ -65,6 +65,4 @@ export class Calendar {
     getWeekDays() {
         return this.#weekDays;
     }
-
-    
 }
