@@ -52,7 +52,7 @@ export const LoginForm = (props) => {
                 })                
                 handleLogin();
             })                                      
-            .catch(error => alert('Credential Error please try again'));
+            .catch(error => alert(error.message));
     }
 
     const signUpRequest = () => {
