@@ -7,9 +7,9 @@ It was bootstrapped with [Create React App](https://github.com/facebook/create-r
 
 ## Prerequisites
 
-For running this App locally you need either the running [backend](https://github.com/oldrover/snakeplanner-frontend) or 
+For running this App locally you need either the running [backend](https://github.com/oldrover/snakeplanner) or 
 clone this repo into the frontend folder inside the backend project.\
-Detailed information can be found in the [backend](https://github.com/oldrover/snakeplanner-frontend) README.
+Detailed information can be found in the [backend](https://github.com/oldrover/snakeplanner) README.
 
 ## Running the application
 
