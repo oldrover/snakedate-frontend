@@ -29,12 +29,14 @@ export const CalendarHeader =(props) => {
                     <button value='forward' onClick={() => handleClick('true')}>
                         <FontAwesomeIcon icon={faForward} />
                     </button>
-                </div>                
-                <button                     
-                    onClick={handleSwitchToday}
-                >
-                    Heute                    
-                </button>               
+                </div>  
+                <div>              
+                    <button                     
+                        onClick={handleSwitchToday}
+                    >
+                        Heute                    
+                    </button>   
+                </div>            
                 <div className='calendar_year'>                    
                     {calendar.getYear()}
                 </div>

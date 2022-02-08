@@ -1,6 +1,6 @@
 
 .navigation { 
-    min-height: 100px;    
+    min-height: 80px;    
     padding-bottom: 0px;   
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -72,8 +72,8 @@
   
   .snake_list {
     display: none;
-    position: absolute;          
-    top: 100px;
+    position: absolute;              
+    top: 100%;
     opacity: 0;  
     background-color: var(--secondary-color);    
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -88,6 +88,7 @@
   
   .snake_list_item {   
     min-height: 50px;
+    min-width: 200px;
     width: 100%;  
     background-color: var(--divider-color);
     color: var(--text-color);
@@ -95,13 +96,14 @@
     font-weight: bold;
     font-size:20px; 
     border-radius: 0px;   
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-color);    
   }
   
   .snake_list_item:hover {
     background-color: var(--accent-variant);
     font-size: 22px;  
     transition: all .1s ease-in;
+    overflow: hidden;
   }
   
   .snake_list_item:first-child {
@@ -115,3 +117,40 @@
   .add_snake {
     background-color:var(--secondary-variant);
   }
+
+@media only screen and (max-width: 768px) {
+  .navigation {      
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: 2px; 
+    border-bottom: 2px solid var(--divider-color);      
+  }
+
+  .nav_user {    
+    border-radius: 5px 5px 0px 0px;    
+    flex-direction: row;    
+    align-items: center;
+    padding: 5px;    
+  }
+
+  .headline {    
+    font-size: 1.5rem;
+  }
+
+  .logout {  
+    font-size: 1.5rem;    
+  } 
+
+  .nav_snake {    
+    border-radius: 0px 0px 0px 0px;    
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    padding: 5px;  
+    cursor: pointer; 
+    word-break: break-all;    
+    position: relative;      
+  }
+  
+}
