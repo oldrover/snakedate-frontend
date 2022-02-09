@@ -83,8 +83,7 @@ textarea {
   text-align: center;    
   padding: 10px;
   margin: 10px 0px; 
-  height: 90vh;
-  max-height: 1000px;
+  height: 90vh;  
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
@@ -110,13 +109,14 @@ textarea {
 
 @media only screen and (max-width: 768px) {
   .App {
-    padding: 5px;
+    padding: 0px 5px;    
+    height: 100%;
   }
 
   .wrapper {
     display: flex;      
-    flex-wrap: wrap;    
-    justify-content:space-evenly; 
+    flex-wrap: nowrap;    
+    justify-content:space-evenly;     
   }
 
 }
