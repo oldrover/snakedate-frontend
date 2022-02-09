@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faBars  } from '@fortawesome/free-solid-svg-icons';
+import { faCaretSquareDown  } from '@fortawesome/free-solid-svg-icons';
+
+import { SnakeList } from './SnakeList';
 
 export const NavSnake = (props) => {
 
@@ -21,41 +23,35 @@ export const NavSnake = (props) => {
         props.handleShowForm(true, formData);
     }
 
+    const handleDeleteClick = () => {
+        
+    }
+
     const handleReveal = () => {
         showList === true ? setShowList(false) : setShowList(true);        
     }
 
     return (
-        <div className='nav_snake' onClick={handleReveal}> 
-            <div id='snake_list' className= {(showList && 'snake_list show_list') || 'snake_list'}>                
-                <div>
-                    {user.snakes.map(sn =>{                            
-                        return (                                
-                            <button className='snake_list_item' key={sn.id + sn.name}
-                                value={JSON.stringify(sn)}                                   
-                                onClick={handleClick}                                    
-                            >
-                                {sn.name}                                    
-                            </button>
-                        );
-                    })}
+        <div className='nav_snake' onClick={handleReveal}>  
 
-                    <button className='snake_list_item add_snake' key='addNewSnake'
-                        value='add'                                   
-                        onClick={handleAddClick}                                                              
-                    >
-                        <FontAwesomeIcon icon={faPlusCircle} />                                    
-                    </button>
+            <SnakeList 
+            snake={snake}            
+            user={user}
+            handleAddClick={handleAddClick}
+            handleClick={handleClick}
+            showList={showList}
+            />
 
+            <div className='snake_button'>
+                <div className='nav_snake_name'>
+                    {snake.name}
+                </div> 
+
+                <div className='nav_snake_bars'>
+                    <FontAwesomeIcon icon={faCaretSquareDown} />
                 </div>
-            </div>  
-        <div className='nav_snake_name'>
-            {snake.name}
+            </div>
+            
         </div> 
-
-        <div className='nav_snake_bars'>
-            <FontAwesomeIcon icon={faBars} />
-        </div>
-    </div> 
     )
 }
