@@ -16,7 +16,7 @@ const User = {
 }
 
 const Snake = {
-  id: '',
+  snakeId: '',
   ownerId: '',
   name: '',
   species: '',

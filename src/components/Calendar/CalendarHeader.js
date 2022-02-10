@@ -7,22 +7,18 @@ export const CalendarHeader =(props) => {
     const handleMonthChange = props.handleMonthChange;
     const handleSwitchToday = props.handleSwitchToday;
 
-    const handleClick = (event) => {
-        let add;
-        event.target.value === 'back' ? add = 'false' : add = 'true';  
-        
-        handleMonthChange(add);    
+    const handleClick = (event) => {        
+        handleMonthChange(event);    
     }
-
     
     return(
             <div className='calendar_header'>  
                 <div className='tab'>                    
                     <FontAwesomeIcon icon={faCalendar} />
-                    <div>Kalender</div>
+                    <div className='tab-text'>Kalender</div>
                 </div>
                 <div>
-                    <button value='back' onClick={handleClick}>
+                    <button value='back' onClick={() => handleClick('false')}>
                         <FontAwesomeIcon icon={faBackward} />
                     </button>
                 </div>                  
@@ -30,15 +26,17 @@ export const CalendarHeader =(props) => {
                     {calendar.getMonthName()}
                 </div>
                 <div>
-                    <button value='forward' onClick={handleClick}>
+                    <button value='forward' onClick={() => handleClick('true')}>
                         <FontAwesomeIcon icon={faForward} />
                     </button>
-                </div>                
-                <button                     
-                    onClick={handleSwitchToday}
-                >
-                    Heute                    
-                </button>               
+                </div>  
+                <div>              
+                    <button                     
+                        onClick={handleSwitchToday}
+                    >
+                        Heute                    
+                    </button>   
+                </div>            
                 <div className='calendar_year'>                    
                     {calendar.getYear()}
                 </div>
