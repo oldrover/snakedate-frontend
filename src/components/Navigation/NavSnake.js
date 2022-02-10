@@ -23,9 +23,7 @@ export const NavSnake = (props) => {
         props.handleShowForm(true, formData);
     }
 
-    const handleDeleteClick = () => {
-        
-    }
+    //const handleDeleteClick = () => {}
 
     const handleReveal = () => {
         showList === true ? setShowList(false) : setShowList(true);        
