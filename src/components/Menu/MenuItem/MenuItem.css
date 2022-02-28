@@ -1,17 +1,20 @@
 .menu_item {
     font-weight: bold;
+    font-size:smaller;
     height: 50px;
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: left;   
     cursor: pointer; 
-    padding-left: 10px;
-      
-    
+    padding-left: 10px;  
 }
 
 .menu_item:hover {
     background-color: var(--secondary-color);
     transform: scale(1.1);
     transition: all 0.2s ease-out;
+}
+
+.menu_item_name {
+    padding-left: 10px;
 }

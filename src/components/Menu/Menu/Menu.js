@@ -1,14 +1,13 @@
 import './Menu.css';
 import { ChangeSnake } from '../ChangeSnake/ChangeSnake';
 import { MenuItem } from '../MenuItem/MenuItem';
+import { menuItems } from '../MenuStrucuture';
 
 export const Menu = (props) => {
 
     const user = props.user;
     const snake = props.snake;
     const setSnake = props.setSnake;
-
-    const menuItems = ['Kalender', 'Alarme', 'Statistiken'];
 
     return(
         <div className='menu'>
@@ -20,8 +19,8 @@ export const Menu = (props) => {
             />
             {
                 menuItems.map(item => {
-                    return(
-                        <MenuItem 
+                    return(                        
+                        <MenuItem                             
                             item={item}
                         />
                     )
