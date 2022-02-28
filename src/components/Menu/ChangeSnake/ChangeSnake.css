@@ -1,0 +1,110 @@
+.change_snake {       
+    background-color: var(--primary-color); 
+    display: flex;    
+    flex-direction: row;
+    justify-content:left;
+    align-items: center;      
+    cursor: pointer;         
+    position: relative;    
+  }
+
+  .change_snake:hover .snake_change_icon{   
+    transform: rotate(360deg);
+    transition:all 0.5s;
+  }
+  
+  .snake_change_icon {    
+    color: var(--accent-color); 
+    position: absolute;  
+    bottom: 10px;
+    right: 10px; 
+  }
+  
+  .snake_button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;        
+    align-items: center;    
+    padding: 20px;
+    cursor: pointer;  
+  }
+
+  .snake_img_container {    
+    position: relative;
+  }
+  .snake_img {    
+    width: 100%;
+    overflow: hidden;   
+    border-radius: 50%;
+  }
+
+  .snake_name {        
+    padding-top: 10px;       
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    font-family: 'Lobster';
+    color: var(--accent-color);
+  }    
+  
+  .snake_list {
+    display: none;
+    position: absolute;              
+    top: 0;
+    left: 100%; 
+    opacity: 0; 
+    z-index: 1;    
+  }
+  
+  .show_list {
+    display:block;
+    opacity: 1; 
+  }
+  
+  .snake_list_item {   
+    min-height: 50px;
+    min-width: 200px;
+    width: 100%;  
+    background-color: var(--divider-color);
+    color: var(--text-color);
+    cursor: pointer;  
+    font-weight: bold;
+    font-size:20px; 
+    border-radius: 0px;   
+    border: 1px solid var(--primary-color); 
+    text-align: left;
+    padding-left: 10px;
+      
+  }
+  
+  .snake_list_item:hover {
+    background-color: var(--accent-variant);
+    font-size: 22px;  
+    transition: all .1s ease-in;
+    overflow: hidden;
+  }
+  
+  .snake_list_item:first-child {
+    border-radius: 5px 5px 0px 0px;
+  }
+  
+  .snake_list_item:last-child {
+    border-radius: 0px 0px 5px 5px;
+    text-align: center;
+  }
+  
+  .add_snake {
+    background-color:var(--secondary-variant);
+  }
+
+
+@media only screen and (max-width: 768px) {  
+    .change_snake {    
+      border-radius: 0px 0px 0px 0px;
+    }
+  
+    .snake_button {    
+      margin: 0px;    
+      border-radius: 0px;    
+    }
+  }

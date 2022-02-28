@@ -1,5 +1,5 @@
 import './Menu.css';
-import { NavSnake } from '../../Navigation/NavSnake';
+import { ChangeSnake } from '../ChangeSnake/ChangeSnake';
 import { MenuItem } from '../MenuItem/MenuItem';
 
 export const Menu = (props) => {
@@ -8,11 +8,11 @@ export const Menu = (props) => {
     const snake = props.snake;
     const setSnake = props.setSnake;
 
-    const menuItems = ['Alarme', 'Diagramme'];
+    const menuItems = ['Kalender', 'Alarme', 'Statistiken'];
 
     return(
         <div className='menu'>
-            <NavSnake
+            <ChangeSnake
                 user={user}
                 snake={snake}
                 setSnake ={setSnake} 

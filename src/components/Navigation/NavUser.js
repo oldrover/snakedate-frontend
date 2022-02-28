@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import {faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const NavUser = (props) => {
 
@@ -19,7 +19,7 @@ export const NavUser = (props) => {
                 {user.name}
                 <FontAwesomeIcon 
                     className='logout' 
-                    icon={faPowerOff}
+                    icon={faSignOutAlt}
                     onClick={handleClick}
                 />  
             </div> 

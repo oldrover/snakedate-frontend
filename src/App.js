@@ -6,6 +6,7 @@ import { Calendar } from './components/Calendar/Calendar';
 import { Dashboard } from './components/Dashboard/Dashboard';
 import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
+import { Menu } from './components/Menu/Menu/Menu';
 
 const User = {
   id: '',
@@ -89,19 +90,28 @@ function App() {
   return (    
     <div className='App'>
       <Navigation 
-        user={user} 
-        snake={snake} 
-        setSnake={setSnake}
+        user={user}        
         setIsLoading={setIsLoading}
         setIsLoggedIn={setIsLoggedIn}
       /> 
+      <div>
+      <Menu 
+        snake={snake} 
+        user={user}
+        setSnake={setSnake}
+      />
+      </div>
       <div className='wrapper'>  
-        <Dashboard snake={snake}/>   
+        
+        
         <Calendar 
           user={user} 
           snake={snake}
-        />        
-      </div>              
+        /> 
+        <Dashboard           
+          snake={snake}           
+        />       
+      </div>
     </div>
     );  
 }

@@ -1,15 +1,11 @@
 import { useState } from 'react';
-
-import { NavSnake } from './NavSnake';
 import { NavUser } from './NavUser';
 import { ShowForm } from '../Forms/ShowForm';
 
 
 export const Navigation = (props) => { 
     
-    const user = props.user;
-    const snake = props.snake;
-    const setSnake = props.setSnake;
+    const user = props.user;   
     const setIsLoading = props.setIsLoading;
     const setIsLoggedIn = props.setIsLoggedIn;
     
@@ -23,12 +19,12 @@ export const Navigation = (props) => {
 
         return (
             <div className='navigation'>
-                <NavSnake 
+                {/*<NavSnake 
                     user={user} 
                     snake={snake}
                     setSnake={setSnake} 
                     handleShowForm={handleShowForm}                    
-                /> 
+                /> */}
                 <NavUser 
                     user={user} 
                     setIsLoggedIn={setIsLoggedIn}

@@ -1,19 +1,17 @@
 .menu_item {
-    color: var(--accent-color);
-    font-size: 1.2em;
+    font-weight: bold;
     height: 50px;
     display: grid;
     align-items: center;
-    justify-content: left;
-    border-bottom: 3px solid;
-    border-image-slice: 1;
-    border-image-source: var(--divider-gradient);
+    justify-content: left;   
     cursor: pointer; 
     padding-left: 10px;
-    font-size: large;  
-    font-family: 'Lobster', cursive;
+      
+    
 }
 
 .menu_item:hover {
     background-color: var(--secondary-color);
+    transform: scale(1.1);
+    transition: all 0.2s ease-out;
 }
