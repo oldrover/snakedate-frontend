@@ -7,6 +7,7 @@ import { Dashboard } from './components/Dashboard/Dashboard';
 import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
 import { Menu } from './components/Menu/Menu/Menu';
+import { ShowForm } from './components/Forms/ShowForm';
 
 const User = {
   id: '',
@@ -33,7 +34,9 @@ function App() {
   const [user, setUser] = useState(User);
   const [snake, setSnake] = useState(Snake);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);  
+  const [isLoading, setIsLoading] = useState(true); 
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState();   
 
   useEffect(() => { 
     
@@ -71,6 +74,14 @@ function App() {
     setIsLoggedIn(true);
   }
 
+  
+
+  const handleShowForm = (show, form) => {
+    setFormData(form);
+    setShowForm(show);
+  }
+
+
   if(!isLoggedIn) {
     return (      
       <LoginPage 
@@ -99,6 +110,7 @@ function App() {
         snake={snake} 
         user={user}
         setSnake={setSnake}
+        handleShowForm={handleShowForm}
       />
       </div>
       <div className='wrapper'>  
@@ -107,11 +119,21 @@ function App() {
         <Calendar 
           user={user} 
           snake={snake}
+          handleShowForm={handleShowForm}
         /> 
         <Dashboard           
           snake={snake}           
         />       
       </div>
+      {showForm && 
+        <ShowForm 
+          formData={formData}                    
+          handleShowForm={handleShowForm}
+          setIsLoading={setIsLoading}   
+          snake={snake}                  
+          user={user}
+        /> 
+      }
     </div>
     );  
 }

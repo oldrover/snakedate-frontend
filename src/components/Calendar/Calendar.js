@@ -5,7 +5,6 @@ import { CalendarDay } from './CalendarDay';
 
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
-import { ShowForm } from '../Forms/ShowForm';
 import { Loading} from '../Loading/Loading';
 import { Inactive } from '../Inactive';
 
@@ -13,16 +12,14 @@ import { Inactive } from '../Inactive';
 export const Calendar = (props) => {   
 
     const user = props.user;
-    const snake = props.snake;
+    const snake = props.snake;    
+    const handleShowForm = props.handleShowForm;
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
     const [today] = useState(new Date());  
 
     const [snakeEvents, setSnakeEvents] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);    
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState();   
-     
+    const [isLoading, setIsLoading] = useState(true);  
     
     useEffect(() => {
         const fetchEvents = async() => {
@@ -58,7 +55,6 @@ export const Calendar = (props) => {
     const handleSwitchToday = () => {
         setCalendar(new Cal(new Date()));
     }
-
     
     const handleMonthChange = (add) => {
         let newMonth = calendar.getMonth();
@@ -68,12 +64,7 @@ export const Calendar = (props) => {
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
         setCalendar(newCal);               
     } 
-    
-    const handleShowForm = (show, form) => {
-        setFormData(form);
-        setShowForm(show);
-    }    
-    
+
     const filterEvents = (events, day) => {        
         return events.filter(e => new Date(e.date).getDate() === day
                     && new Date(e.date).getMonth() === calendar.getMonth()
@@ -133,17 +124,7 @@ export const Calendar = (props) => {
                         )
                     })
                 }
-            </div>  
-            { showForm && 
-                <ShowForm 
-                    formData={formData}                    
-                    handleShowForm={handleShowForm} 
-                    setIsLoading={setIsLoading}                    
-                    snake={snake} 
-                    user={user}
-
-                /> 
-            }
+            </div>              
             {
                 snake.id === '' && (
                  <Inactive />
