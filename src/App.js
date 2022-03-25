@@ -56,8 +56,7 @@ function App() {
         .then(response => response.json())
         .then(data => { 
           user.snakes = data;
-          (data.length > 0) && setSnake(data[0]);           
-          setIsLoading(false);                    
+          (data.length > 0 && snake.snakeId ==='') && setSnake(data[0]); 
         }) 
         .catch(error =>{
           console.log(error);
@@ -65,9 +64,10 @@ function App() {
       } 
           
       fetchSnakes();
+      setIsLoading(false);
     }
     
-  }, [user, isLoggedIn, isLoading]);
+  }, [user, isLoggedIn, isLoading, snake.snakeId]);
   
 
   const handleLogin = () => {
