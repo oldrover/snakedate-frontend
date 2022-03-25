@@ -119,7 +119,9 @@ textarea {
   .wrapper {
     display: flex;      
     flex-wrap: nowrap;    
-    justify-content:space-evenly;     
+    justify-content:center; 
+    margin: 130px 5px 0px 5px;  
+     
   }
 
 }

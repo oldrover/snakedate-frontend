@@ -18,3 +18,15 @@
 .menu_item_name {
     padding-left: 10px;
 }
+
+@media only screen and (max-width: 768px) { 
+    .menu_item_name {
+        font-size:smaller;
+    }
+
+    .menu_item:hover {
+        transform: none;
+        transition: none;
+    }
+    
+}
