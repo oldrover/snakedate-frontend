@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './MenuItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -6,10 +8,12 @@ export const MenuItem = (props) => {
 
     return (
         <div className='menu_item'>
-            <FontAwesomeIcon icon={item.icon} />
-            <div className='menu_item_name'>
-                {item.name}                
-            </div>
+            <Link to={item.link} className='menu_link'>
+                <FontAwesomeIcon icon={item.icon} />
+                <div className='menu_item_name'>
+                    {item.name}                
+                </div>
+            </Link>
         </div>
     )
 }

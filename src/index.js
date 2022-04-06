@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import { CalendarRoute } from './routes/calendarRoute';
+import { AlarmRoute } from './routes/alarmRoute';
+import { DashboardRoute } from './routes/dashboardRoute';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>   
+      <Route  path='/' element ={<App />}> 
+        <Route path='/' element={<div>default route</div>} />
+        <Route path='calendar' element={<CalendarRoute />} /> 
+        <Route path='alarms' element={<AlarmRoute /> } />
+        <Route path='statistics' element={<DashboardRoute />} />          
+      </Route>     
+    </Routes>    
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

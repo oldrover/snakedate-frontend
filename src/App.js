@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { Navigation } from './components/Navigation/Navigation';
 import { Calendar } from './components/Calendar/Calendar';
@@ -115,7 +116,7 @@ function App() {
       </div>
       <div className='wrapper'>  
         
-        
+       { /*
         <Calendar 
           user={user} 
           snake={snake}
@@ -123,7 +124,11 @@ function App() {
         /> 
         <Dashboard           
           snake={snake}           
-        />       
+        />  
+      */}   
+      <Outlet 
+        context={[user, snake, handleShowForm]}
+      />  
       </div>
       {showForm && 
         <ShowForm 

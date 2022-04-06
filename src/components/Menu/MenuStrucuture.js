@@ -1,19 +1,24 @@
-import { faCalendar, faBell, faChartLine } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faBell, faChartLine, faHome } from "@fortawesome/free-solid-svg-icons";
 
 export const menuItems = [
     {
+        name:'Dashboard', 
+        icon: faHome,
+        link: '/'
+    },
+    {
         name:'Kalender', 
         icon: faCalendar,
-        link: ''
+        link: '/calendar'
     },
     {
         name:'Alarme', 
         icon: faBell,
-        link: ''
+        link: '/alarms'
     },
     {
         name:'Statistiken', 
         icon: faChartLine,
-        link: ''
+        link: '/statistics'
     }
 ];
