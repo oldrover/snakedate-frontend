@@ -13,6 +13,16 @@
     padding: 3px;   
 }
 
+.menu_items {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_collapsed {
+    display: none;
+}
+
+
 @media only screen and (max-width: 768px) {
     .menu {
         position: none;
@@ -24,5 +34,23 @@
         margin: 0;
         padding: 15px;
         border-radius: 0;
+    }
+
+    .menu_collapsed {
+        display: block;
+        padding-right: 10px;
+    }
+
+    .menu_items { 
+        display: block;       
+        top: 100%;
+        right: 10px;
+        padding: 5px;
+        position: absolute;
+        background-color: var(--primary-color);
+    }
+    .is_collapsed {
+        display: none;
+
     }
 }
