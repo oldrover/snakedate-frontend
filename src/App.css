@@ -32,9 +32,9 @@
 
 body {
   color:  var(--text-color);
-  background-color: var(--bg-color);
-  height: 100%;
-  width: 100%;
+  background-color: var(--bg-color); 
+  padding: 0px;
+  margin: 0px; 
 }
 
 button {
@@ -80,10 +80,8 @@ textarea {
 }
 
 .App {
-  text-align: center;    
-  padding: 0px 10px;
-  margin: 5px 0px; 
-  height: 90vh; 
+  text-align: center; 
+  height: 100vh; 
   min-width: 350px; 
   display: flex;
   flex-wrap: nowrap;
@@ -94,7 +92,7 @@ textarea {
   margin-top: 70px;
   margin-left: 160px;  
   display: flex;    
-  align-items: center;
+  align-items: top;
   justify-content: center;
   gap: 10px; 
   height: 100%;  
@@ -120,8 +118,7 @@ textarea {
     display: flex;      
     flex-wrap: nowrap;    
     justify-content:center; 
-    margin: 130px 5px 0px 5px;  
-     
+    margin: 130px 5px 0px 5px; 
   }
 
 }

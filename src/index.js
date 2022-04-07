@@ -12,10 +12,10 @@ ReactDOM.render(
   <BrowserRouter>
     <Routes>   
       <Route  path='/' element ={<App />}> 
-        <Route path='/' element={<div>default route</div>} />
+        <Route path='/' element={<DashboardRoute />} />
         <Route path='calendar' element={<CalendarRoute />} /> 
         <Route path='alarms' element={<AlarmRoute /> } />
-        <Route path='statistics' element={<DashboardRoute />} />          
+        <Route path='statistics' element={<div>statistics route</div>} />          
       </Route>     
     </Routes>    
   </BrowserRouter>,
