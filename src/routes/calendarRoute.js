@@ -6,14 +6,11 @@ export const CalendarRoute = () => {
 
     const [user, snake, handleShowForm] = useOutletContext(); 
 
-    return( 
-        <div>
-            <Calendar
-                user={user}
-                snake={snake}
-                handleShowForm={handleShowForm}
-            />
-        </div>
-
+    return(         
+        <Calendar
+            user={user}
+            snake={snake}
+            handleShowForm={handleShowForm}
+        />   
     )
 }

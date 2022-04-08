@@ -4,7 +4,8 @@ export const Dashboard = (props) => {
 
     const snake = props.snake;
     return (
-        <div className='dashboard'>                
+        <div className='dashboard'> 
+            <div>{snake.name}</div>               
             <Details snake={snake}/>
         </div>
         );    
