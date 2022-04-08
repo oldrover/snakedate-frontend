@@ -13,19 +13,25 @@
     transition: all 0.2s ease-out;
 }
 
+.menu_item:hover .menu_icon {
+    color: var(--accent-color);
+}
+
+.menu_icon {
+    font-size: larger;
+    color: var(--accent-variant);
+}
+
 .menu_item_name {
     padding-left: 10px;
 }
 
 .menu_link {
-    text-decoration: none;
-    font-weight: bold;
-    font-size:smaller;
+    text-decoration: none;     
     display: flex;
     align-items: center;
     justify-content: left;
     color: var(--text-color);
-
 }
 
 @media only screen and (max-width: 768px) { 

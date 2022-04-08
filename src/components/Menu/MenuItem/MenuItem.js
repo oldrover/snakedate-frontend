@@ -9,7 +9,7 @@ export const MenuItem = (props) => {
     return (
         <div className='menu_item'>
             <Link to={item.link} className='menu_link'>
-                <FontAwesomeIcon icon={item.icon} />
+                <FontAwesomeIcon className='menu_icon' icon={item.icon}/>
                 <div className='menu_item_name'>
                     {item.name}                
                 </div>
