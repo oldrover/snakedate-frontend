@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
 import { Loading} from '../Loading/Loading';

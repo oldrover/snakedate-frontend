@@ -1,9 +1,8 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { Navigation } from './components/Navigation/Navigation';
-import { Calendar } from './components/Calendar/Calendar';
-import { Dashboard } from './components/Dashboard/Dashboard';
 import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
 import { Menu } from './components/Menu/Menu/Menu';
@@ -74,13 +73,10 @@ function App() {
     setIsLoggedIn(true);
   }
 
-  
-
   const handleShowForm = (show, form) => {
     setFormData(form);
     setShowForm(show);
   }
-
 
   if(!isLoggedIn) {
     return (      
@@ -91,13 +87,7 @@ function App() {
       />      
       )
   }
-
-  if (isLoading){
-    return(
-      <Loading />      
-      );
-  }  
-
+  
   return (    
     <div className='App'>
       <Navigation 
@@ -114,16 +104,10 @@ function App() {
       />
       </div>
       <div className='wrapper'>  
-        
-        
-        <Calendar 
-          user={user} 
-          snake={snake}
-          handleShowForm={handleShowForm}
-        /> 
-        <Dashboard           
-          snake={snake}           
-        />       
+        { isLoading && <Loading />}        
+        <Outlet 
+          context={[user, snake, handleShowForm]}
+        />  
       </div>
       {showForm && 
         <ShowForm 
