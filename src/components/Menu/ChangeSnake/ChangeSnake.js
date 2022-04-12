@@ -30,13 +30,13 @@ export const ChangeSnake = (props) => {
 
     return (
         <div className='change_snake' onClick={handleReveal}>  
-
-            <SnakeList 
-                snake={snake}            
+            
+            <SnakeList                            
                 user={user}
                 handleAddClick={handleAddClick}
                 handleClick={handleClick}
                 showList={showList}
+                setShowList={setShowList}
             />
 
             <div className='snake_button'>                

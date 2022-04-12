@@ -7,6 +7,7 @@ import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
 import { Menu } from './components/Menu/Menu/Menu';
 import { ShowForm } from './components/Forms/ShowForm';
+import { Location } from './components/Location/Location';
 
 const User = {
   id: '',
@@ -33,9 +34,9 @@ function App() {
   const [user, setUser] = useState(User);
   const [snake, setSnake] = useState(Snake);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);  
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState();   
+  const [formData, setFormData] = useState();  
 
   useEffect(() => { 
     
@@ -59,6 +60,7 @@ function App() {
         }) 
         .catch(error =>{
           console.log(error);
+          setIsLoggedIn(false);
         }); 
       } 
           
@@ -104,9 +106,10 @@ function App() {
       />
       </div>
       <div className='wrapper'>  
-        { isLoading && <Loading />}        
+        { isLoading && <Loading />} 
+        <Location />      
         <Outlet 
-          context={[user, snake, handleShowForm]}
+          context={[user, snake, handleShowForm, setIsLoggedIn]}
         />  
       </div>
       {showForm && 

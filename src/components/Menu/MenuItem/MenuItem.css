@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: left;   
     cursor: pointer; 
-    padding-left: 10px;  
+    padding-left: 10px;     
 }
 
 .menu_item:hover {
@@ -19,18 +19,20 @@
 
 .menu_icon {
     font-size: larger;
-    color: var(--accent-variant);
+    color: var(--accent-variant);    
+    min-width: 30px;
+    transition: all .3s ease-out;
 }
 
 .menu_item_name {
     padding-left: 10px;
+    transform: scale(1);
+    transition: all .3s ease-out;
+    transition-delay: .2s;
 }
 
 .menu_link {
-    text-decoration: none;     
-    display: flex;
-    align-items: center;
-    justify-content: left;
+    text-decoration: none; 
     color: var(--text-color);
 }
 

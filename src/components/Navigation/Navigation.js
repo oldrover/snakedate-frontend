@@ -1,3 +1,4 @@
+import './Navigation.css';
 import { NavUser } from './NavUser';
 
 export const Navigation = (props) => { 

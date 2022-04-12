@@ -2,12 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 /* css files import*/
-@import './components/Loading/Loading.css';
 @import './components/Login/Login.css';
 @import './components/Dashboard/Dashboard.css';
 @import './components/Forms/Forms.css';
 @import './components/Calendar/Calendar.css';
-@import './components/Navigation/Navigation.css';
 
 :root {
   --bg-color: #121512;
@@ -89,15 +87,16 @@ textarea {
 }
 
 .wrapper {  
-  margin-top: 70px;    
+  margin-top: 59px;    
   display: flex; 
-  flex-direction: row;   
-  align-items: top;
-  justify-content: space-evenly;  
-  height: 100%; 
-  width: calc(100vw - 165px); 
-  max-height: 800px;
-  padding: 5px 5px 0px 5px;    
+  flex-direction: column;   
+  align-items: center;
+  gap: 10px;
+  justify-content: top;  
+  height: calc(100vh - 59px); 
+  width: 100vw; 
+  
+  padding: 0px 5px 0px 5px;    
 }
 
 .button_container { 

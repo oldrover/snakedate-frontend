@@ -1,7 +1,7 @@
 .change_snake {       
     background-color: var(--primary-color); 
     cursor: pointer;         
-    position: relative;     
+    position: relative;
   }
   
   .snake_button {
@@ -13,7 +13,8 @@
     gap: 10px;
     padding: 5px;
     cursor: pointer;  
-    border-bottom: 1px solid var(--divider-color);    
+    border-bottom: 1px solid var(--divider-color);
+    transition: all .5s ease-out;    
   }
 
   .change_snake:hover {
@@ -23,15 +24,21 @@
   .snake_img {    
     width: 40px;
     overflow: hidden; 
-    border-radius: 50%;          
+    border-radius: 50%;
+    transition: all 0.3s ease-out;          
   }
 
-  .snake_name {    
+  .snake_name {  
+    width: 100%;  
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
+    align-items: left;
     white-space: nowrap; 
     font-family: 'Lobster';
-    color: var(--accent-color);       
+    color: var(--accent-color);    
+    transition: all 0.5s ease-out;
+    transition-delay: .2s;      
   }    
   
   .snake_list {
@@ -46,7 +53,8 @@
    
   .show_list {
     display:block;
-    opacity: 1; 
+    opacity: 1;
+    
   }
   
   .snake_list_item {   

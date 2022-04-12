@@ -10,9 +10,8 @@ import { Inactive } from '../Inactive';
 
 export const Calendar = (props) => {   
 
-    const user = props.user;
-    const snake = props.snake;    
-    const handleShowForm = props.handleShowForm;
+    const {user, snake, handleShowForm, setIsLoggedIn} = props;
+   
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
     const [today] = useState(new Date());  
@@ -39,11 +38,12 @@ export const Calendar = (props) => {
             }) 
             .catch(error =>{
                 console.log(error);
+                setIsLoggedIn(false);
             });
         }
-        fetchEvents();                       
+        fetchEvents();                               
         
-    },[snake, user, isLoading])
+    },[snake, user, isLoading, setIsLoggedIn])
 
     
     const handleSnakeEvents = (data) => {
@@ -80,14 +80,10 @@ export const Calendar = (props) => {
         return `${calendar.getYear()}/${month}/${day}`;
     }
 
-    if (isLoading){
-        return(
-          <Loading />          
-          );
-      } 
-
     return (
-        <div className='calendar'>    
+        <div className='calendar'>  
+            { isLoading && <Loading />} 
+
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
                 handleSwitchToday={handleSwitchToday}
