@@ -1,7 +1,5 @@
 import './ChangeSnake.css';
 import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { SnakeList } from './SnakeList';
 
@@ -32,24 +30,17 @@ export const ChangeSnake = (props) => {
 
     return (
         <div className='change_snake' onClick={handleReveal}>  
-
-            <SnakeList 
-                snake={snake}            
+            
+            <SnakeList                            
                 user={user}
                 handleAddClick={handleAddClick}
                 handleClick={handleClick}
                 showList={showList}
+                setShowList={setShowList}
             />
 
-            <div className='snake_button'>
-                <div>
-                    <div className='snake_img_container'>
-                        <img className='snake_img' src={imgSrc} alt='snake'/>   
-                        <div className='snake_change_icon'>                 
-                            <FontAwesomeIcon icon={faSyncAlt} />
-                        </div>
-                    </div>
-                </div>
+            <div className='snake_button'>                
+                <img className='snake_img' src={imgSrc} alt='snake'/>    
                 <div className='snake_name'>
                     {snake.name}
                 </div> 

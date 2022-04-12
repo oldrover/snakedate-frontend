@@ -6,6 +6,8 @@
     position: relative;     
     height: 100%;  
     width: 100%;
+    max-width: 900px;
+    max-height: 800px;
   }
   
   .calendar_body {  

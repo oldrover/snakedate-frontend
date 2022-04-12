@@ -1,57 +1,51 @@
 .change_snake {       
     background-color: var(--primary-color); 
-    display: flex;    
-    flex-direction: row;
-    justify-content:left;
-    align-items: center;      
     cursor: pointer;         
-    position: relative;    
-  }
-
-  .change_snake:hover .snake_change_icon{   
-    transform: rotate(360deg);
-    transition:all 0.5s;
-  }
-  
-  .snake_change_icon {    
-    color: var(--accent-color); 
-    position: absolute;  
-    bottom: 10px;
-    right: 10px; 
+    position: relative;
   }
   
   .snake_button {
     width: 100%;
+    height: 60px;
     display: flex;
-    flex-direction: column;        
-    align-items: center;    
-    padding: 25px;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
     cursor: pointer;  
+    border-bottom: 1px solid var(--divider-color);
+    transition: all .5s ease-out;    
   }
 
-  .snake_img_container {    
-    position: relative;
+  .change_snake:hover {
+    background-color: var(--secondary-color);
   }
+
   .snake_img {    
-    width: 100%;
-    overflow: hidden;   
+    width: 40px;
+    overflow: hidden; 
     border-radius: 50%;
+    transition: all 0.3s ease-out;          
   }
 
-  .snake_name {        
-    padding-top: 10px;       
+  .snake_name {  
+    width: 100%;  
     overflow: hidden;
     text-overflow: ellipsis;
+    display: flex;
+    align-items: left;
     white-space: nowrap; 
     font-family: 'Lobster';
-    color: var(--accent-color);
+    color: var(--accent-color);    
+    transition: all 0.5s ease-out;
+    transition-delay: .2s;      
   }    
   
   .snake_list {
     display: none;
     position: absolute;              
-    top: 50px;
-    left: 100%; 
+    top: calc(50% - 5px);
+    left: calc(100% + 5px); 
     opacity: 0; 
     z-index: 1;  
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;  
@@ -59,12 +53,13 @@
    
   .show_list {
     display:block;
-    opacity: 1; 
+    opacity: 1;
+    
   }
   
   .snake_list_item {   
-    min-height: 30px;
-    min-width: 150px;
+    min-height: 50px;
+    min-width: 200px;
     width: 100%;  
     background-color: var(--divider-color);
     color: var(--text-color);
@@ -116,39 +111,23 @@
 
 
 @media only screen and (max-width: 768px) {  
-    .change_snake {    
-      border-radius: 3px;
+    .change_snake { 
       max-height: 50px;
       width:200px; 
-      padding: 3px 10px 3px 10px;
       background-color: var(--secondary-color);
-    }
-    .snake_img {
-      width: 40px;
-      display: block;
-      padding-right: 5px;
-    }
-
-    .snake_change_icon {
-      display: none;
-    }
+      padding: 0px;
+    }    
   
     .snake_button {    
-      margin: 0px;  
-      padding: 0;  
-      border-radius: 0px;  
-      flex-direction: row; 
-      align-items: center;
-      justify-content: left; 
-    }
-    .snake_name {
-      padding: 0px;      
-    }
+      max-height: 45px;
+      padding: 3px;
+      border: 0;
+    }    
 
     .snake_list {
       left: 0;
-      width: calc(100vw - 30px);         
-                     
+      top: 100%;
+      width: calc(100vw - 10px);  
     }
 
     .snake_list_item{

@@ -9,7 +9,7 @@
   
   .headline {
     padding-left: 10px;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--accent-color);
     font-family: 'Lobster', cursive;
   }
@@ -36,33 +36,26 @@
     color: var(--accent-color);  
     margin: 10px;  
     cursor: pointer;
-  }  
-  
+  } 
   
 
 @media only screen and (max-width: 768px) {
   .navigation {      
     display: flex;
-    flex-direction: column-reverse;
-    grid-gap: 0px; 
+    flex-direction: column-reverse;    
     border-bottom: 2px solid var(--divider-color);      
   }
 
-  .nav_user {    
-    border-radius: 5px 5px 0px 0px;    
+  .nav_user { 
     flex-direction: row;    
-    align-items: center;
-    padding: 5px;  
-    border-bottom: 2px solid var(--divider-color); 
+    align-items: center;     
+    border-bottom: 2px solid var(--secondary-color); 
+    padding: 10px;
   }
 
   .headline {    
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
-
-  .logout {  
-    font-size: 1.5rem;    
-  } 
 
   .nav_snake {    
     border-radius: 0px 0px 0px 0px;

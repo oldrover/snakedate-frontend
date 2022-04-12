@@ -5,25 +5,25 @@ import { ChangeSnake } from '../ChangeSnake/ChangeSnake';
 import { MenuItem } from '../MenuItem/MenuItem';
 import { menuItems } from '../MenuStrucuture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faAngleDoubleRight, faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 
 export const Menu = (props) => {
 
-    const user = props.user;
-    const snake = props.snake;
-    const setSnake = props.setSnake;
-    const handleShowForm = props.handleShowForm;
-
+    const {user, snake, setSnake, handleShowForm} = props;
     const [showMenu, setShowMenu] = useState(false);
+    const [smallMenu, setSmallMenu] = useState(false);
 
     
     const showCollapsedMenu = () => {
-        showMenu ? setShowMenu(false) : setShowMenu(true); 
-        
+        showMenu ? setShowMenu(false) : setShowMenu(true);
+    }
+
+    const handleSetSmallMenu = () => {
+        smallMenu ? setSmallMenu(false) : setSmallMenu(true);
     }
 
     return(
-        <div className='menu'>
+        <div className={(!smallMenu && 'menu') || 'menu small_menu'}>
             <ChangeSnake
                 user={user}
                 snake={snake}
@@ -36,7 +36,7 @@ export const Menu = (props) => {
                 <FontAwesomeIcon icon={(showMenu && faMinus) || faPlus}/>
             </div>
             { 
-                <div className={(showMenu && 'menu_items' )|| 'menu_items is_collapsed'}>
+            <div className={(showMenu && 'menu_items' )|| 'menu_items is_collapsed'}>
                 {               
                     menuItems.map(item => {
                         return(                        
@@ -47,9 +47,14 @@ export const Menu = (props) => {
                         )
                     })                
                 }
-                </div> 
-                           
-            }      
+            </div>         
+            }             
+            <div 
+                className='button_small_menu'
+                onClick={()=> handleSetSmallMenu()}
+            >
+                <FontAwesomeIcon icon={(!smallMenu && faAngleDoubleLeft) || faAngleDoubleRight} />
+            </div>     
             
         </div>
     )
