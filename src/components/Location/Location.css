@@ -7,13 +7,14 @@
     padding-left: 15px;
     padding-bottom: 5px;  
     color: var(--divider-color); 
-    font-weight: bold;         
-    border-bottom: 1px solid var(--divider-color);     
+    font-weight: bold; 
+    font-style: italic;        
+    border-bottom: 1px solid var(--divider-color); 
 }
 
 @media only screen and (max-width: 768px) {
     .location {
         display: none;
-        
+                
     }
 }

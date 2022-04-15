@@ -33,22 +33,25 @@ export const Calendar = (props) => {
             
             await fetch(`/api/events/${snake.snakeId}`, requestOptions)
             .then(response => response.json())
-            .then(data => {                  
+            .then(data => {                                  
                 handleSnakeEvents(data);                                 
             }) 
-            .catch(error =>{
-                console.log(error);
-                setIsLoggedIn(false);
+            .catch(error =>{                 
+                handleError(error);                               
             });
         }
         fetchEvents();                               
         
-    },[snake, user, isLoading, setIsLoggedIn])
+    },[snake, user])
 
     
     const handleSnakeEvents = (data) => {
         setSnakeEvents(data);
-        setIsLoading(false);         
+        setIsLoading(false);                 
+    }
+
+    const handleError = (error) => {
+        (error.code === 401 && setIsLoggedIn(false)) || console.log(error.message)           
     }
 
     const handleSwitchToday = () => {

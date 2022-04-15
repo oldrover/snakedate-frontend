@@ -1,10 +1,16 @@
-//import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
+
+import { Dashboard } from '../components/Dashboard/Dashboard';
 
 export const DashboardRoute = () => {
 
-    //const [user, snake, handleShowForm] = useOutletContext(); 
+    const [user, snake, handleShowForm, setIsLoggedIn, setSnake] = useOutletContext(); 
 
     return (        
-            <div>this is the dashboard route</div>       
+            <Dashboard                 
+                user={user}
+                snake={snake}
+                setSnake={setSnake}
+            />      
     )
 }
