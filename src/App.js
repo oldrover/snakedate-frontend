@@ -109,7 +109,7 @@ function App() {
         { isLoading && <Loading />} 
         <Location />      
         <Outlet 
-          context={[user, snake, handleShowForm, setIsLoggedIn]}
+          context={[user, snake, handleShowForm, setIsLoggedIn, setSnake]}
         />  
       </div>
       {showForm && 

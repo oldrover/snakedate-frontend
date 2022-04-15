@@ -1,40 +1,46 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Inactive } from '../Inactive';
 
 export const Details = (props) => {
 
     const snake = props.snake;
 
-    let imgSrc = 'images/snake.jpg';
+    let imgSrc = 'images/snake_S.jpg';
 
     props.snake.image !== '' && (imgSrc = snake.image);
     
     
     return (
-            <div className='details'>
-                <div>
+            <div className='details'>                
+                <div className='details_row'>
                     <div className='fact'>
-                        Name: {snake.name}
+                        <div className='fact_title'>Name:</div> {snake.name}
                     </div>
                     <div  className='fact'>
-                        Spezies: {snake.species}
+                    <div className='fact_title'>Spezies:</div> {snake.species}
                     </div>
                     <div  className='fact'>
-                        Geschlecht: {snake.sex}
+                    <div className='fact_title'>Geschlecht:</div> {snake.sex}
                     </div>
-                </div><div>
+                </div><div  className='details_row'>
                     <div  className='fact'>
-                        Geburtsjahr: {snake.birthYear}
+                    <div className='fact_title'>Geburtsjahr:</div> {snake.birthYear}
                     </div>
                     <div  className='fact'>
-                        aktuelles Gewicht: {snake.weight}g
+                    <div className='fact_title'>aktuelles Gewicht:</div> {snake.weight}g
                     </div>
                     <div  className='fact last'>
-                        aktuelle Größe: {snake.size}cm
+                    <div className='fact_title'>aktuelle Größe:</div> {snake.size}cm
                     </div>
                 </div>
-                {/* <div className='fact_image'>
-                <img src={imgSrc} alt='snake' />
-                </div>  */}
+                <div className='fact_image'>
+                    <img src={imgSrc} alt='snake' />                
+                </div>
+                <div className='details_buttons'>
+                    <button className='btn_del_edit'><FontAwesomeIcon icon={faPen} /></button>
+                    <button className='btn_del_edit'><FontAwesomeIcon icon={faTimes} /></button>
+                </div>  
                 {
                 snake.id === '' && (
                     <Inactive />
