@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchEvents } from '../../app/features/events/eventSlice'; 
 
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -8,51 +10,29 @@ import { Loading} from '../Loading/Loading';
 import { Inactive } from '../Inactive';
 
 
-export const Calendar = (props) => {   
+export const Calendar = (props) => { 
+    
+    const dispatch = useDispatch();
 
-    const {user, snake, handleShowForm, setIsLoggedIn} = props;
-   
+    const handleShowForm = props.handleShowForm;
+
+    const user = useSelector(state => state.user);
+    const snake = useSelector(state => state.snake.chosenSnake); 
+    const snakeEvents = useSelector(state => state.event.events)
+    const snakeStatus = useSelector(state => state.snake.status);
+    const eventStatus = useSelector(state => state.event.status);     
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
-    const [today] = useState(new Date());  
-
-    const [snakeEvents, setSnakeEvents] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);  
+    const [today] = useState(new Date()); 
+          
     
-    useEffect(() => {
-        const fetchEvents = async() => {
-            const requestOptions = {
-                method: 'GET',
-                mode: 'cors',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': user.jwt              
-                    }      
-            }; 
-            
-            await fetch(`/api/events/${snake.snakeId}`, requestOptions)
-            .then(response => response.json())
-            .then(data => {                                  
-                handleSnakeEvents(data);                                 
-            }) 
-            .catch(error =>{                 
-                handleError(error);                               
-            });
-        }
-        fetchEvents();                               
-        
-    },[snake, user])
+    useEffect(() => {        
+        if(snakeStatus ==='succeeded' && eventStatus === 'idle'){
+            dispatch(fetchEvents({snake: snake, jwt: user.jwt}));            
+        }  
 
+    },[snake, user, snakeStatus, eventStatus, dispatch])
     
-    const handleSnakeEvents = (data) => {
-        setSnakeEvents(data);
-        setIsLoading(false);                 
-    }
-
-    const handleError = (error) => {
-        (error.code === 401 && setIsLoggedIn(false)) || console.log(error.message)           
-    }
 
     const handleSwitchToday = () => {
         setCalendar(new Cal(new Date()));
@@ -85,7 +65,8 @@ export const Calendar = (props) => {
 
     return (
         <div className='calendar'>  
-            { isLoading && <Loading />} 
+            { snakeStatus !== 'succeeded' && <Loading />
+            } 
 
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}

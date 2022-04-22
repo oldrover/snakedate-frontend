@@ -1,32 +1,21 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../../app/features/user/userSlice';
+import { userSignUp } from '../../utils/UserSignUp';
 
 
-export const LoginForm = (props) => {
+export const LoginForm = () => {
 
     const login = {
         'email': '',
         'password': ''
-    }      
-    
-    let jwt = '';
+    }  
 
-    const setUser = props.setUser;
-    const handleLogin = props.handleLogin;
-    const setIsLoading = props.setIsLoading;
-
+    const dispatch = useDispatch();  
     const [loginData, setLoginData] = useState(login);
     const [showSignUp, setShowSignUp] = useState(false);
 
-    const requestOptions = {
-        method: 'POST',
-        mode: 'cors',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'               
-         },
-        body: JSON.stringify(loginData)
-    };    
-
+    
     const handleChange = (e) => {
         setLoginData({...loginData, [e.target.name]: e.target.value});
     }
@@ -35,43 +24,14 @@ export const LoginForm = (props) => {
         e.target.value === 'login' ? setShowSignUp(false) : setShowSignUp(true);
     }
 
-    const loginRequest = () => {
-        setIsLoading(true);
-        fetch(`/api/users/login`, requestOptions)  
-            .then(response => {                  
-                jwt = response.headers.get('Authentication');              
-                return response.json();  
-            })    
-            .then(data => {                
-                setUser({
-                    id: data.id,
-                    name: data.email,
-                    snakes: [],
-                    image: '',
-                    jwt:jwt  
-                })                
-                handleLogin();
-            })                                      
-            .catch(error => alert(error.message));
+    const signUpRequest = () => {  
+        userSignUp(loginData);
+        setShowSignUp(false);
     }
 
-    const signUpRequest = () => {
-        
-
-        fetch(`/api/users`, requestOptions)  
-            .then(response => { 
-                return response.json();  
-            })    
-            .then(data => {
-                alert(data);
-                setShowSignUp(false);
-            })                                     
-            .catch(error => alert('SignUp Error please try again'));
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        showSignUp ? signUpRequest() : loginRequest();
+    const HandleSubmit = (e) => {
+        e.preventDefault();        
+        showSignUp ? signUpRequest() : dispatch(fetchUser(loginData));  
     }
 
     return (
@@ -96,7 +56,7 @@ export const LoginForm = (props) => {
                 </div>
             </div>
             <div className='login_form_body'>
-                <form className='login_form_form' onSubmit={handleSubmit}>
+                <form className='login_form_form' onSubmit={HandleSubmit}>
                     
                     <input 
                         className='login'

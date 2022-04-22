@@ -9,7 +9,7 @@ import { faMinus, faPlus, faAngleDoubleRight, faAngleDoubleLeft } from '@fortawe
 
 export const Menu = (props) => {
 
-    const {user, snake, setSnake, handleShowForm} = props;
+    const handleShowForm = props.handleShowForm;
     const [showMenu, setShowMenu] = useState(false);
     const [smallMenu, setSmallMenu] = useState(false);
 
@@ -24,10 +24,7 @@ export const Menu = (props) => {
 
     return(
         <div className={(!smallMenu && 'menu') || 'menu small_menu'}>
-            <ChangeSnake
-                user={user}
-                snake={snake}
-                setSnake={setSnake}
+            <ChangeSnake 
                 handleShowForm={handleShowForm}
             />
             <div className='menu_collapsed'

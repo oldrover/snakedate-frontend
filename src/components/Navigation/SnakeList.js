@@ -3,10 +3,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const SnakeList = (props) => {
 
-    const user = props.user;   
-    const handleAddClick = props.handleAddClick;
-    const handleClick = props.handleClick;
-    const showList = props.showList;
+    const { user, handleAddClick, handleClick, showList } = props;
     
 
     return (                        

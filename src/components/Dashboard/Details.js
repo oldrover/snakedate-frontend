@@ -1,14 +1,22 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteSnake, resetSnakes } from '../../app/features/snakes/snakeSlice';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Inactive } from '../Inactive';
 
 export const Details = (props) => {
+    
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
+    const snake = props.snake;  
+    let imgSrc = snake.image || 'images/snake_S.jpg';
 
-    const snake = props.snake;
-
-    let imgSrc = 'images/snake_S.jpg';
-
-    props.snake.image !== '' && (imgSrc = snake.image);
+    
+    const handleClick = async(action) => {         
+        action === 'delete' && await dispatch(deleteSnake({snake: snake, jwt: user.jwt}));
+        dispatch(resetSnakes());  
+    }
     
     
     return (
@@ -38,8 +46,18 @@ export const Details = (props) => {
                     <img src={imgSrc} alt='snake' />                
                 </div>
                 <div className='details_buttons'>
-                    <button className='btn_del_edit'><FontAwesomeIcon icon={faPen} /></button>
-                    <button className='btn_del_edit'><FontAwesomeIcon icon={faTimes} /></button>
+                    <button 
+                        className='btn_del_edit' 
+                        onClick={() => handleClick('edit')}
+                    >
+                            <FontAwesomeIcon icon={faPen}/>
+                    </button>
+                    <button 
+                        className='btn_del_edit' 
+                        onClick={() => handleClick('delete')}                        
+                    >
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
                 </div>  
                 {
                 snake.id === '' && (

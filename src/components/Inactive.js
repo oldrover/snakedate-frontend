@@ -1,4 +1,4 @@
-export const Inactive = (props) => {
+export const Inactive = () => {
     return ( 
         <div className='inactive'>
             <div className='inactive_text'>

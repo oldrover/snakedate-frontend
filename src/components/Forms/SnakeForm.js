@@ -1,11 +1,14 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetSnakes, saveSnake } from '../../app/features/snakes/snakeSlice';
 
 import { FormHeader } from './FormHeader';
 
 
 export const SnakeForm = (props) => {
 
-    const user = props.user;
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const handleClose = props.handleClose;
 
     const defaultData = {
@@ -21,26 +24,11 @@ export const SnakeForm = (props) => {
 
     const [snakeData, setSnakeData] = useState(defaultData);
 
-    const postSnakeData = () => {
-        const requestOptions = {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': user.jwt               
-            },            
-            body: JSON.stringify(snakeData)
-        };  
-              
-        fetch(`/api/snakes`, requestOptions)                        
-            .catch(error => alert(error));
-    }
-
     const handleSubmit = (e) => {       
-        e.preventDefault(); 
-        postSnakeData(); 
+        e.preventDefault();         
+        dispatch(saveSnake({snake: snakeData, jwt: user.jwt}))
         handleClose();
+        dispatch(resetSnakes());
     }
 
     const handleChange = (e) => {        

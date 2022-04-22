@@ -5,7 +5,7 @@ import { ActionWhenOutside } from '../../../utils/ActionWhenOutside';
 
 export const SnakeList = (props) => {
 
-    const {user, handleAddClick, handleClick, showList, setShowList} = props; 
+    const {snakes, handleAddClick, handleClick, showList, setShowList} = props; 
 
     if(!showList) {
         return <div className='snake_list'></div>
@@ -14,7 +14,7 @@ export const SnakeList = (props) => {
     return (                  
         <div className= {(showList && 'snake_list show_list') || 'snake_list'}>
             <ActionWhenOutside action={() => setShowList(false)}>
-            {user.snakes.map(snake =>{                            
+            {snakes.map(snake =>{                            
                 return (                                
                     <button className='snake_list_item' key={snake.id + snake.name}
                         value={JSON.stringify(snake)}                                   

@@ -1,13 +1,17 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { resetSnakes } from '../../app/features/snakes/snakeSlice';
+import { logoutUser } from '../../app/features/user/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-export const NavUser = (props) => {
+export const NavUser = () => {
 
-    const user = props.user;
-    const setIsLoggedIn = props.setIsLoggedIn;
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user);    
 
-    const handleClick = () => {
-        setIsLoggedIn(false);
+    const handleClick = () => {        
+        dispatch(resetSnakes());
+        dispatch(logoutUser());                
     }
 
     return (

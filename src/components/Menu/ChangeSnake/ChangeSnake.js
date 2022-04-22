@@ -1,27 +1,33 @@
 import './ChangeSnake.css';
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSnake } from '../../../app/features/snakes/snakeSlice';
 
 import { SnakeList } from './SnakeList';
+import { resetEvents } from '../../../app/features/events/eventSlice';
 
 export const ChangeSnake = (props) => {
-
-    let imgSrc = 'images/snake_S.jpg';
-
-    const user = props.user;
-    const snake = props.snake;
-    const setSnake = props.setSnake;
+    
+    const dispatch = useDispatch();
+    const handleShowForm = props.handleShowForm;
+    const snake = useSelector(state => state.snake.chosenSnake);
+    const snakes = useSelector(state => state.snake.snakes);
 
     const [showList, setShowList] = useState(false);
+    
+    let imgSrc = 'images/snake_S.jpg';
 
-    const handleClick = (e) => {        
-        setSnake(JSON.parse(e.target.value));        
+
+    const handleClick = (e) => {  
+        dispatch(setSnake(JSON.parse(e.target.value)));
+        dispatch(resetEvents());
     }
 
     const handleAddClick = () => {
         const formData = {              
             formType: 'snake'
         };
-        props.handleShowForm(true, formData);
+        handleShowForm(true, formData);
     }
 
     const handleReveal = () => {
@@ -32,7 +38,7 @@ export const ChangeSnake = (props) => {
         <div className='change_snake' onClick={handleReveal}>  
             
             <SnakeList                            
-                user={user}
+                snakes={snakes}
                 handleAddClick={handleAddClick}
                 handleClick={handleClick}
                 showList={showList}
