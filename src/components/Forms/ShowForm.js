@@ -1,17 +1,19 @@
+import { useSelector } from 'react-redux';
+
 import { EventForm } from './EventForm';
 import { SnakeForm} from './SnakeForm';
 
+
+
 export const ShowForm = (props) => {
 
-    const snake = props.snake;
-    const user = props.user;   
-    const formData = props.formData;
-    const setIsLoading = props.setIsLoading;
-    const handleShowForm = props.handleShowForm;
+    const user = useSelector(state => state.user);
+    const snake = useSelector(state => state.snake.chosenSnake);
+    
+    const { formData, handleShowForm } = props;    
     
 
-    const handleClose = () => {
-        setIsLoading(true);
+    const handleClose = () => {        
         handleShowForm(false, {});  
     }
 

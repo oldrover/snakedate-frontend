@@ -1,8 +1,12 @@
+import { useSelector } from "react-redux";
 import { SnakeCard } from "./SnakeCard";
 
-export const ListAllSnakes = (props) => {
 
-    const {snakes, activeSnake, setSnake} = props;
+export const ListAllSnakes = () => {
+    
+    const snakes = useSelector(state => state.snake.snakes);
+    const activeSnake = useSelector(state => state.snake.chosenSnake);
+    
 
     const filteredSnakeList = () => {        
         return (
@@ -10,8 +14,7 @@ export const ListAllSnakes = (props) => {
                 .map((snake) => {
                     return (
                         <SnakeCard 
-                            snake={snake} 
-                            setSnake={setSnake} 
+                            snake={snake}                             
                             key={snake.snakeId}
                         />
                     )

@@ -4,13 +4,11 @@ import { Calendar } from "../components/Calendar/Calendar";
 
 export const CalendarRoute = () => {
 
-    const [user, snake, handleShowForm] = useOutletContext(); 
+    const [handleShowForm] = useOutletContext(); 
 
     return(         
-        <Calendar
-            user={user}
-            snake={snake}
-            handleShowForm={handleShowForm}
+        <Calendar            
+            handleShowForm={handleShowForm}           
         />   
     )
 }
