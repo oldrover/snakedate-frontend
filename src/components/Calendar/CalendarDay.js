@@ -19,7 +19,7 @@ export const CalendarDay = (props) => {
     return (
         <div 
             className={className} 
-            key={props.day}
+            key={day}
             onClick={handleClick}
         >
             <div>
@@ -28,7 +28,7 @@ export const CalendarDay = (props) => {
             <div className='events'>                
             {
 
-                props.dailyEvents.map((event, index) => {                    
+                dailyEvents.map((event, index) => {                    
                     let eventIcon = '';
                     switch (event.type) {
                         case 'weight':

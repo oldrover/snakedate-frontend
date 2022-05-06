@@ -24,7 +24,7 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async(fetchDat
     const events = await fetch(`/api/events/${snake.snakeId}`, requestOptions)
         .then(response => response.json())
         .then(data => data) 
-        .catch(error => rejectWithValue(error.name));
+        .catch(_error => rejectWithValue('Error'));
 
     return events;
 });
@@ -47,7 +47,7 @@ export const saveEvent = createAsyncThunk('events/saveEvent',async(saveData, { r
     const saveResponse = await fetch(`/api/events`, requestOptions) 
         .then(response => response.text())
         .then(data => data)                       
-        .catch(error => rejectWithValue(error.name));
+        .catch(_error => rejectWithValue('Error'));
 
     return saveResponse;
 });
@@ -69,7 +69,7 @@ const { eventId, snakeId, jwt } = deleteData;
     const deleteResponse = await fetch(`/api/events/${snakeId}/${eventId}`, requestOptions) 
         .then(response => response.text())
         .then(data => data)                      
-        .catch(error => rejectWithValue(error.name));
+        .catch(_error => rejectWithValue('Error'));
 
     return deleteResponse;
 });  
@@ -78,10 +78,10 @@ const eventSlice = createSlice({
     name:'event',
     initialState: initialState,
     reducers: {
-        resetEvents: (state, action) => {
+        resetEvents: (_state, _action) => {
             return initialState;
         },
-        resetEventMessage: (state, action) => {
+        resetEventMessage: (state, _action) => {
             return {
                 ...state,
                 message: null
@@ -89,7 +89,7 @@ const eventSlice = createSlice({
         }
     }, 
     extraReducers: {
-        [fetchEvents.pending]: (state, action) => {
+        [fetchEvents.pending]: (state, _action) => {
             state.status = 'loading';
             state.error = null;
         },

@@ -38,7 +38,7 @@ export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchDat
     const snakes = await fetch(`/api/snakes/${userId}`, requestOptions)    
         .then(response => response.json()) 
         .then(data => data)       
-        .catch(error => rejectWithValue('Oops, something went wrong!'));
+        .catch(error => rejectWithValue('Error'));
         
     return snakes;
 })
@@ -60,7 +60,7 @@ export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteDa
     const deleteResponse = await fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
         .then(response => response.text())
         .then(data => data)
-        .catch(error => rejectWithValue('Oops, something went wrong!'));
+        .catch(error => rejectWithValue('Error'));
 
     return deleteResponse;
 })
@@ -84,7 +84,7 @@ export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData, { 
     const saveResponse = await fetch(`/api/snakes`, requestOptions)
         .then(response => response.text())
         .then(data => data)                               
-        .catch(error => rejectWithValue('Oops, something went wrong!'));  
+        .catch(error => rejectWithValue('Error'));  
     
     return saveResponse;
 })
@@ -100,10 +100,10 @@ const snakeSlice = createSlice({
                 chosenSnake: action.payload
             }
         },
-        resetSnakes: (state, action) => {            
+        resetSnakes: (_state, _action) => {            
             return initialState;       
         },
-        resetSnakeMessage: (state, action) => {
+        resetSnakeMessage: (state, _action) => {
             return {
                 ...state,
                 message: null
@@ -111,7 +111,7 @@ const snakeSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchSnakes.pending]: (state, action) => {
+        [fetchSnakes.pending]: (state, _action) => {
             state.status = 'loading';
             state.error = null;
         },

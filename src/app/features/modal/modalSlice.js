@@ -11,10 +11,10 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState: initialState,
     reducers:{
-        showModal: (state, action) => {            
+        showModal: (_state, action) => {            
             return {text: action.payload, show: true}
         },
-        hideModal: (state, action) => {
+        hideModal: (_state, _action) => {
             return initialState;
         }
     } 

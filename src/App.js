@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSnakes, resetSnakeMessage } from './app/features/snakes/snakeSlice';
+import { fetchSnakes, resetSnakes, resetSnakeMessage } from './app/features/snakes/snakeSlice';
 import { showModal, hideModal } from './app/features/modal/modalSlice';
 import { resetEventMessage } from './app/features/events/eventSlice';
 import { logoutUser } from './app/features/user/userSlice';
@@ -32,7 +32,10 @@ function App() {
   useEffect(() => { 
 
     const handleModal = (text) => {
-      (text === 'SyntaxError') && dispatch(logoutUser());
+      if(text === 'Error'){
+        dispatch(logoutUser());
+        dispatch(resetSnakes());
+      }
       dispatch(showModal(text));
       setTimeout(() => (dispatch(hideModal())), 2000); 
       dispatch(resetEventMessage());

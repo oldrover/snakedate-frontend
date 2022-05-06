@@ -42,12 +42,14 @@ button {
   font-weight: bold;
   cursor: pointer;
   width: 140px; 
-  border: none;
-  border-bottom: 2px solid var(--accent-variant);
+ 
+  border: 1px solid var(--divider-color);
+  border-radius: 5px;
+  /* border-bottom: 2px solid var(--accent-variant); */
 }
 
 button:hover {
-  border-bottom: 2px solid var(--accent-color);
+  background-color: var(--secondary-variant);
 }
 
 input, textarea, select{
