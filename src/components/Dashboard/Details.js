@@ -1,24 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { deleteSnake, resetSnakes } from '../../app/features/snakes/snakeSlice';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faPen } from '@fortawesome/free-solid-svg-icons';
 import { Inactive } from '../Inactive';
+import { AlertBox } from '../AlertBox/AlertBox';
 
 export const Details = (props) => {
     
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const [showBox, setShowBox] = useState(false);
     const snake = props.snake;  
     let imgSrc = snake.image || 'images/snake_S.jpg';
 
-    
-    const handleClick = async(action) => {         
-        action === 'delete' && await dispatch(deleteSnake({snake: snake, jwt: user.jwt}));
-        dispatch(resetSnakes());  
+
+    const handleDelete = () => {
+        dispatch(deleteSnake({snake: snake, jwt: user.jwt}));        
+        handleShowBox();
+        dispatch(resetSnakes());
     }
     
+    const handleClick = (action) => action === 'delete' && handleShowBox(); 
+
+    const handleShowBox = () => showBox ? setShowBox(false) : setShowBox(true);
     
+        
     return (
             <div className='details'>                
                 <div className='details_row'>
@@ -59,12 +67,17 @@ export const Details = (props) => {
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
                 </div>  
+                { snake.id === '' && <Inactive /> }   
                 {
-                snake.id === '' && (
-                    <Inactive />
-                )
-            }                  
-            </div>
+                showBox && 
+                    <AlertBox 
+                        message={`${snake.name} wirklich löschen?`}
+                        yesFunc={handleDelete}
+                        noFunc={handleShowBox}
+                    />
+                }               
+            </div> 
+            
         );    
 }
 

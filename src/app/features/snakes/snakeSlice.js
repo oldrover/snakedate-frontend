@@ -38,7 +38,7 @@ export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchDat
     const snakes = await fetch(`/api/snakes/${userId}`, requestOptions)    
         .then(response => response.json()) 
         .then(data => data)       
-        .catch(error => rejectWithValue('Error'));
+        .catch(_error => rejectWithValue('Error'));
         
     return snakes;
 })
@@ -60,7 +60,7 @@ export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteDa
     const deleteResponse = await fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
         .then(response => response.text())
         .then(data => data)
-        .catch(error => rejectWithValue('Error'));
+        .catch(_error => rejectWithValue('Error'));
 
     return deleteResponse;
 })
@@ -84,7 +84,7 @@ export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData, { 
     const saveResponse = await fetch(`/api/snakes`, requestOptions)
         .then(response => response.text())
         .then(data => data)                               
-        .catch(error => rejectWithValue('Error'));  
+        .catch(_error => rejectWithValue('Error'));  
     
     return saveResponse;
 })

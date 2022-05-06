@@ -8,6 +8,7 @@
     align-items: left;
     gap: 15px; 
     padding-left: 10px; 
+    position: relative;
     
   }
   
@@ -25,7 +26,8 @@
     align-content: center;
     font-weight: bold;  
     padding: 15px;  
-    border: 1px solid var(--divider-color);
+    border: 1px solid var(--divider-color); 
+    position: relative;   
   }
 
   .details_name {
