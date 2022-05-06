@@ -27,7 +27,7 @@ export const Calendar = (props) => {
           
     
     useEffect(() => {        
-        if(snakeStatus ==='succeeded' && eventStatus === 'idle'){
+        if(eventStatus === 'idle' &&snakeStatus ==='succeeded'){
             dispatch(fetchEvents({snake: snake, jwt: user.jwt}));            
         }  
 

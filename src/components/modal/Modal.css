@@ -1,0 +1,26 @@
+.modal {    
+    height: 100px;
+    position: absolute;    
+    top: 100px;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    color: var(--text-color);     
+    overflow: hidden;
+    white-space: nowrap;         
+}
+
+.show {
+    width: 250px; 
+    border: 1px solid var(--divider-color);  
+    transition: all 0.3s ease-in;    
+}
+
+.hide { 
+    width: 0px; 
+    border: none;  
+    transition: all 0.3s ease-in;
+    
+}
