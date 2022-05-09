@@ -4,12 +4,14 @@ let jwt = '';
 
 const initialState = {
     id: '',
-    name: '',
+    email: '',
     image: '',
     jwt:'',
     status:'idle',
     error: null
 };
+
+const defaultState = JSON.parse(localStorage.getItem('SnakePlanner')) || initialState;
 
 const userRequestOptions = {
     method: 'POST',
@@ -34,15 +36,18 @@ export const fetchUser = createAsyncThunk('users/fetchUser', async(login) => {
                     .then(data => data)
                     .catch(error => error);
 
+    localStorage.setItem('SnakePlanner', JSON.stringify({...initialState, ...user, jwt: jwt, status: 'succeeded'}));
+    
     return user;
 })
 
 const userSlice = createSlice({
     name: 'user',
-    initialState: initialState,
+    initialState: defaultState,
     reducers:{
-        logoutUser: (_state, _action) => {
-           return initialState;
+        logoutUser: (_state, _action) => { 
+            localStorage.removeItem('SnakePlanner');           
+            return initialState;
         }
     },
     extraReducers: {
