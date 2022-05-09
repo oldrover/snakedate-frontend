@@ -8,7 +8,7 @@ import { resetEventMessage } from './app/features/events/eventSlice';
 import { logoutUser } from './app/features/user/userSlice';
 
 
-import { Navigation } from './components/Navigation/Navigation';
+import { Header } from './components/Header/Header';
 import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
 import { Menu } from './components/Menu/Menu/Menu';
@@ -67,7 +67,7 @@ function App() {
   
   return (    
     <div className='App'>
-      <Navigation /> 
+      <Header /> 
       <div>
       <Menu         
         handleShowForm={handleShowForm}
