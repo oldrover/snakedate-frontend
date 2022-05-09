@@ -44,8 +44,8 @@ button {
   width: 140px; 
  
   border: 1px solid var(--divider-color);
-  border-radius: 5px;
-  /* border-bottom: 2px solid var(--accent-variant); */
+  /*border-radius: 5px;
+  border-bottom: 2px solid var(--accent-variant); */
 }
 
 button:hover {
