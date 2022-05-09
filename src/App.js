@@ -59,7 +59,7 @@ function App() {
     setShowForm(show); 
   }
 
-  if(user.status === 'idle') {
+  if(user.status === 'idle') {    
     return (      
       <LoginPage />      
       )
