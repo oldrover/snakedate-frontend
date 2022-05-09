@@ -12,7 +12,7 @@ export const Details = (props) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const [showBox, setShowBox] = useState(false);
-    const snake = props.snake;  
+    const {snake, handleShowForm} = props;  
     let imgSrc = snake.image || 'images/snake_S.jpg';
 
 
@@ -22,7 +22,10 @@ export const Details = (props) => {
         dispatch(resetSnakes());
     }
     
-    const handleClick = (action) => action === 'delete' && handleShowBox(); 
+    const handleClick = (action) => {
+        action === 'delete' && handleShowBox(); 
+        action === 'edit' && handleShowForm(true, {formType: 'edit_snake'});
+    }
 
     const handleShowBox = () => showBox ? setShowBox(false) : setShowBox(true);
     

@@ -33,8 +33,16 @@ export const ShowForm = (props) => {
             {
             formData.formType === 'snake' &&
                 <SnakeForm 
-                    handleClose={handleClose}
-                    user={user}
+                    handleClose={handleClose} 
+                    action='save'                   
+                />
+            }
+
+{
+            formData.formType === 'edit_snake' &&
+                <SnakeForm 
+                    handleClose={handleClose} 
+                    action='edit'                  
                 />
             }
 
