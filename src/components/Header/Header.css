@@ -1,5 +1,5 @@
 
-.navigation { 
+.header { 
     position: fixed;
     z-index: 1;
     top: 0;
@@ -14,7 +14,7 @@
     font-family: 'Lobster', cursive;
   }
   
-  .nav_user {
+  .head_user {
     background-color: var(--primary-color);
     background-image: var(--hgradient);    
     display: flex;
@@ -40,13 +40,13 @@
   
 
 @media only screen and (max-width: 768px) {
-  .navigation {      
+  .header {      
     display: flex;
     flex-direction: column-reverse;    
     border-bottom: 2px solid var(--divider-color);      
   }
 
-  .nav_user { 
+  .head_user { 
     flex-direction: row;    
     align-items: center;     
     border-bottom: 2px solid var(--secondary-color); 
@@ -55,14 +55,5 @@
 
   .headline {    
     font-size: 1.2rem;
-  }
-
-  .nav_snake {    
-    border-radius: 0px 0px 0px 0px;
-  }
-
-  .snake_button {    
-    margin: 0px;    
-    border-radius: 0px;    
   }
 }

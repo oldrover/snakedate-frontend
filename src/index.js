@@ -5,9 +5,10 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
-import { CalendarRoute } from './routes/calendarRoute';
-import { AlarmRoute } from './routes/alarmRoute';
-import { DashboardRoute } from './routes/dashboardRoute';
+import { CalendarRoute } from './routes/CalendarRoute';
+import { AlarmRoute } from './routes/AlarmRoute';
+import { DashboardRoute } from './routes/DashboardRoute';
+import { StatisticsRoute } from './routes/StatisticsRoute';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -20,7 +21,7 @@ root.render(
           <Route path='/' element={<DashboardRoute />} />
           <Route path='calendar' element={<CalendarRoute />} /> 
           <Route path='alarms' element={<AlarmRoute /> } />
-          <Route path='statistics' element={<div>statistics route</div>} />          
+          <Route path='statistics' element={<StatisticsRoute />} />          
         </Route>     
       </Routes>    
     </BrowserRouter>

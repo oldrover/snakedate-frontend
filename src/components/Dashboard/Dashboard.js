@@ -13,6 +13,7 @@ export const Dashboard = () => {
             <div className='details_name'>{snake.name}</div>               
             <Details snake={snake}/>
             <ListAllSnakes />
+            
         </div>
         );    
 }

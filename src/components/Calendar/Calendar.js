@@ -27,7 +27,7 @@ export const Calendar = (props) => {
           
     
     useEffect(() => {        
-        if(snakeStatus ==='succeeded' && eventStatus === 'idle'){
+        if(eventStatus === 'idle' &&snakeStatus ==='succeeded'){
             dispatch(fetchEvents({snake: snake, jwt: user.jwt}));            
         }  
 
@@ -40,7 +40,8 @@ export const Calendar = (props) => {
     
     const handleMonthChange = (add) => {
         let newMonth = calendar.getMonth();
-        add === 'true' ? newMonth ++ 
+        add === 'true' 
+            ? newMonth ++ 
             : newMonth --
                  
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
@@ -63,6 +64,18 @@ export const Calendar = (props) => {
         return `${calendar.getYear()}/${month}/${day}`;
     }
 
+    const createClassName = (day, hasEvents) => {
+        let clsName = 'day';
+        day === today.getDate()
+        && calendar.getMonth() === today.getMonth()
+        && calendar.getYear() === today.getFullYear()
+        && (clsName += ' today');        
+        
+        hasEvents && (clsName += ' has_events'); 
+
+        return clsName;
+    }
+
     return (
         <div className='calendar'>  
             { snakeStatus !== 'succeeded' && <Loading />
@@ -79,17 +92,12 @@ export const Calendar = (props) => {
             />              
             <div className='calendar_body'>  
                 {
-                    calendar.getCalendar().map((day, index) =>  { 
-                        let clsName = ''
-                        day === today.getDate() 
-                        && calendar.getMonth() === today.getMonth()
-                        && calendar.getYear() === today.getFullYear()
-                            ? clsName = 'day today'
-                            : clsName = 'day'  
+                    calendar.getCalendar().map((day, index) =>  {                      
 
-                       
                         const dailyEvents = filterEvents(snakeEvents, day);                                            
                         const date = formatDate(day);
+
+                        const clsName = createClassName(day, dailyEvents.length > 0);
                         
                         return (                         
                             <CalendarDay 

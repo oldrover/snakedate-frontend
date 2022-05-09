@@ -1,0 +1,10 @@
+.placeholder {
+    height: 100%;
+    width: 100%;
+    max-height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    font-size: 96px;
+}

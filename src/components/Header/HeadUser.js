@@ -4,7 +4,7 @@ import { logoutUser } from '../../app/features/user/userSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-export const NavUser = () => {
+export const HeadUser = () => {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);    
@@ -15,7 +15,7 @@ export const NavUser = () => {
     }
 
     return (
-        <div className='nav_user'>
+        <div className='head_user'>
             <div className='headline'>
                 SnakePlanner
             </div>

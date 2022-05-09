@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faForward, faBackward, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
 
 export const CalendarHeader =(props) => {    
 
@@ -10,11 +10,14 @@ export const CalendarHeader =(props) => {
     }
     
     return(
-        <div className='calendar_header'>  
-            <div className='tab'>                    
-                <FontAwesomeIcon icon={faCalendar} />
-                <div className='tab-text'>Kalender</div>
-            </div>
+        <div className='calendar_header'>              
+             <div>              
+                <button                     
+                    onClick={handleSwitchToday}
+                >
+                    Heute                    
+                </button>   
+            </div>  
             <div>
                 <button value='back' onClick={() => handleClick('false')}>
                     <FontAwesomeIcon icon={faBackward} />
@@ -28,13 +31,7 @@ export const CalendarHeader =(props) => {
                     <FontAwesomeIcon icon={faForward} />
                 </button>
             </div>  
-            <div>              
-                <button                     
-                    onClick={handleSwitchToday}
-                >
-                    Heute                    
-                </button>   
-            </div>            
+                     
             <div className='calendar_year'>                    
                 {calendar.getYear()}
             </div>

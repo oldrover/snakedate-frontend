@@ -16,11 +16,12 @@ const initialState = {
     snakes: [],
     chosenSnake: Snake,
     status: 'idle',
-    error: null
+    error: null,
+    message: null
 }
 
 
-export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchData) =>{
+export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchData, { rejectWithValue }) =>{
 
     const { userId, jwt} = fetchData;
     
@@ -37,12 +38,12 @@ export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchDat
     const snakes = await fetch(`/api/snakes/${userId}`, requestOptions)    
         .then(response => response.json()) 
         .then(data => data)       
-        .catch(error => alert(error));
+        .catch(_error => rejectWithValue('Error'));
         
     return snakes;
 })
 
-export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteData) => {
+export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteData, { rejectWithValue }) => {
 
     const { snake, jwt } = deleteData;    
 
@@ -56,14 +57,16 @@ export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteDa
         }
     };
 
-    await fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
+    const deleteResponse = await fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
         .then(response => response.text())
-        .then(data => alert(data))
-        .catch(error => error);
+        .then(data => data)
+        .catch(_error => rejectWithValue('Error'));
+
+    return deleteResponse;
 })
 
 
-export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData) => {
+export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData, { rejectWithValue }) => {
 
     const { snake, jwt } = saveData;
     
@@ -78,10 +81,12 @@ export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData) =>
         body: JSON.stringify(snake)
     };  
              
-    await fetch(`/api/snakes`, requestOptions)
+    const saveResponse = await fetch(`/api/snakes`, requestOptions)
         .then(response => response.text())
-        .then(data => alert(data))                               
-        .catch(error => alert(error));    
+        .then(data => data)                               
+        .catch(_error => rejectWithValue('Error'));  
+    
+    return saveResponse;
 })
 
 
@@ -95,12 +100,18 @@ const snakeSlice = createSlice({
                 chosenSnake: action.payload
             }
         },
-        resetSnakes: (state, action) => {            
+        resetSnakes: (_state, _action) => {            
             return initialState;       
+        },
+        resetSnakeMessage: (state, _action) => {
+            return {
+                ...state,
+                message: null
+            }
         }
     },
     extraReducers: {
-        [fetchSnakes.pending]: (state, action) => {
+        [fetchSnakes.pending]: (state, _action) => {
             state.status = 'loading';
             state.error = null;
         },
@@ -118,9 +129,24 @@ const snakeSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.payload;
             }
-        }
+        },               
+        [deleteSnake.fulfilled]: (state, action) => {                       
+            state.message = action.payload;  
+            state.status = 'idle';          
+        },
+        [deleteSnake.rejected]: (state, action) => {
+            state.message = action.payload;
+        },               
+        [saveSnake.fulfilled]: (state, action) => {
+            state.message = action.payload;
+            state.status = 'idle'
+        },
+        [saveSnake.rejected]: (state, action) => {
+            state.message = action.payload;
+        },
+        
     }
 })
 
-export const { setSnake, resetSnakes } = snakeSlice.actions;
+export const { setSnake, resetSnakes, resetSnakeMessage } = snakeSlice.actions;
 export default snakeSlice.reducer;

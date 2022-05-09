@@ -41,12 +41,12 @@ const userSlice = createSlice({
     name: 'user',
     initialState: initialState,
     reducers:{
-        logoutUser: (state, action) => {
+        logoutUser: (_state, _action) => {
            return initialState;
         }
     },
     extraReducers: {
-        [fetchUser.pending]: (state, action) => {
+        [fetchUser.pending]: (state, _action) => {
             state.status = 'loading';
             state.error = null;
         },
@@ -59,7 +59,7 @@ const userSlice = createSlice({
                 state.status = 'succeeded';
             }
         },
-        [fetchUser.rejected]: (state, action) => {
+        [fetchUser.rejected]: (state, _action) => {
             if(state.status === 'loading') {
                 state.status = 'failed';
                 state.error = 'action.payload'
