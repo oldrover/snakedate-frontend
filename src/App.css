@@ -41,11 +41,8 @@ button {
   color:var(--accent-color);  
   font-weight: bold;
   cursor: pointer;
-  width: 140px; 
- 
+  width: 140px;  
   border: 1px solid var(--divider-color);
-  /*border-radius: 5px;
-  border-bottom: 2px solid var(--accent-variant); */
 }
 
 button:hover {

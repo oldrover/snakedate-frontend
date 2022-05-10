@@ -7,7 +7,7 @@
     background-color: var(--primary-color);
     color: var(--accent-color);
     padding: 10px;
-    font-family: 'Lobster';
+    font-family: 'Lobster', sans-serif;
     font-size: large;
     border: 1px solid var(--divider-color);
     border-radius: 5px;
