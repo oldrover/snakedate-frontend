@@ -1,79 +1,53 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchEvents } from '../../app/features/events/eventSlice'; 
 
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-
 import { Calendar as Cal } from '../../models/Calendar';
 import { WeekDays } from './WeekDays';
-import { ShowForm } from '../Forms/ShowForm';
 import { Loading} from '../Loading/Loading';
 import { Inactive } from '../Inactive';
 
 
-export const Calendar = (props) => {   
+export const Calendar = (props) => { 
+    
+    const dispatch = useDispatch();
 
-    const user = props.user;
-    const snake = props.snake;
+    const handleShowForm = props.handleShowForm;
+
+    const user = useSelector(state => state.user);
+    const snake = useSelector(state => state.snake.chosenSnake); 
+    const snakeEvents = useSelector(state => state.event.events)
+    const snakeStatus = useSelector(state => state.snake.status);
+    const eventStatus = useSelector(state => state.event.status);     
 
     const [calendar, setCalendar] = useState(new Cal(new Date()));
-    const [today] = useState(new Date());  
-
-    const [snakeEvents, setSnakeEvents] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);    
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState();   
-     
+    const [today] = useState(new Date()); 
+          
     
-    useEffect(() => {
-        const fetchEvents = async() => {
-            const requestOptions = {
-                method: 'GET',
-                mode: 'cors',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': user.jwt              
-                    }      
-            }; 
-            
-            await fetch(`/api/events/${snake.snakeId}`, requestOptions)
-            .then(response => response.json())
-            .then(data => {                  
-                handleSnakeEvents(data);                                 
-            }) 
-            .catch(error =>{
-                console.log(error);
-            });
-        }
-        fetchEvents();                       
-        
-    },[snake, user, isLoading])
+    useEffect(() => {        
+        if(eventStatus === 'idle' &&snakeStatus ==='succeeded'){
+            dispatch(fetchEvents({snake: snake, jwt: user.jwt}));            
+        }  
 
+    },[snake, user, snakeStatus, eventStatus, dispatch])
     
-    const handleSnakeEvents = (data) => {
-        setSnakeEvents(data);
-        setIsLoading(false);         
-    }
 
     const handleSwitchToday = () => {
         setCalendar(new Cal(new Date()));
     }
-
     
     const handleMonthChange = (add) => {
         let newMonth = calendar.getMonth();
-        add === 'true' ? newMonth ++ 
+        add === 'true' 
+            ? newMonth ++ 
             : newMonth --
                  
         const newCal = new Cal(new Date(calendar.getDate().setMonth(newMonth)));        
         setCalendar(newCal);               
     } 
-    
-    const handleShowForm = (show, form) => {
-        setFormData(form);
-        setShowForm(show);
-    }    
-    
+
     const filterEvents = (events, day) => {        
         return events.filter(e => new Date(e.date).getDate() === day
                     && new Date(e.date).getMonth() === calendar.getMonth()
@@ -90,14 +64,23 @@ export const Calendar = (props) => {
         return `${calendar.getYear()}/${month}/${day}`;
     }
 
-    if (isLoading){
-        return(
-          <Loading />          
-          );
-      } 
+    const createClassName = (day, hasEvents) => {
+        let clsName = 'day';
+        day === today.getDate()
+        && calendar.getMonth() === today.getMonth()
+        && calendar.getYear() === today.getFullYear()
+        && (clsName += ' today');        
+        
+        hasEvents && (clsName += ' has_events'); 
+
+        return clsName;
+    }
 
     return (
-        <div className='calendar'>    
+        <div className='calendar'>  
+            { snakeStatus !== 'succeeded' && <Loading />
+            } 
+
             <CalendarHeader 
                 handleMonthChange={handleMonthChange}
                 handleSwitchToday={handleSwitchToday}
@@ -109,17 +92,12 @@ export const Calendar = (props) => {
             />              
             <div className='calendar_body'>  
                 {
-                    calendar.getCalendar().map((day, index) =>  { 
-                        let clsName = ''
-                        day === today.getDate() 
-                        && calendar.getMonth() === today.getMonth()
-                        && calendar.getYear() === today.getFullYear()
-                            ? clsName = 'day today'
-                            : clsName = 'day'  
+                    calendar.getCalendar().map((day, index) =>  {                      
 
-                       
                         const dailyEvents = filterEvents(snakeEvents, day);                                            
                         const date = formatDate(day);
+
+                        const clsName = createClassName(day, dailyEvents.length > 0);
                         
                         return (                         
                             <CalendarDay 
@@ -133,17 +111,7 @@ export const Calendar = (props) => {
                         )
                     })
                 }
-            </div>  
-            { showForm && 
-                <ShowForm 
-                    formData={formData}                    
-                    handleShowForm={handleShowForm} 
-                    setIsLoading={setIsLoading}                    
-                    snake={snake} 
-                    user={user}
-
-                /> 
-            }
+            </div>              
             {
                 snake.id === '' && (
                  <Inactive />

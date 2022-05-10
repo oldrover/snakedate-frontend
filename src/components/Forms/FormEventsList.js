@@ -2,8 +2,7 @@ import { FormEventsListItem } from './FormEventsListitem';
 
 export const FormEventsList = (props) => {
 
-    const handleDeleteEvent = props.handleDeleteEvent;
-    const dailyEvents = props.dailyEvents;
+    const { handleDeleteEvent, dailyEvents } = props;   
 
     return (
         <div className='form_events_list'>  

@@ -1,107 +1,92 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSnakes, resetSnakes, resetSnakeMessage } from './app/features/snakes/snakeSlice';
+import { showModal, hideModal } from './app/features/modal/modalSlice';
+import { resetEventMessage } from './app/features/events/eventSlice';
+import { logoutUser } from './app/features/user/userSlice';
 
-import { Navigation } from './components/Navigation/Navigation';
-import { Calendar } from './components/Calendar/Calendar';
-import { Dashboard } from './components/Dashboard/Dashboard';
+
+import { Header } from './components/Header/Header';
 import { LoginPage } from './components/Login/LoginPage';
 import { Loading } from './components/Loading/Loading';
-
-const User = {
-  id: '',
-  name: '',
-  snakes: [],
-  image: '',
-  jwt:''
-}
-
-const Snake = {
-  snakeId: '',
-  ownerId: '',
-  name: '',
-  species: '',
-  sex: '',
-  birthYear: null,
-  weight: null,
-  size: null,
-  image: ''
-}
+import { Menu } from './components/Menu/Menu/Menu';
+import { ShowForm } from './components/Forms/ShowForm';
+import { Location } from './components/Location/Location';
+import { Modal } from './components/modal/Modal';
 
 function App() {
   
-  const [user, setUser] = useState(User);
-  const [snake, setSnake] = useState(Snake);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);  
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);  
+  const snake = useSelector(state => state.snake.chosenSnake); 
+  const snakeStatus = useSelector(state => state.snake.status);   
+  const snakeError = useSelector(state => state.snake.error); 
+  const eventsError = useSelector(state => state.event.error); 
+  const eventMessage = useSelector(state => state.event.message);
+  const snakeMessage = useSelector(state => state.snake.message);
+  const [showForm, setShowForm] = useState(false);  
+  const [formData, setFormData] = useState();  
 
   useEffect(() => { 
-    
-    if(isLoggedIn){          
-      const fetchSnakes = async() => {
-        const requestOptions = {
-          method: 'GET',
-          mode: 'cors',
-          headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': user.jwt               
-          }      
-        };      
-        
-        await fetch(`/api/snakes/${user.id}`, requestOptions)    
-        .then(response => response.json())
-        .then(data => { 
-          user.snakes = data;
-          (data.length > 0) && setSnake(data[0]);           
-          setIsLoading(false);                    
-        }) 
-        .catch(error =>{
-          console.log(error);
-        }); 
-      } 
-          
-      fetchSnakes();
+
+    const handleModal = (text) => {
+      if(text === 'Error'){
+        dispatch(logoutUser());
+        dispatch(resetSnakes());
+      }
+      dispatch(showModal(text));
+      setTimeout(() => (dispatch(hideModal())), 2000); 
+      dispatch(resetEventMessage());
+      dispatch(resetSnakeMessage());     
     }
     
-  }, [user, isLoggedIn, isLoading]);
-  
+    if(user.status === 'succeeded' && snakeStatus === 'idle'){ 
+      dispatch(fetchSnakes({userId: user.id, jwt: user.jwt}));             
+    } 
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
+    (snakeError || eventsError) && handleModal(snakeError || eventsError);    
+    (eventMessage || snakeMessage) && handleModal(eventMessage || snakeMessage);
+    
+  }, [user, snake, snakeStatus, snakeError, eventsError, eventMessage, snakeMessage, dispatch]);
+
+  
+  
+   
+  const handleShowForm = (show, form) => {
+    setFormData(form);
+    setShowForm(show); 
   }
 
-  if(!isLoggedIn) {
+  if(user.status === 'idle') {    
     return (      
-      <LoginPage 
-        handleLogin={handleLogin}         
-        setUser={setUser}
-        setIsLoading={setIsLoading}
-      />      
+      <LoginPage />      
       )
   }
-
-  if (isLoading){
-    return(
-      <Loading />      
-      );
-  }  
-
+  
   return (    
     <div className='App'>
-      <Navigation 
-        user={user} 
-        snake={snake} 
-        setSnake={setSnake}
-        setIsLoading={setIsLoading}
-        setIsLoggedIn={setIsLoggedIn}
-      /> 
+      <Header /> 
+      <div>
+      <Menu         
+        handleShowForm={handleShowForm}
+      />
+      </div>
       <div className='wrapper'>  
-        <Dashboard snake={snake}/>   
-        <Calendar 
-          user={user} 
-          snake={snake}
-        />        
-      </div>              
+        { user.status !== 'succeeded' && snake.status !== 'succeeded' && <Loading />} 
+        <Location />      
+        <Outlet 
+          context={[handleShowForm]}
+        />  
+      </div>
+      {showForm && 
+        <ShowForm 
+          formData={formData}                    
+          handleShowForm={handleShowForm}   
+        /> 
+      }
+      <Modal />
     </div>
     );  
 }

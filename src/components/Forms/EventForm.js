@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { saveEvent, deleteEvent, resetEvents } from '../../app/features/events/eventSlice';
 
 import { FormHeader } from './FormHeader';
 import { FormEventsList } from './FormEventsList';
@@ -13,11 +15,9 @@ const dateOptions = {
 
 export const EventForm = (props) => {
 
-    const snake = props.snake;
-    const user = props.user;
-    const date = props.date;
-    const handleClose = props.handleClose;
-    const dailyEvents = props.dailyEvents;
+    const dispatch = useDispatch();
+
+    const { snake, user, date, handleClose, dailyEvents } = props;
 
     const defaultData = {
         'snakeId': snake.snakeId,
@@ -29,50 +29,20 @@ export const EventForm = (props) => {
     const [eventData, setEventData] = useState(defaultData);
     
     
-    const deleteEventData = (eventId) => {
-        const requestOptions = {
-            method: 'DELETE', 
-            mode: 'cors',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': user.jwt               
-            }            
-        };        
-
-        fetch(`/api/events/${eventData.snakeId}/${eventId}`, requestOptions)                       
-            .catch(error => alert(error));
-    }      
-    
-    const postEventData = () => {
-        const requestOptions = {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': user.jwt               
-            },            
-            body: JSON.stringify(eventData)
-        };  
-                
-        fetch(`/api/events`, requestOptions)                        
-            .catch(error => alert(error));
-    }
-
-    
     const handleChange = (e) => {
         setEventData({...eventData, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-        postEventData(); 
+        e.preventDefault();
+        dispatch(saveEvent({ eventData: eventData, jwt: user.jwt}));
+        dispatch(resetEvents());
         handleClose();        
     }
 
-    const handleDeleteEvent = (eventId) => {
-        deleteEventData(eventId);
+    const handleDeleteEvent = (eventId) => {        
+        dispatch(deleteEvent({ eventId: eventId, snakeId: eventData.snakeId, jwt: user.jwt}));
+        dispatch(resetEvents());
         handleClose();        
     }
     

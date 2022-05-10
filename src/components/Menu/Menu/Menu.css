@@ -1,0 +1,102 @@
+.menu {
+    background-color: var(--primary-color);
+    width: 220px;
+    height: 100vh;    
+    height: calc(100vh - 60px);      
+    z-index: 2;
+    margin-top: 59px;
+    padding: 3px;  
+    border-top: 2px solid var(--secondary-color); 
+    position: relative;    
+    transition: all .3s ease-out;
+}
+
+.menu_items {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_collapsed {
+    display: none;
+}
+
+.button_small_menu {    
+    background-color: var(--secondary-color);
+    border: 1px solid var(--divider-color);    
+    width: 50px;
+    height: 50px; 
+    position: absolute;   
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: var(--accent-color);
+}
+
+.small_menu {
+    width: 70px;
+    transition: all .5s ease-in;
+}
+
+.small_menu .menu_item {   
+    padding-left: 15px;
+    font-size: x-large; 
+    transition: all .3s ease-in;   
+}
+
+.small_menu .menu_item_name{
+    color: var(--primary-color);  
+    transform: scale(0);    
+    width: 0;     
+    transition: all .3s ease-in;  
+}
+
+.small_menu .snake_name {
+    color: var(--primary-color);  
+    transform: scale(0);    
+    width: 0;     
+    transition: all .3s ease-in;
+}
+
+.small_menu .snake_button { 
+    padding-left: 10px;   
+    font-size: x-large; 
+    transition: all .3s ease-in; 
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .menu { 
+        position: relative;       
+        width: 100vw;        
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;        
+        padding: 0px 5px;
+        border-radius: 0;
+    }
+
+    .menu_collapsed {
+        display: block;        
+        padding-right: 10px;        
+    }
+
+    .menu_items { 
+        display: block;       
+        top: 100%;
+        width: calc(100vw - 10px);
+        right: 5px;
+        padding: 5px;
+        position: absolute;
+        background-color: var(--primary-color);
+    }
+    .is_collapsed, .button_small_menu {
+        display: none;
+    }
+
+}

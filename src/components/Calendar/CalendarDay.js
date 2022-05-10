@@ -2,13 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBalanceScale, faUtensils, faPoop, faTshirt } from '@fortawesome/free-solid-svg-icons';
 
 
-export const CalendarDay = (props) => {
+export const CalendarDay = (props) => {   
 
-    const date = props.date;
-    const day = props.day;
-    const className = props.className;    
-    const dailyEvents = props.dailyEvents;
-    const handleShowForm = props.handleShowForm;
+    const {date, day ,className, dailyEvents, handleShowForm } = props;
          
     const handleClick = () => { 
         const formData = { 
@@ -23,7 +19,7 @@ export const CalendarDay = (props) => {
     return (
         <div 
             className={className} 
-            key={props.day}
+            key={day}
             onClick={handleClick}
         >
             <div>
@@ -32,7 +28,7 @@ export const CalendarDay = (props) => {
             <div className='events'>                
             {
 
-                props.dailyEvents.map((event, index) => {                    
+                dailyEvents.map((event, index) => {                    
                     let eventIcon = '';
                     switch (event.type) {
                         case 'weight':

@@ -6,8 +6,8 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const FormEventsListItem = (props) => {
     
-    const dailyEvent = props.dailyEvent;
-    const handleDeleteEvent = props.handleDeleteEvent;
+    const { dailyEvent, handleDeleteEvent }  = props;
+   
 
     const [ eventId ] = useState(dailyEvent.eventId);
 
