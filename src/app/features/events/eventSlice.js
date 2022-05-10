@@ -21,7 +21,7 @@ export const fetchEvents = createAsyncThunk('events/fetchEvents', async(fetchDat
             }      
     }; 
     
-    return await fetch(`/api/events/${snake.snakeId}`, requestOptions)
+    return fetch(`/api/events/${snake.snakeId}`, requestOptions)
         .then(response => response.json())
         .then(data => data) 
         .catch(_error => rejectWithValue('Error'));    
@@ -42,7 +42,7 @@ export const saveEvent = createAsyncThunk('events/saveEvent',async(saveData, { r
         body: JSON.stringify(eventData)
     };  
             
-    return await fetch(`/api/events`, requestOptions) 
+    return fetch(`/api/events`, requestOptions) 
         .then(response => response.text())
         .then(data => data)                       
         .catch(_error => rejectWithValue('Error'));
@@ -62,7 +62,7 @@ const { eventId, snakeId, jwt } = deleteData;
         }            
     };        
 
-    return await fetch(`/api/events/${snakeId}/${eventId}`, requestOptions) 
+    return fetch(`/api/events/${snakeId}/${eventId}`, requestOptions) 
         .then(response => response.text())
         .then(data => data)                      
         .catch(_error => rejectWithValue('Error'));
