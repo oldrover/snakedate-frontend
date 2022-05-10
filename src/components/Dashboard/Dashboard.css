@@ -34,7 +34,7 @@
     width: 100%;
     display: flex;
     align-items: left;        
-    font-family: 'Lobster';
+    font-family: 'Lobster', sans-serif;
     font-size: large;
     color: var(--accent-color);
     padding-left: 10px;

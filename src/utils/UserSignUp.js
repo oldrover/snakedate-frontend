@@ -15,5 +15,5 @@ export const userSignUp = async(loginData) => {
             .then(response => { 
                 return response.json();  
             })                                  
-            .catch(error => alert('SignUp Error please try again'));
+            .catch(_error => alert('SignUp Error please try again'));
 }
