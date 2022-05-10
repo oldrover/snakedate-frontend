@@ -35,7 +35,7 @@ export const fetchSnakes = createAsyncThunk('snakes/fetchSnakes', async(fetchDat
         }
     };
 
-    return await fetch(`/api/snakes/${userId}`, requestOptions)    
+    return fetch(`/api/snakes/${userId}`, requestOptions)    
         .then(response => response.json()) 
         .then(data => data)       
         .catch(_error => rejectWithValue('Error'));
@@ -55,7 +55,7 @@ export const deleteSnake = createAsyncThunk('snakes/deleteSnake', async(deleteDa
         }
     };
 
-    return await fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
+    return fetch(`/api/snakes/${snake.ownerId}/${snake.snakeId}`, requestOptions)
         .then(response => response.text())
         .then(data => data)
         .catch(_error => rejectWithValue('Error'));
@@ -77,7 +77,7 @@ export const saveSnake = createAsyncThunk('snakes/saveSnake', async(saveData, { 
         body: JSON.stringify(snake)
     };  
              
-    return await fetch(`/api/snakes`, requestOptions)
+    return fetch(`/api/snakes`, requestOptions)
         .then(response => response.text())
         .then(data => data)                               
         .catch(_error => rejectWithValue('Error'));  
