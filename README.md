@@ -1,4 +1,5 @@
 # SnakePlanner Frontend
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=oldrover_snakeplanner-frontend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oldrover_snakeplanner-frontend)
 
 ![image](https://raw.githubusercontent.com/oldrover/snakeplanner/master/images/app.png)
 
